@@ -24,14 +24,6 @@ module.exports = {
 				type: Sequelize.DATE,
 			},
 		});
-		await queryInterface.addConstraint('Majors', {
-			fields: ['departmentId'],
-			type: 'foreign key',
-			references: {
-				table: 'Departments',
-				field: 'id',
-			},
-		});
 	},
 	async down(queryInterface, Sequelize) {
 		await queryInterface.dropTable('Majors');
