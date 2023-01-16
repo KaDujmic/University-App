@@ -17,10 +17,6 @@ module.exports = {
 				allowNull: false,
 				type: Sequelize.INTEGER,
 			},
-			professorId: {
-				allowNull: false,
-				type: Sequelize.INTEGER,
-			},
 			majorId: {
 				allowNull: false,
 				type: Sequelize.INTEGER,
