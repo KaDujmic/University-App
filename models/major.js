@@ -3,8 +3,16 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
 	class Major extends Model {
 		static associate(models) {
-			Major.belongsTo(models.department);
-			models.department.hasMany(Major);
+			models.Department.hasMany(Major, {
+				foreignKey: {
+					name: 'departmentId',
+				},
+			});
+			Major.belongsTo(models.Department, {
+				foreignKey: {
+					name: 'id',
+				},
+			});
 		}
 	}
 	Major.init(
