@@ -48,3 +48,22 @@ exports.deleteProfessor = async (req, res) => {
 		res.status(404).json(err.message);
 	}
 };
+
+exports.professorCourses = async (req, res) => {
+	try {
+		const professorCourses = await models.sequelize.query(
+			`
+			SELECT 
+				p.name as Professor,
+				c.name as Course
+			FROM "Courses" c
+			JOIN "ProfessorCourses" pc ON  pc."courseId" = c.id 
+			JOIN "Professors" p ON	p.id = pc."professorId" 
+			WHERE pc."professorId" = ${req.params.id}
+			`
+		);
+		res.status(200).json(professorCourses[0]);
+	} catch (err) {
+		res.status(404).json(err.message);
+	}
+};
