@@ -14,4 +14,8 @@ router
 	.put(professorController.updateProfessor)
 	.delete(professorController.deleteProfessor);
 
+router
+	.route('/:id/courses')
+	.get(professorController.professorCourses);
+
 module.exports = router;
