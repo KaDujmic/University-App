@@ -53,6 +53,7 @@ exports.deleteCourse = async (req, res) => {
 exports.studentsOnCourse = async (req, res) => {
 	try {
 		const students = await models.Enrollment.findAll({
+			attributes: ['Course.name', 'Student.fullName'],
 			where: { courseId: req.params.id},
 			include: [models.Course, models.Student],
 		});
