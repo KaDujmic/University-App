@@ -75,20 +75,11 @@ exports.studentsOnCourse = async (req, res) => {
 
 exports.professorsOnCourse = async (req, res) => {
 	try {
-		// const professors = await sequelize.query(
-		// 	`
-		//   select
-		//     p."name" as professor ,
-		//     c."name" as course
-		//   from "ProfessorCourses" pc
-		//   join "Professors" p ON pc."professorId" = p.id
-		//   join "Courses" c ON pc."courseId" = c.id
-		//   `
-		// );
-		const professors = await models.Course.findAll({
-			include: [models.ProfessorCourse],
+		const professors = await models.ProfessorCourse.findAll({
+			where: { courseId: req.params.id},
+			include: [models.Course, models.Professor],
 		});
-		res.status(200).json({ professorCourse: professors[0] });
+		res.status(200).json({ professorCourse: professors });
 	} catch (err) {
 		res.status(404).json(err.message);
 	}
