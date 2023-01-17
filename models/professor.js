@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
 					name: 'id',
 				},
 			});
+
+			Professor.belongsToMany(models.Course, {
+				through: models.ProfessorCourse,
+				foreignKey: 'professorId',
+			});
 		}
 	}
 	Professor.init(
