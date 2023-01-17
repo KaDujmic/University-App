@@ -52,21 +52,13 @@ exports.deleteCourse = async (req, res) => {
 
 exports.studentsOnCourse = async (req, res) => {
 	try {
-		const students = await sequelize.query(
-			`
-      select 
-        s."fullName",
-        c."name" 
-      from "Courses" c 
-      join "Enrollments" e ON c.id = e."courseId" 
-      join "Students" s ON e."studentId" = s.id 
-      where c.id = ${req.params.id}
-      `
-		);
+		const students = await models.Enrollment.findAll({
+			where: { courseId: req.params.id},
+			include: [models.Course, models.Student],
+		});
 		res.status(200).json({
-			// Map out course name and all students
-			course: students[0].map((courses) => courses.name)[0],
-			students: students[0].map((student) => student.fullName),
+			course: students[0].Course.name,
+			students: students,
 		});
 	} catch (err) {
 		res.status(404).json(err.message);
@@ -76,6 +68,7 @@ exports.studentsOnCourse = async (req, res) => {
 exports.professorsOnCourse = async (req, res) => {
 	try {
 		const professors = await models.ProfessorCourse.findAll({
+			attributes: ['Course.name', 'Professor.name'],
 			where: { courseId: req.params.id},
 			include: [models.Course, models.Professor],
 		});
