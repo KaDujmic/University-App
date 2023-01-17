@@ -26,6 +26,7 @@ app.use('/professor', professorRouter);
 app.use('/student', studentRouter);
 app.use('/major', majorRouter);
 app.use('/course', courseRouter);
+app.use('/enrollment', enrollmentRouter);
 
 app.listen(port, () => {
 	console.log(`Server listening on the port  ${port}`);
