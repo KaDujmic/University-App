@@ -16,6 +16,6 @@ router
 
 	router
 	.route('/:id/courses')
-	.get(studentController.studentCourses);
+	.get(studentController.studentEnrollments);
 
 module.exports = router;
