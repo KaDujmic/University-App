@@ -6,6 +6,8 @@ module.exports = {
 		// majorId in table Student
 		await queryInterface.addConstraint('Students', {
 			fields: ['majorId'],
+			onDelete: 'restrict',
+			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
 				table: 'Majors',
@@ -16,6 +18,8 @@ module.exports = {
 		// departmentId in table Major
 		await queryInterface.addConstraint('Majors', {
 			fields: ['departmentId'],
+			onDelete: 'restrict',
+			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
 				table: 'Departments',
@@ -27,6 +31,8 @@ module.exports = {
 		await queryInterface.addConstraint('Professors', {
 			fields: ['departmentId'],
 			type: 'foreign key',
+			onDelete: 'restrict',
+			onUpdate: 'cascade',
 			references: {
 				table: 'Departments',
 				field: 'id',
@@ -36,6 +42,8 @@ module.exports = {
 		// courseId in table Exam
 		await queryInterface.addConstraint('Exams', {
 			fields: ['courseId'],
+			onDelete: 'restrict',
+			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
 				table: 'Courses',
@@ -46,6 +54,8 @@ module.exports = {
 		// majorId in table Course
 		await queryInterface.addConstraint('Courses', {
 			fields: ['majorId'],
+			onDelete: 'restrict',
+			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
 				table: 'Majors',
@@ -56,6 +66,8 @@ module.exports = {
 		// studentId and examId in table Result
 		await queryInterface.addConstraint('Results', {
 			fields: ['studentId'],
+			onDelete: 'restrict',
+			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
 				table: 'Students',
@@ -65,6 +77,8 @@ module.exports = {
 		await queryInterface.addConstraint('Results', {
 			fields: ['examId'],
 			type: 'foreign key',
+			onDelete: 'restrict',
+			onUpdate: 'cascade',
 			references: {
 				table: 'Exams',
 				field: 'id',
@@ -74,6 +88,8 @@ module.exports = {
 		// courseId and studentId in table Enrollments
 		await queryInterface.addConstraint('Enrollments', {
 			fields: ['studentId'],
+			onDelete: 'restrict',
+			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
 				table: 'Students',
@@ -82,6 +98,8 @@ module.exports = {
 		});
 		await queryInterface.addConstraint('Enrollments', {
 			fields: ['courseId'],
+			onDelete: 'restrict',
+			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
 				table: 'Courses',
@@ -92,6 +110,8 @@ module.exports = {
 		// professorId and courseId in table ProfessorCourse
 		await queryInterface.addConstraint('ProfessorCourses', {
 			fields: ['professorId'],
+			onDelete: 'restrict',
+			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
 				table: 'Professors',
@@ -100,6 +120,8 @@ module.exports = {
 		});
 		await queryInterface.addConstraint('ProfessorCourses', {
 			fields: ['courseId'],
+			onDelete: 'restrict',
+			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
 				table: 'Courses',
