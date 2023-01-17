@@ -49,9 +49,9 @@ exports.deleteStudent = async (req, res) => {
 	}
 };
 
-exports.studentCourses = async (req, res) => {
+exports.studentEnrollments = async (req, res) => {
 	try {
-		const studentCourses = await models.sequelize.query(
+		const enrollments = await models.sequelize.query(
 			`
 			SELECT 
 				s."fullName" as Student,
@@ -62,7 +62,7 @@ exports.studentCourses = async (req, res) => {
 			WHERE e."studentId" = ${req.params.id}
 			`
 		);
-		res.status(200).json(studentCourses[0]);
+		res.status(200).json(enrollments[0]);
 	} catch (err) {
 		res.status(404).json(err.message);
 	}
