@@ -14,4 +14,6 @@ router
 	.put(majorController.updateMajor)
 	.delete(majorController.deleteMajor);
 
+router.route('/:id/students').get(majorController.studentsOnMajor);
+
 module.exports = router;
