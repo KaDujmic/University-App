@@ -1,3 +1,4 @@
+const { sequelize } = require('../models');
 const models = require('../models');
 
 exports.findAllMajors = async (req, res) => {
@@ -49,3 +50,21 @@ exports.deleteMajor = async (req, res) => {
 	}
 };
 
+exports.studentsOnMajor = async (req, res) => {
+	try {
+		const students = await sequelize.query(
+			`
+      select 
+        s."fullName" 
+      from "Students" s 
+      join "Majors" m ON s."majorId" = m.id 
+      where m.id = ${req.params.id}
+      `
+		);
+		res
+			.status(200)
+			.json(students[0].map((student) => student.fullName));
+	} catch (err) {
+		res.status(404).json(err.message);
+	}
+};
