@@ -9,6 +9,7 @@ const majorRouter = require('./routers/majorRouter');
 const enrollmentRouter = require('./routers/enrollmentRouter');
 const courseRouter = require('./routers/courseRouter');
 const professor_courseRouter = require('./routers/professor-courseRouter');
+const departmentRouter = require('./routers/departmentRouter');
 
 dotenv.config({ path: './config.env' });
 
@@ -29,6 +30,7 @@ app.use('/major', majorRouter);
 app.use('/course', courseRouter);
 app.use('/enrollment', enrollmentRouter);
 app.use('/professor-course', professor_courseRouter);
+app.use('/department', departmentRouter);
 
 app.listen(port, () => {
 	console.log(`Server listening on the port  ${port}`);
