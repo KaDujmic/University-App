@@ -26,6 +26,9 @@ db.sequelize
 	.then(() => console.log('Database connected'))
 	.catch((err) => console.log(err.message));
 
+/*
+
+*/
 app.use('/professor', professorRouter);
 app.use('/student', studentRouter);
 app.use('/major', majorRouter);
