@@ -19,10 +19,10 @@ module.exports = (sequelize, DataTypes) => {
 				foreignKey: 'studentId',
 			});
 
-			// Student.belongsToMany(models.Exam, {
-			//   through: models.Result,
-			//   foreignKey: 'studentId'
-			// });
+			Student.belongsToMany(models.Exam, {
+				through: models.Result,
+				foreignKey: 'studentId',
+			});
 		}
 	}
 	Student.init(
