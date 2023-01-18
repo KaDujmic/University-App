@@ -10,9 +10,12 @@ module.exports = {
 				type: Sequelize.INTEGER,
 			},
 			name: {
+				allowNull: false,
+				unique: true,
 				type: Sequelize.STRING,
 			},
 			departmentId: {
+				allowNull: false,
 				type: Sequelize.INTEGER,
 			},
 			createdAt: {

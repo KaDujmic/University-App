@@ -15,6 +15,8 @@ module.exports = {
 			},
 			email: {
 				allowNull: false,
+				unique: true,
+				isEmail: true,
 				type: Sequelize.STRING,
 			},
 			address: {
@@ -23,6 +25,10 @@ module.exports = {
 			},
 			phoneNumber: {
 				allowNull: false,
+				unique: true,
+				validate: {
+					is: /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{5,6}$/,
+				},
 				type: Sequelize.STRING,
 			},
 			majorId: {
