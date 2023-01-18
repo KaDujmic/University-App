@@ -13,6 +13,12 @@ module.exports = {
 				allowNull: false,
 				type: Sequelize.STRING,
 			},
+			email: {
+				allowNull: false,
+				unique: true,
+				type: Sequelize.STRING,
+				isEmail: true,
+			},
 			address: {
 				allowNull: false,
 				type: Sequelize.STRING,
@@ -28,6 +34,10 @@ module.exports = {
 			departmentId: {
 				allowNull: false,
 				type: Sequelize.INTEGER,
+			},
+			password: {
+				allowNull: false,
+				type: Sequelize.STRING,
 			},
 			createdAt: {
 				allowNull: false,
