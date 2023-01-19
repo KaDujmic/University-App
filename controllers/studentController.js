@@ -1,52 +1,24 @@
 const models = require('../models');
+const Model = require('../utils/factory');
 
 exports.findAllStudents = async (req, res) => {
-	try {
-		const students = await models.Student.findAll();
-		res.status(200).json({ students });
-	} catch (err) {
-		res.status(404).json(err.message);
-	}
+	Model.findAllModel(models.Student, req, res);
 };
 
 exports.findStudent = async (req, res) => {
-	try {
-		const Student = await models.Student.findByPk(req.params.id);
-		res.status(200).json(Student);
-	} catch (err) {
-		res.status(404).json(err.message);
-	}
+	Model.findModel(models.Student, req, res);
 };
 
 exports.createStudent = async (req, res) => {
-	try {
-		const Student = await models.Student.create(req.body);
-		res.status(200).json(Student);
-	} catch (err) {
-		res.status(404).json(err.message);
-	}
+	Model.createModel(models.Student, req, res);
 };
 
 exports.updateStudent = async (req, res) => {
-	try {
-		const Student = await models.Student.update(req.body, {
-			where: { id: req.params.id },
-		});
-		res.status(200).json(Student);
-	} catch (err) {
-		res.status(404).json(err.message);
-	}
+	Model.updateModel(models.Student, req, res);
 };
 
 exports.deleteStudent = async (req, res) => {
-	try {
-		const Student = await models.Student.destroy({
-			where: { id: req.params.id },
-		});
-		res.status(200).json(Student);
-	} catch (err) {
-		res.status(404).json(err.message);
-	}
+	Model.deleteModel(models.Student, req, res);
 };
 
 exports.studentEnrollments = async (req, res) => {

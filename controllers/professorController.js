@@ -1,52 +1,24 @@
 const models = require('../models');
+const Model = require('../utils/factory');
 
 exports.findAllProfessors = async (req, res) => {
-	try {
-		const professors = await models.Professor.findAll();
-		res.status(200).json({ professors });
-	} catch (err) {
-		res.status(404).json(err.errors[0].message);
-	}
+	Model.findAllModel(models.Professor, req, res);
 };
 
 exports.findProfessor = async (req, res) => {
-	try {
-		const professor = await models.Professor.findByPk(req.params.id);
-		res.status(200).json(professor);
-	} catch (err) {
-		res.status(404).json(err.errors[0].message);
-	}
+	Model.findModel(models.Professor, req, res);
 };
 
 exports.createProfessor = async (req, res) => {
-	try {
-		const professor = await models.Professor.create(req.body);
-		res.status(200).json(professor);
-	} catch (err) {
-		res.status(404).json(err.errors[0].message);
-	}
+	Model.createModel(models.Professor, req, res);
 };
 
 exports.updateProfessor = async (req, res) => {
-	try {
-		const professor = await models.Professor.update(req.body, {
-			where: { id: req.params.id },
-		});
-		res.status(200).json(professor);
-	} catch (err) {
-		res.status(404).json(err.errors[0].message);
-	}
+	Model.updateModel(models.Professor, req, res);
 };
 
 exports.deleteProfessor = async (req, res) => {
-	try {
-		const professor = await models.Professor.destroy({
-			where: { id: req.params.id },
-		});
-		res.status(200).json(professor);
-	} catch (err) {
-		res.status(404).json(err.errors[0].message);
-	}
+	Model.deleteModel(models.Professor, req, res);
 };
 
 exports.professorCourses = async (req, res) => {

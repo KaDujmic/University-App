@@ -1,74 +1,36 @@
 const { sequelize } = require('../models');
 const models = require('../models');
 
+const Model = require('../utils/factory');
+
 exports.findAllMajors = async (req, res) => {
-	try {
-		const majors = await models.Major.findAll();
-		res.status(200).json({ majors });
-	} catch (err) {
-		res.status(404).json(err.message);
-	}
+	Model.findAllModel(models.Major, req, res);
 };
 
 exports.findMajor = async (req, res) => {
-	try {
-		const major = await models.Major.findByPk(req.params.id);
-		res.status(200).json(major);
-	} catch (err) {
-		res.status(404).json(err.message);
-	}
+	Model.findModel(models.Major, req, res);
 };
 
 exports.createMajor = async (req, res) => {
-	try {
-		const major = await models.Major.create(req.body);
-		res.status(200).json(major);
-	} catch (err) {
-		res.status(404).json(err.message);
-	}
+	Model.createModel(models.Major, req, res);
 };
 
 exports.updateMajor = async (req, res) => {
-	try {
-		const major = await models.Major.update(req.body, {
-			where: { id: req.params.id },
-		});
-		res.status(200).json(major);
-	} catch (err) {
-		res.status(404).json(err.message);
-	}
+	Model.updateModel(models.Major, req, res);
 };
 
 exports.deleteMajor = async (req, res) => {
-	try {
-		const major = await models.Major.destroy({
-			where: { id: req.params.id },
-		});
-		res.status(200).json(major);
-	} catch (err) {
-		res.status(404).json(err.message);
-	}
+	Model.deleteModel(models.Major, req, res);
 };
 
 exports.studentsOnMajor = async (req, res) => {
 	try {
-		// const students = await sequelize.query(
-		// 	`
-		//   select
-		//     s."fullName"
-		//   from "Students" s
-		//   join "Majors" m ON s."majorId" = m.id
-		//   where m.id = ${req.params.id}
-		//   `
-		// );
 		const students = await models.Student.findAll({
 			attributes: ['fullName', 'Major.name'],
 			include: [models.Major],
 			where: { majorId: req.params.id },
 		});
-		res
-			.status(200)
-			.json(students);
+		res.status(200).json(students);
 	} catch (err) {
 		res.status(404).json(err.message);
 	}
