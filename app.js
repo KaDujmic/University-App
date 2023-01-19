@@ -3,6 +3,9 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 const db = require('./models');
 
+/*
+	import routers
+*/
 const professorRouter = require('./routers/professorRouter');
 const studentRouter = require('./routers/studentRouter');
 const majorRouter = require('./routers/majorRouter');
@@ -18,18 +21,21 @@ dotenv.config({ path: './config.env' });
 const app = express();
 const port = process.env.PORT || 8080;
 
-dotenv.config()
+dotenv.config();
 
 app.use(express.json());
 app.use(morgan('dev'));
 
+/*
+	Database connection check
+*/
 db.sequelize
 	.authenticate()
 	.then(() => console.log('Database connected'))
 	.catch((err) => console.log(err.message));
 
 /*
-
+	Set default routes for specific routers
 */
 app.use('/professor', professorRouter);
 app.use('/student', studentRouter);
