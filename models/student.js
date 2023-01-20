@@ -48,10 +48,10 @@ module.exports = (sequelize, DataTypes) => {
 				beforeCreate: (student, options) => {
 					Hook.idIsPresent(student, options);
 				},
-				afterFind: (student, options) => {
-					// Error if user does not exist
-					Hook.exists(student, options);
-				},
+				// afterFind: (student, options) => {
+				// 	// Error if user does not exist
+				// 	Hook.exists(student, options);
+				// },
 			},
 		}
 	);

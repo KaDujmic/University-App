@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	Enrollment.init(
 		{
-			studentId: DataTypes.INTEGER,
+			studentId: DataTypes.UUID,
 			courseId: DataTypes.INTEGER,
 		},
 		{

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	ProfessorCourse.init(
 		{
-			professorId: DataTypes.INTEGER,
+			professorId: DataTypes.UUID,
 			courseId: DataTypes.INTEGER,
 		},
 		{
