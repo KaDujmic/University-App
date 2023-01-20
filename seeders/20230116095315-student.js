@@ -6,19 +6,21 @@ module.exports = {
 		return queryInterface.bulkInsert('Students', [
 			{
 				fullName: 'Mike Louren',
-        email: 'mike.louren@gmail.com',
+				email: 'mike.louren@gmail.com',
 				address: '1st Blvd',
 				phoneNumber: '+385915969819',
 				majorId: 1,
+				password: 'test1234',
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			},
 			{
 				fullName: 'Mike Smith',
-        email: 'mike.smith@gmail.com',
+				email: 'mike.smith@gmail.com',
 				address: '4rd Blvd',
 				phoneNumber: '+3859159692323',
 				majorId: 2,
+				password: 'test1234',
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			},
