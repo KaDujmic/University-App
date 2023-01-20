@@ -33,20 +33,21 @@ module.exports = (sequelize, DataTypes) => {
 			address: DataTypes.STRING,
 			phoneNumber: DataTypes.STRING,
 			majorId: DataTypes.NUMBER,
+			role: DataTypes.STRING,
 		},
 		{
 			sequelize,
 			modelName: 'Student',
 			hooks: {
 				beforeBulkUpdate: (student, options) => {
-					Hook.isUpdateId(student, options)
+					Hook.isUpdateId(student, options);
 				},
 				beforeCreate: (student, options) => {
 					Hook.idIsPresent(student, options);
 				},
 				afterFind: (student, options) => {
 					// Error if user does not exist
-					Hook.exists(student, options)
+					Hook.exists(student, options);
 				},
 			},
 		}
