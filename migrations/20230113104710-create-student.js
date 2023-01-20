@@ -19,6 +19,10 @@ module.exports = {
 				isEmail: true,
 				type: Sequelize.STRING,
 			},
+			password: {
+				allowNull: false,
+				type: Sequelize.STRING,
+			},
 			address: {
 				allowNull: false,
 				type: Sequelize.STRING,
@@ -34,6 +38,12 @@ module.exports = {
 			majorId: {
 				allowNull: false,
 				type: Sequelize.INTEGER,
+			},
+			role: {
+				type: Sequelize.STRING,
+				enum: 'student',
+				defaultValue: 'student',
+				allowNull: false,
 			},
 			createdAt: {
 				allowNull: false,
