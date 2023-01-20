@@ -1,4 +1,15 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
+const correct_password = async function (
+	candidate_password,
+	user_password
+) {
+	return await bcrypt.compare(
+		candidate_password,
+		user_password
+	);
+};
 
 exports.login = async (Professor, Student, req, res) => {
 	try {
@@ -13,7 +24,7 @@ exports.login = async (Professor, Student, req, res) => {
 				where: { email: email },
 			})) || (await Student.findOne({ where: { email: email } }));
 		// If no user or the password is incorrect throw error
-		if (!user || user.password !== password) {
+		if (!user || !correct_password(user.password, password)) {
 			return res.status(400).json('Incorrect email or password!');
 		}
 		return user.dataValues;
