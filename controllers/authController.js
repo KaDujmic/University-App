@@ -83,15 +83,12 @@ exports.protect = async (req, res, next) => {
 		}
 		if (!token)
 			throw new Error('You are not logged in. Please log in!');
-    console.log(req.headers.authorization);
 
 		// 2) Verification of the token 
-    console.log(token);
 		const decoded = await jwt.verify(token, process.env.JWT_SECRET);
 
 		// 3) Check if the user still exists
 		const current_user = await models.Professor.findByPk(decoded.id);
-		console.log(decoded);
 		if (!current_user) throw new Error('The user no longer exists!');
 
 		// 4) Set local storage and req.user to current_user
