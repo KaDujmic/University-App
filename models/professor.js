@@ -30,17 +30,20 @@ module.exports = (sequelize, DataTypes) => {
 			departmentId: DataTypes.INTEGER,
 			email: DataTypes.STRING,
 			password: DataTypes.STRING,
-			role: DataTypes.STRING
+			role: DataTypes.STRING,
 		},
 		{
 			sequelize,
 			modelName: 'Professor',
 			hooks: {
 				beforeBulkUpdate: (professor, options) => {
-					Hook.isUpdateId(professor, options)
+					Hook.isUpdateId(professor, options);
 				},
-				beforeCreate: (professor, options) => {
-					Hook.idIsPresent(professor, options);
+				// beforeCreate: (professor, options) => {
+				// 	Hook.idIsPresent(professor, options);
+				// },
+				afterCreate: (professor, options) => {
+					Hook.hashPassword(professor, options);
 				},
 				// afterFind: (professor, options) => {
 				// 	// Error if user does not exist
