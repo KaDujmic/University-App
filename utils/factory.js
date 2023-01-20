@@ -1,4 +1,3 @@
-
 exports.findAllModel = async (Model, req, res) => {
 	try {
 		const models = await Model.findAll();
@@ -10,7 +9,9 @@ exports.findAllModel = async (Model, req, res) => {
 
 exports.findModel = async (Model, req, res) => {
 	try {
-		const model = await Model.findByPk(req.params.id);
+		const model = await Model.findOne({
+			where: { id: req.params.id },
+		});
 		res.status(200).json(model);
 	} catch (err) {
 		res.status(404).json(err.message);
