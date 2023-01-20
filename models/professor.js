@@ -1,5 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
+const Hook = require('../utils/hooks');
+
 module.exports = (sequelize, DataTypes) => {
 	class Professor extends Model {
 		static associate(models) {
@@ -34,24 +36,14 @@ module.exports = (sequelize, DataTypes) => {
 			modelName: 'Professor',
 			hooks: {
 				beforeBulkUpdate: (professor, options) => {
-					if (professor.attributes.id) {
-						throw new Error('The ID field cannot be updated');
-					}
+					Hook.isUpdateId(professor, options)
 				},
 				beforeCreate: (professor, options) => {
-					if (professor.dataValues.id) {
-						throw new Error(
-							'Professors ID field is automatically generated'
-						);
-					}
+					Hook.idIsPresent(professor, options);
 				},
 				afterFind: (professor, options) => {
 					// Error if user does not exist
-					if (!professor) {
-						throw new Error(
-							'Professors with that ID field does not exist'
-						);
-					}
+					Hook.exists(professor, options)
 				},
 			},
 		}

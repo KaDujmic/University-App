@@ -34,6 +34,18 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			sequelize,
 			modelName: 'Course',
+			hooks: {
+				beforeBulkUpdate: (course, options) => {
+					Hook.isUpdateId(course, options)
+				},
+				beforeCreate: (course, options) => {
+					Hook.idIsPresent(course, options);
+				},
+				afterFind: (course, options) => {
+					// Error if user does not exist
+					Hook.exists(course, options)
+				},
+			},
 		}
 	);
 	return Course;

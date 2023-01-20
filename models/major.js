@@ -23,6 +23,18 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			sequelize,
 			modelName: 'Major',
+			hooks: {
+				beforeBulkUpdate: (major, options) => {
+					Hook.isUpdateId(major, options)
+				},
+				beforeCreate: (major, options) => {
+					Hook.idIsPresent(major, options);
+				},
+				afterFind: (major, options) => {
+					// Error if user does not exist
+					Hook.exists(major, options)
+				},
+			},
 		}
 	);
 	return Major;
