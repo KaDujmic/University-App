@@ -39,7 +39,7 @@ exports.userLogin = async (req, res) => {
 			req,
 			res
 		);
-		create_send_token(user, 200, res);
+		if (user.statusCode !== 400) create_send_token(user, 200, res);
 	} catch (err) {
 		res.status(400).json({
 			stats: 'fail',
@@ -50,8 +50,7 @@ exports.userLogin = async (req, res) => {
 
 exports.isLoggedIn = async (req, res, next) => {
 	try {
-		auth.protect(models.Professor, models.Student, req, res);
-		next();
+		auth.protect(models.Professor, models.Student, req, res, next);
 	} catch (err) {
 		res.status(401).json({
 			stats: 'fail',
@@ -60,4 +59,13 @@ exports.isLoggedIn = async (req, res, next) => {
 	}
 };
 
-exports.rolePermission = () => {};
+exports.restrictTo = (...roles) => {
+	return (req, res, next) => {
+		if (!roles.includes(req.user.role)) {
+			return res
+				.status(400)
+				.json('You do not have permission to access this route!');
+		}
+		next();
+	};
+};
