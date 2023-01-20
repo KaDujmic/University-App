@@ -15,6 +15,7 @@ const professor_courseRouter = require('./routers/professor-courseRouter');
 const departmentRouter = require('./routers/departmentRouter');
 const examRouter = require('./routers/examRouter');
 const resultRouter = require('./routers/resultRouter');
+const authRouter = require('./routers/authRouter');
 
 dotenv.config({ path: './config.env' });
 
@@ -46,6 +47,7 @@ app.use('/professor-course', professor_courseRouter);
 app.use('/department', departmentRouter);
 app.use('/exam', examRouter);
 app.use('/result', resultRouter);
+app.use('/', authRouter)
 
 app.listen(port, () => {
 	console.log(`Server listening on the port  ${port}`);
