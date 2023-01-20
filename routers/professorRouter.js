@@ -4,9 +4,7 @@ const authController = require('../controllers/authController');
 
 const router = express.Router({ mergeParams: true });
 
-router.post('/login', authController.login);
-
-router.use(authController.protect);
+router.use(authController.isLoggedIn);
 
 router
 	.route('/')
