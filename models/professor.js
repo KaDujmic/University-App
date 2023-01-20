@@ -32,7 +32,30 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			sequelize,
 			modelName: 'Professor',
+			hooks: {
+				beforeBulkUpdate: (professor, options) => {
+					console.log(professor.attributes.id);
+					if (professor.attributes.id) {
+						throw new Error('The ID field cannot be updated');
+					}
+				},
+				beforeCreate: (professor, options) => {
+					console.log(professor.dataValues.id);
+					if (professor.dataValues.id) {
+						throw new Error('Professors ID field is automatically generated');
+					}
+				},
+			},
 		}
 	);
+
+	// Professor.beforeUpdate = (professor, options) => {
+	// 	if (professor._changed.id) {
+	// 		console.log(professor._changed.id);
+	// 		throw new Error('The ID field cannot be updated');
+	// 	}
+	// };
+
 	return Professor;
+
 };
