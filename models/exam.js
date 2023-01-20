@@ -1,5 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
+const Hook = require('../utils/hooks');
+
 module.exports = (sequelize, DataTypes) => {
 	class Exam extends Model {
 		static associate(models) {

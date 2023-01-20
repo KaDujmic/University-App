@@ -1,5 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
+const Hook = require('../utils/hooks');
+
 module.exports = (sequelize, DataTypes) => {
 	class Student extends Model {
 		static associate(models) {
@@ -33,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
 			address: DataTypes.STRING,
 			phoneNumber: DataTypes.STRING,
 			majorId: DataTypes.NUMBER,
+			password: DataTypes.STRING,
 			role: DataTypes.STRING,
 		},
 		{

@@ -1,5 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
+const Hook = require('../utils/hooks');
+
 module.exports = (sequelize, DataTypes) => {
 	class Major extends Model {
 		static associate(models) {
@@ -25,14 +27,14 @@ module.exports = (sequelize, DataTypes) => {
 			modelName: 'Major',
 			hooks: {
 				beforeBulkUpdate: (major, options) => {
-					Hook.isUpdateId(major, options)
+					Hook.isUpdateId(major, options);
 				},
 				beforeCreate: (major, options) => {
 					Hook.idIsPresent(major, options);
 				},
 				afterFind: (major, options) => {
 					// Error if user does not exist
-					Hook.exists(major, options)
+					Hook.exists(major, options);
 				},
 			},
 		}
