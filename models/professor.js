@@ -39,9 +39,17 @@ module.exports = (sequelize, DataTypes) => {
 				beforeBulkUpdate: (professor, options) => {
 					Hook.isUpdateId(professor, options);
 				},
-				// beforeCreate: (professor, options) => {
-				// 	Hook.idIsPresent(professor, options);
-				// },
+				beforeCreate: async (professor, options) => {
+					await Hook.createUUID(professor, options);
+
+					const user = await sequelize.models.Student.findAll({
+						where: { email: professor.dataValues.email },
+					});
+					if (user)
+						throw new Error(
+							'User with that email exists, please use different email!'
+						);
+				},
 				afterCreate: (professor, options) => {
 					Hook.hashPassword(professor, options);
 				},
