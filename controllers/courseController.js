@@ -41,10 +41,10 @@ exports.studentsOnCourse = async (req, res) => {
 
 exports.professorsOnCourse = async (req, res) => {
 	try {
-		const professors = await models.CourseCourse.findAll({
+		const professors = await models.ProfessorCourse.findAll({
 			attributes: ['Course.name', 'Course.name'],
 			where: { courseId: req.params.id},
-			include: [models.Course, models.Course],
+			include: [models.Professor, models.Course],
 		});
 		res.status(200).json({ professorCourse: professors });
 	} catch (err) {
