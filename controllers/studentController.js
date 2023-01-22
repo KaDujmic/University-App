@@ -33,3 +33,16 @@ exports.studentEnrollments = async (req, res) => {
 		res.status(404).json(err.message);
 	}
 };
+
+exports.studentExams = async (req, res) => {
+	try {
+		const exams = await models.Result.findAll({
+			attributes: ['Student.fullName', 'Exam.name'],
+			include: [models.Student, models.Exam],
+			where: { studentId: req.params.id },
+		});
+		res.status(200).json(exams);
+	} catch (err) {
+		res.status(404).json(err.message);
+	}
+};
