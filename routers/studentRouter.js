@@ -4,7 +4,7 @@ const authController = require('../controllers/authController');
 
 const router = express.Router({ mergeParams: true });
 
-router.use(authController.isLoggedIn)
+router.use(authController.isLoggedIn);
 
 router
 	.route('/')
@@ -17,8 +17,10 @@ router
 	.put(studentController.updateStudent)
 	.delete(studentController.deleteStudent);
 
-	router
+router
 	.route('/:id/courses')
 	.get(studentController.studentEnrollments);
+
+router.route('/:id/exams').get(studentController.studentExams);
 
 module.exports = router;
