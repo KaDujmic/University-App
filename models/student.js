@@ -51,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
 					const user = await sequelize.models.Professor.findAll({
 						where: { email: student.dataValues.email },
 					});
-					if (user)
+					if (user.length)
 						throw new Error(
 							'User with that email exists, please use different email!'
 						);
