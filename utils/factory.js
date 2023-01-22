@@ -23,7 +23,7 @@ exports.createModel = async (Model, req, res) => {
 		const model = await Model.create(req.body);
 		res.status(200).json(model);
 	} catch (err) {
-		res.status(404).json(err.message);
+		res.status(404).json(err.errors[0].message);
 	}
 };
 
