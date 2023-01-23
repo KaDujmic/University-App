@@ -4,23 +4,23 @@ const models = require('../models');
 const Model = require('../utils/factory');
 
 exports.findAllMajors = async (req, res) => {
-	Model.findAllModel(models.Major, req, res);
+	await Model.findAllModel(models.Major, req, res);
 };
 
 exports.findMajor = async (req, res) => {
-	Model.findModel(models.Major, req, res);
+	await Model.findModel(models.Major, req, res);
 };
 
 exports.createMajor = async (req, res) => {
-	Model.createModel(models.Major, req, res);
+	await Model.createModel(models.Major, req, res);
 };
 
 exports.updateMajor = async (req, res) => {
-	Model.updateModel(models.Major, req, res);
+	await Model.updateModel(models.Major, req, res);
 };
 
 exports.deleteMajor = async (req, res) => {
-	Model.deleteModel(models.Major, req, res);
+	await Model.deleteModel(models.Major, req, res);
 };
 
 exports.studentsOnMajor = async (req, res) => {

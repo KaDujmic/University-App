@@ -2,23 +2,23 @@ const models = require('../models');
 const Model = require('../utils/factory');
 
 exports.findAllStudents = async (req, res) => {
-	Model.findAllModel(models.Student, req, res);
+	await Model.findAllModel(models.Student, req, res);
 };
 
 exports.findStudent = async (req, res) => {
-	Model.findModel(models.Student, req, res);
+	await Model.findModel(models.Student, req, res);
 };
 
 exports.createStudent = async (req, res) => {
-	Model.createModel(models.Student, req, res);
+	await Model.createModel(models.Student, req, res);
 };
 
 exports.updateStudent = async (req, res) => {
-	Model.updateModel(models.Student, req, res);
+	await Model.updateModel(models.Student, req, res);
 };
 
 exports.deleteStudent = async (req, res) => {
-	Model.deleteModel(models.Student, req, res);
+	await Model.deleteModel(models.Student, req, res);
 };
 
 exports.studentEnrollments = async (req, res) => {

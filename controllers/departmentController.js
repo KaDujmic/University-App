@@ -4,23 +4,23 @@ const models = require('../models');
 const Model = require('../utils/factory');
 
 exports.findAllDepartments = async (req, res) => {
-	Model.findAllModel(models.Department, req, res);
+	await Model.findAllModel(models.Department, req, res);
 };
 
 exports.findDepartment = async (req, res) => {
-	Model.findModel(models.Department, req, res);
+	await Model.findModel(models.Department, req, res);
 };
 
 exports.createDepartment = async (req, res) => {
-	Model.createModel(models.Department, req, res);
+	await Model.createModel(models.Department, req, res);
 };
 
 exports.updateDepartment = async (req, res) => {
-	Model.updateModel(models.Department, req, res);
+	await Model.updateModel(models.Department, req, res);
 };
 
 exports.deleteDepartment = async (req, res) => {
-	Model.deleteModel(models.Department, req, res);
+	await Model.deleteModel(models.Department, req, res);
 };
 
 exports.professorsOnDepartment = async (req, res) => {

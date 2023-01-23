@@ -30,7 +30,7 @@ exports.login = async (Professor, Student, req, res) => {
 		return user.dataValues;
 	} catch (err) {
 		res.status(400).json({
-			stats: 'fail',
+			status: 'fail',
 			msg: err.message,
 		});
 	}
