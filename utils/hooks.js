@@ -1,22 +1,32 @@
 const bcrypt = require('bcrypt');
 const { v4: uuidv4 } = require('uuid');
 
-(exports.isUpdateId = (data, options) => {
+exports.isUpdateId = (data, options) => {
 	if (data.attributes.id) {
 		throw new Error('The ID field cannot be updated');
 	}
-}),
-	(exports.idIsPresent = (data, options) => {
-		if (data.dataValues.id) {
-			throw new Error('Model ID field is automatically generated');
-		}
-	}),
-	(exports.exists = (data, options) => {
-		// Error if user does not exist
-		if (!data) {
-			throw new Error('Model with that ID field does not exist');
-		}
-	});
+};
+
+exports.idIsPresent = (data, options) => {
+	if (data.dataValues.id) {
+		const error = new Error(
+			'Model ID field is automatically generated'
+		);
+		error.statusCode = 404;
+		throw error;
+	}
+};
+
+exports.exists = (data, options) => {
+	// Error if user does not exist
+	if (!data) {
+		const error = new Error(
+			'Model with that ID field does not exist'
+		);
+		error.statusCode = 404;
+		throw error;
+	}
+};
 
 exports.createUUID = (data, options) => {
 	data.id = uuidv4();
@@ -24,7 +34,6 @@ exports.createUUID = (data, options) => {
 
 exports.hashPassword = async (data, options) => {
 	data.password = await bcrypt.hash(data.password, 2);
-	console.log(data.password);
 	return data.save();
 };
 
@@ -53,3 +62,7 @@ exports.userEmailCheckProfessor = async (sequelize, email) => {
 		throw error;
 	}
 };
+
+exports.removePassword = async (data, options) => {
+	delete data.dataValues.password;
+}
