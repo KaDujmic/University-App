@@ -64,6 +64,7 @@ module.exports = (sequelize, DataTypes) => {
 				afterFind: (student, options) => {
 					// Error if user does not exist
 					Hook.exists(student, options);
+					Hook.removePassword(student, options);
 				},
 			},
 		}

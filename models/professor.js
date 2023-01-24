@@ -60,6 +60,7 @@ module.exports = (sequelize, DataTypes) => {
 				},
 				afterFind: (professor, options) => {
 					Hook.exists(professor, options);
+					Hook.removePassword(professor, options);
 				},
 			},
 		}
