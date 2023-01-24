@@ -1,6 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 const Hook = require('../utils/hooks');
+const { ValidationError } = require('../utils/errorHandler');
 
 module.exports = (sequelize, DataTypes) => {
 	class Professor extends Model {
@@ -44,24 +45,21 @@ module.exports = (sequelize, DataTypes) => {
 				beforeCreate: async (professor, options) => {
 					Hook.createUUID(professor, options);
 
-					const user = await sequelize.models.Student.findAll({
-						where: { email: professor.dataValues.email },
-					});
-					if (user.length) {
-						const error = new Error(
+					if (
+						await Hook.userEmailCheck(
+							sequelize,
+							professor.dataValues.email
+						)
+					) {
+						throw new ValidationError(
 							'User with that email exists, please use different email!'
 						);
-						error.statusCode = 404;
-						throw error;
 					}
 
-					const emailError = Hook.isEmailCorrect(professor, options);
-					if (emailError) {
-						const error = new Error(
-							'The email is incorrect, please use different email!'
+					if (await Hook.isEmailCorrect(professor, options)) {
+						throw new ValidationError(
+							'Email format is incorrect, please use different email format!'
 						);
-						error.statusCode = 404;
-						throw error;
 					}
 				},
 				afterCreate: (professor, options) => {
