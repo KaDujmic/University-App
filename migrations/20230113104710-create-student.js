@@ -5,7 +5,7 @@ const { DataTypes } = require('sequelize');
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
-		await queryInterface.createTable('Students', {
+		await queryInterface.createTable('student', {
 			id: {
 				allowNull: false,
 				// autoIncrement: true,
@@ -13,7 +13,7 @@ module.exports = {
 				type: DataTypes.UUID,
 				defaultValue: DataTypes.UUIDV4,
 			},
-			fullName: {
+			full_name: {
 				allowNull: false,
 				type: Sequelize.STRING,
 			},
@@ -31,7 +31,7 @@ module.exports = {
 				allowNull: false,
 				type: Sequelize.STRING,
 			},
-			phoneNumber: {
+			phone_number: {
 				allowNull: false,
 				unique: true,
 				validate: {
@@ -39,7 +39,7 @@ module.exports = {
 				},
 				type: Sequelize.STRING,
 			},
-			majorId: {
+			major_id: {
 				allowNull: false,
 				type: Sequelize.INTEGER,
 			},
@@ -49,17 +49,17 @@ module.exports = {
 				defaultValue: 'student',
 				allowNull: false,
 			},
-			createdAt: {
+			created_at: {
 				allowNull: false,
 				type: Sequelize.DATE,
 			},
-			updatedAt: {
+			updated_at: {
 				allowNull: false,
 				type: Sequelize.DATE,
 			},
 		});
 	},
 	async down(queryInterface, Sequelize) {
-		await queryInterface.dropTable('Students');
+		await queryInterface.dropTable('student');
 	},
 };

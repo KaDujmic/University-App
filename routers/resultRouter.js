@@ -9,10 +9,9 @@ router
 	.post(resultController.createResult);
 
 router
-	.route('/:studentId/:examId')
+	.route('/:student_id/:exam_id')
 	.get(resultController.findResult)
 	.put(resultController.updateResult)
 	.delete(resultController.deleteResult);
-
 
 module.exports = router;

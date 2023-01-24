@@ -24,9 +24,9 @@ exports.deleteStudent = async (req, res) => {
 exports.studentEnrollments = async (req, res) => {
 	try {
 		const enrollments = await models.Enrollment.findAll({
-			attributes: ['Student.fullName', 'Course.name'],
+			attributes: ['Student.full_name', 'Course.name'],
 			include: [models.Student, models.Course],
-			where: { studentId: req.params.id },
+			where: { student_id: req.params.id },
 		});
 		res.status(200).json(enrollments);
 	} catch (err) {
@@ -37,9 +37,9 @@ exports.studentEnrollments = async (req, res) => {
 exports.studentExams = async (req, res) => {
 	try {
 		const exams = await models.Result.findAll({
-			attributes: ['Student.fullName', 'Exam.name'],
+			attributes: ['Student.full_name', 'Exam.name'],
 			include: [models.Student, models.Exam],
-			where: { studentId: req.params.id },
+			where: { student_id: req.params.id },
 		});
 		res.status(200).json(exams);
 	} catch (err) {

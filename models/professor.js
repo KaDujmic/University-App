@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			models.Department.hasMany(Professor, {
 				foreignKey: {
-					name: 'departmentId',
+					name: 'department_id',
 				},
 			});
 			Professor.belongsTo(models.Department, {
@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
 
 			Professor.belongsToMany(models.Course, {
 				through: models.ProfessorCourse,
-				foreignKey: 'professorId',
+				foreignKey: 'professor_id',
 			});
 		}
 	}
@@ -26,15 +26,17 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			name: DataTypes.STRING,
 			address: DataTypes.STRING,
-			phoneNumber: DataTypes.STRING,
-			departmentId: DataTypes.INTEGER,
+			phone_number: DataTypes.STRING,
+			department_id: DataTypes.INTEGER,
 			email: DataTypes.STRING,
 			password: DataTypes.STRING,
 			role: DataTypes.STRING,
 		},
 		{
 			sequelize,
+			underscored: true,
 			modelName: 'Professor',
+			tableName: 'professor',
 			hooks: {
 				beforeBulkUpdate: (professor, options) => {
 					Hook.isUpdateId(professor, options);
@@ -57,7 +59,6 @@ module.exports = (sequelize, DataTypes) => {
 					Hook.hashPassword(professor, options);
 				},
 				afterFind: (professor, options) => {
-					// Error if user does not exist
 					Hook.exists(professor, options);
 				},
 			},

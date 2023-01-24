@@ -12,7 +12,9 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		{
 			sequelize,
+			underscored: true,
 			modelName: 'Department',
+			tableName: 'department',
 			hooks: {
 				beforeBulkUpdate: (department, options) => {
 					Hook.isUpdateId(department, options);

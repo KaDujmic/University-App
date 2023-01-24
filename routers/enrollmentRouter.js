@@ -9,10 +9,9 @@ router
 	.post(enrollmentController.createEnrollment);
 
 router
-	.route('/:studentId/:courseId')
+	.route('/:student_id/:course_id')
 	.get(enrollmentController.findEnrollment)
 	.put(enrollmentController.updateEnrollment)
 	.delete(enrollmentController.deleteEnrollment);
-
 
 module.exports = router;

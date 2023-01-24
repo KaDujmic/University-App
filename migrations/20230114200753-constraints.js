@@ -3,128 +3,128 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
-		// majorId in table Student
-		await queryInterface.addConstraint('Students', {
-			fields: ['majorId'],
+		// major_id in table Student
+		await queryInterface.addConstraint('student', {
+			fields: ['major_id'],
 			onDelete: 'cascade',
 			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
-				table: 'Majors',
+				table: 'major',
 				field: 'id',
 			},
 		});
 
-		// departmentId in table Major
-		await queryInterface.addConstraint('Majors', {
-			fields: ['departmentId'],
+		// department_id in table Major
+		await queryInterface.addConstraint('major', {
+			fields: ['department_id'],
 			onDelete: 'cascade',
 			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
-				table: 'Departments',
+				table: 'department',
 				field: 'id',
 			},
 		});
 
-		// departmentId in table Professor
-		await queryInterface.addConstraint('Professors', {
-			fields: ['departmentId'],
+		// department_id in table Professor
+		await queryInterface.addConstraint('professor', {
+			fields: ['department_id'],
 			type: 'foreign key',
 			onDelete: 'cascade',
 			onUpdate: 'cascade',
 			references: {
-				table: 'Departments',
+				table: 'department',
 				field: 'id',
 			},
 		});
 
-		// courseId in table Exam
-		await queryInterface.addConstraint('Exams', {
-			fields: ['courseId'],
+		// course_id in table Exam
+		await queryInterface.addConstraint('exam', {
+			fields: ['course_id'],
 			onDelete: 'cascade',
 			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
-				table: 'Courses',
+				table: 'course',
 				field: 'id',
 			},
 		});
 
-		// majorId in table Course
-		await queryInterface.addConstraint('Courses', {
-			fields: ['majorId'],
+		// major_id in table Course
+		await queryInterface.addConstraint('course', {
+			fields: ['major_id'],
 			onDelete: 'cascade',
 			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
-				table: 'Majors',
+				table: 'major',
 				field: 'id',
 			},
 		});
 
-		// studentId and examId in table Result
-		await queryInterface.addConstraint('Results', {
-			fields: ['studentId'],
+		// student_id and exam_id in table Result
+		await queryInterface.addConstraint('result', {
+			fields: ['student_id'],
 			onDelete: 'cascade',
 			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
-				table: 'Students',
+				table: 'student',
 				field: 'id',
 			},
 		});
-		await queryInterface.addConstraint('Results', {
-			fields: ['examId'],
+		await queryInterface.addConstraint('result', {
+			fields: ['exam_id'],
 			type: 'foreign key',
 			onDelete: 'cascade',
 			onUpdate: 'cascade',
 			references: {
-				table: 'Exams',
-				field: 'id',
-			},
-		});
-
-		// courseId and studentId in table Enrollments
-		await queryInterface.addConstraint('Enrollments', {
-			fields: ['studentId'],
-			onDelete: 'cascade',
-			onUpdate: 'cascade',
-			type: 'foreign key',
-			references: {
-				table: 'Students',
-				field: 'id',
-			},
-		});
-		await queryInterface.addConstraint('Enrollments', {
-			fields: ['courseId'],
-			onDelete: 'cascade',
-			onUpdate: 'cascade',
-			type: 'foreign key',
-			references: {
-				table: 'Courses',
+				table: 'exam',
 				field: 'id',
 			},
 		});
 
-		// professorId and courseId in table ProfessorCourse
-		await queryInterface.addConstraint('ProfessorCourses', {
-			fields: ['professorId'],
+		// course_id and student_id in table enrollment
+		await queryInterface.addConstraint('enrollment', {
+			fields: ['student_id'],
 			onDelete: 'cascade',
 			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
-				table: 'Professors',
+				table: 'student',
 				field: 'id',
 			},
 		});
-		await queryInterface.addConstraint('ProfessorCourses', {
-			fields: ['courseId'],
+		await queryInterface.addConstraint('enrollment', {
+			fields: ['course_id'],
 			onDelete: 'cascade',
 			onUpdate: 'cascade',
 			type: 'foreign key',
 			references: {
-				table: 'Courses',
+				table: 'course',
+				field: 'id',
+			},
+		});
+
+		// professor_id and course_id in table ProfessorCourse
+		await queryInterface.addConstraint('professor_course', {
+			fields: ['professor_id'],
+			onDelete: 'cascade',
+			onUpdate: 'cascade',
+			type: 'foreign key',
+			references: {
+				table: 'professor',
+				field: 'id',
+			},
+		});
+		await queryInterface.addConstraint('professor_course', {
+			fields: ['course_id'],
+			onDelete: 'cascade',
+			onUpdate: 'cascade',
+			type: 'foreign key',
+			references: {
+				table: 'course',
 				field: 'id',
 			},
 		});

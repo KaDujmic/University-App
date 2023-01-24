@@ -4,7 +4,7 @@ const models = require('../models');
 exports.findAllProfessorCourses = async (req, res) => {
 	try {
 		const professor_courses = await models.ProfessorCourse.findAll({
-      attributes: ['Professor.name', 'Course.name'],
+			attributes: ['Professor.name', 'Course.name'],
 			include: [models.Professor, models.Course],
 		});
 		res.status(200).json({ professor_courses });
@@ -16,11 +16,11 @@ exports.findAllProfessorCourses = async (req, res) => {
 exports.findProfessorCourse = async (req, res) => {
 	try {
 		const professor_course = await models.ProfessorCourse.findAll({
-      attributes: ['Professor.name', 'Course.name'],
-      include: [models.Professor, models.Course],
+			attributes: ['Professor.name', 'Course.name'],
+			include: [models.Professor, models.Course],
 			where: {
-				professorId: req.params.professorId,
-				courseId: req.params.courseId,
+				professor_id: req.params.professor_id,
+				course_id: req.params.course_id,
 			},
 		});
 		res.status(200).json(professor_course);
@@ -31,7 +31,9 @@ exports.findProfessorCourse = async (req, res) => {
 
 exports.createProfessorCourse = async (req, res) => {
 	try {
-		const professor_course = await models.ProfessorCourse.create(req.body);
+		const professor_course = await models.ProfessorCourse.create(
+			req.body
+		);
 		res.status(200).json(professor_course);
 	} catch (err) {
 		res.status(404).json(err.message);
@@ -40,12 +42,15 @@ exports.createProfessorCourse = async (req, res) => {
 
 exports.updateProfessorCourse = async (req, res) => {
 	try {
-		const professor_course = await models.ProfessorCourse.update(req.body, {
-			where: {
-				professorId: req.params.professorId,
-				courseId: req.params.courseId,
-			},
-		});
+		const professor_course = await models.ProfessorCourse.update(
+			req.body,
+			{
+				where: {
+					professor_id: req.params.professor_id,
+					course_id: req.params.course_id,
+				},
+			}
+		);
 		res.status(200).json(professor_course);
 	} catch (err) {
 		res.status(404).json(err.message);
@@ -56,8 +61,8 @@ exports.deleteProfessorCourse = async (req, res) => {
 	try {
 		const professor_course = await models.ProfessorCourse.destroy({
 			where: {
-				professorId: req.params.professorId,
-				courseId: req.params.courseId,
+				professor_id: req.params.professor_id,
+				course_id: req.params.course_id,
 			},
 		});
 		res.status(200).json(professor_course);
@@ -65,4 +70,3 @@ exports.deleteProfessorCourse = async (req, res) => {
 		res.status(404).json(err.message);
 	}
 };
-

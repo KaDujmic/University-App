@@ -3,34 +3,34 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
-		return queryInterface.bulkInsert('Results', [
+		return queryInterface.bulkInsert('result', [
 			{
-				studentId: 'f034675d-8d14-463f-a360-2e28345a212d',
-				examId: 1,
+				student_id: 'f034675d-8d14-463f-a360-2e28345a212d',
+				exam_id: 1,
 				grade: 1,
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				created_at: new Date(),
+				updated_at: new Date(),
 			},
 			{
-				studentId: '0a8b7414-4773-42d8-97ff-0c441e4e2c3e',
-				examId: 2,
+				student_id: '0a8b7414-4773-42d8-97ff-0c441e4e2c3e',
+				exam_id: 2,
 				grade: 2,
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				created_at: new Date(),
+				updated_at: new Date(),
 			},
 			{
-				studentId: 'f034675d-8d14-463f-a360-2e28345a212d',
-				examId: 2,
+				student_id: 'f034675d-8d14-463f-a360-2e28345a212d',
+				exam_id: 2,
 				grade: 4,
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				created_at: new Date(),
+				updated_at: new Date(),
 			},
 			{
-				studentId: '0a8b7414-4773-42d8-97ff-0c441e4e2c3e',
-				examId: 1,
+				student_id: '0a8b7414-4773-42d8-97ff-0c441e4e2c3e',
+				exam_id: 1,
 				grade: 3,
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				created_at: new Date(),
+				updated_at: new Date(),
 			},
 		]);
 	},

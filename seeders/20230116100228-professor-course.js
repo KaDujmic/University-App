@@ -3,30 +3,30 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
-		return queryInterface.bulkInsert('ProfessorCourses', [
+		return queryInterface.bulkInsert('professor_course', [
 			{
-				professorId: '20c1297e-58f6-4587-842b-231ff6583086',
-				courseId: 1,
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				professor_id: '20c1297e-58f6-4587-842b-231ff6583086',
+				course_id: 1,
+				created_at: new Date(),
+				updated_at: new Date(),
 			},
 			{
-				professorId: '20c1297e-58f6-4587-842b-231ff6583086',
-				courseId: 2,
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				professor_id: '20c1297e-58f6-4587-842b-231ff6583086',
+				course_id: 2,
+				created_at: new Date(),
+				updated_at: new Date(),
 			},
 			{
-				professorId: '805a10d7-1735-4a6c-a4cd-0be767aaeca1',
-				courseId: 1,
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				professor_id: '805a10d7-1735-4a6c-a4cd-0be767aaeca1',
+				course_id: 1,
+				created_at: new Date(),
+				updated_at: new Date(),
 			},
 			{
-				professorId: '805a10d7-1735-4a6c-a4cd-0be767aaeca1',
-				courseId: 2,
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				professor_id: '805a10d7-1735-4a6c-a4cd-0be767aaeca1',
+				course_id: 2,
+				created_at: new Date(),
+				updated_at: new Date(),
 			},
 		]);
 	},

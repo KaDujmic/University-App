@@ -9,10 +9,9 @@ router
 	.post(professor_courseController.createProfessorCourse);
 
 router
-	.route('/:professorId/:courseId')
+	.route('/:professor_id/:course_id')
 	.get(professor_courseController.findProfessorCourse)
 	.put(professor_courseController.updateProfessorCourse)
 	.delete(professor_courseController.deleteProfessorCourse);
-
 
 module.exports = router;

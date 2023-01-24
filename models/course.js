@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			models.Major.hasMany(Course, {
 				foreignKey: {
-					name: 'majorId',
+					name: 'major_id',
 				},
 			});
 			Course.belongsTo(models.Major, {
@@ -18,24 +18,26 @@ module.exports = (sequelize, DataTypes) => {
 
 			Course.belongsToMany(models.Student, {
         through: models.Enrollment,
-        foreignKey: 'courseId'
+        foreignKey: 'course_id'
       })
 
 			Course.belongsToMany(models.Professor, {
         through: models.ProfessorCourse,
-        foreignKey: 'courseId'
+        foreignKey: 'course_id'
       })
 		}
 	}
 	Course.init(
 		{
 			name: DataTypes.STRING,
-			creditHours: DataTypes.INTEGER,
-			majorId: DataTypes.INTEGER,
+			credit_hours: DataTypes.INTEGER,
+			major_id: DataTypes.INTEGER,
 		},
 		{
 			sequelize,
+			underscored: true,
 			modelName: 'Course',
+			tableName: 'course',
 			hooks: {
 				beforeBulkUpdate: (course, options) => {
 					Hook.isUpdateId(course, options)

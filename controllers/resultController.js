@@ -4,7 +4,7 @@ const models = require('../models');
 exports.findAllResults = async (req, res) => {
 	try {
 		const results = await models.Result.findAll({
-      attributes: ['Student.fullName', 'Exam.name', 'grade'],
+			attributes: ['Student.full_name', 'Exam.name', 'grade'],
 			include: [models.Student, models.Exam],
 		});
 		res.status(200).json({ results });
@@ -16,11 +16,11 @@ exports.findAllResults = async (req, res) => {
 exports.findResult = async (req, res) => {
 	try {
 		const result = await models.Result.findAll({
-      attributes: ['Student.fullName', 'Exam.name', 'grade'],
-      include: [models.Student, models.Exam],
+			attributes: ['Student.full_name', 'Exam.name', 'grade'],
+			include: [models.Student, models.Exam],
 			where: {
-				studentId: req.params.studentId,
-				examId: req.params.examId,
+				student_id: req.params.student_id,
+				exam_id: req.params.exam_id,
 			},
 		});
 		res.status(200).json(result);
@@ -42,8 +42,8 @@ exports.updateResult = async (req, res) => {
 	try {
 		const result = await models.Result.update(req.body, {
 			where: {
-				studentId: req.params.studentId,
-				examId: req.params.examId,
+				student_id: req.params.student_id,
+				exam_id: req.params.exam_id,
 			},
 		});
 		res.status(200).json(result);
@@ -56,8 +56,8 @@ exports.deleteResult = async (req, res) => {
 	try {
 		const result = await models.Result.destroy({
 			where: {
-				studentId: req.params.studentId,
-				examId: req.params.examId,
+				student_id: req.params.student_id,
+				exam_id: req.params.exam_id,
 			},
 		});
 		res.status(200).json(result);
@@ -65,4 +65,3 @@ exports.deleteResult = async (req, res) => {
 		res.status(404).json(err.message);
 	}
 };
-

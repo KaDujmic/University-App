@@ -3,18 +3,18 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
-		return queryInterface.bulkInsert('Majors', [
+		return queryInterface.bulkInsert('major', [
 			{
 				name: 'Computer Science',
-				departmentId: 1,
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				department_id: 1,
+				created_at: new Date(),
+				updated_at: new Date(),
 			},
       {
 				name: 'Chemistry',
-				departmentId: 2,
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				department_id: 2,
+				created_at: new Date(),
+				updated_at: new Date(),
 			},
 		]);
 	},

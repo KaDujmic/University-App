@@ -16,8 +16,8 @@ exports.findEnrollment = async (req, res) => {
 	try {
 		const enrollment = await models.Enrollment.findAll({
 			where: {
-				studentId: req.params.studentId,
-				courseId: req.params.courseId,
+				student_id: req.params.student_id,
+				course_id: req.params.course_id,
 			},
 		});
 		res.status(200).json(enrollment);
@@ -39,8 +39,8 @@ exports.updateEnrollment = async (req, res) => {
 	try {
 		const enrollment = await models.Enrollment.update(req.body, {
 			where: {
-				studentId: req.params.studentId,
-				courseId: req.params.courseId,
+				student_id: req.params.student_id,
+				course_id: req.params.course_id,
 			},
 		});
 		res.status(200).json(enrollment);
@@ -53,8 +53,8 @@ exports.deleteEnrollment = async (req, res) => {
 	try {
 		const enrollment = await models.Enrollment.destroy({
 			where: {
-				studentId: req.params.studentId,
-				courseId: req.params.courseId,
+				student_id: req.params.student_id,
+				course_id: req.params.course_id,
 			},
 		});
 		res.status(200).json(enrollment);
@@ -62,4 +62,3 @@ exports.deleteEnrollment = async (req, res) => {
 		res.status(404).json(err.message);
 	}
 };
-

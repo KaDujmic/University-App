@@ -3,20 +3,20 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
 	async up(queryInterface, Sequelize) {
-		return queryInterface.bulkInsert('Courses', [
+		return queryInterface.bulkInsert('course', [
 			{
 				name: 'Chem 101',
-				creditHours: 7,
-				majorId: 1,
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				credit_hours: 7,
+				major_id: 1,
+				created_at: new Date(),
+				updated_at: new Date(),
 			},
 			{
 				name: 'Chem 102',
-				creditHours: 7,
-				majorId: 2,
-				createdAt: new Date(),
-				updatedAt: new Date(),
+				credit_hours: 7,
+				major_id: 2,
+				created_at: new Date(),
+				updated_at: new Date(),
 			},
 		]);
 	},

@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
 	class Exam extends Model {
 		static associate(models) {
 			models.Course.hasMany(Exam, {
-				foreignKey: 'courseId',
+				foreignKey: 'course_id',
 			});
 
 			Exam.belongsTo(models.Course, {
@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 
 			Exam.belongsToMany(models.Student, {
 				through: models.Result,
-				foreignKey: 'examId',
+				foreignKey: 'exam_id',
 			});
 		}
 	}
@@ -24,11 +24,13 @@ module.exports = (sequelize, DataTypes) => {
 			name: DataTypes.STRING,
 			date: DataTypes.DATE,
 			time: DataTypes.TIME,
-			courseId: DataTypes.INTEGER,
+			course_id: DataTypes.INTEGER,
 		},
 		{
 			sequelize,
+			underscored: true,
 			modelName: 'Exam',
+			tableName: 'exam',
 			hooks: {
 				beforeBulkUpdate: (professor, options) => {
 					Hook.isUpdateId(professor, options)

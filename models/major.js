@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			models.Department.hasMany(Major, {
 				foreignKey: {
-					name: 'departmentId',
+					name: 'department_id',
 				},
 			});
 			Major.belongsTo(models.Department, {
@@ -20,11 +20,13 @@ module.exports = (sequelize, DataTypes) => {
 	Major.init(
 		{
 			name: DataTypes.STRING,
-			departmentId: DataTypes.NUMBER,
+			department_id: DataTypes.NUMBER,
 		},
 		{
 			sequelize,
+			underscored: true,
 			modelName: 'Major',
+			tableName: 'major',
 			hooks: {
 				beforeBulkUpdate: (major, options) => {
 					Hook.isUpdateId(major, options);

@@ -26,7 +26,7 @@ exports.professorCourses = async (req, res) => {
 		const professorCourses = await models.ProfessorCourse.findAll({
 			attributes: ['Professor.name', 'Course.name'],
 			include: [models.Professor, models.Course],
-			where: { professorId: req.params.id },
+			where: { professor_id: req.params.id },
 		});
 		res.status(200).json(professorCourses);
 	} catch (err) {

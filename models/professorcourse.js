@@ -4,22 +4,24 @@ module.exports = (sequelize, DataTypes) => {
 	class ProfessorCourse extends Model {
 		static associate(models) {
 			ProfessorCourse.belongsTo(models.Professor, {
-				foreignKey: 'professorId',
+				foreignKey: 'professor_id',
 			});
 
 			ProfessorCourse.belongsTo(models.Course, {
-				foreignKey: 'courseId',
+				foreignKey: 'course_id',
 			});
 		}
 	}
 	ProfessorCourse.init(
 		{
-			professorId: DataTypes.UUID,
-			courseId: DataTypes.INTEGER,
+			professor_id: DataTypes.UUID,
+			course_id: DataTypes.INTEGER,
 		},
 		{
 			sequelize,
+			underscored: true,
 			modelName: 'ProfessorCourse',
+			tableName: 'professor_course'
 		}
 	);
 	return ProfessorCourse;
