@@ -64,5 +64,14 @@ exports.userEmailCheckProfessor = async (sequelize, email) => {
 };
 
 exports.removePassword = async (data, options) => {
-	delete data.dataValues.password;
-}
+	if (data.length) delete data.dataValues.password;
+};
+
+exports.isEmailCorrect = async (data, options) => {
+	if (!data.dataValues.email !== /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/) {
+		const error = new Error(
+			'Email entered incorrect, please use a correct email!'
+		);
+		return 1;
+	}
+};
