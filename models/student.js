@@ -51,15 +51,18 @@ module.exports = (sequelize, DataTypes) => {
 					const user = await sequelize.models.Professor.findAll({
 						where: { email: student.dataValues.email },
 					});
-					if (user.length)
-						throw new Error(
+					if (user.length) {
+						const error = new Error(
 							'User with that email exists, please use different email!'
 						);
+						error.statusCode = 404;
+						throw error;
+					}
 				},
-				// afterFind: (student, options) => {
-				// 	// Error if user does not exist
-				// 	Hook.exists(student, options);
-				// },
+				afterFind: (student, options) => {
+					// Error if user does not exist
+					Hook.exists(student, options);
+				},
 			},
 		}
 	);
