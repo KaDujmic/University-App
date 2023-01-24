@@ -5,7 +5,9 @@ exports.findAllModel = async (Model, req, res) => {
 		});
 		res.status(200).json({ models });
 	} catch (err) {
-		res.status(404).json(err.message);
+		res.status(err.statusCode ?? 500).json({
+			message: err.message ?? 'Oops, something went wrong!',
+		});
 	}
 };
 
@@ -17,8 +19,9 @@ exports.findModel = async (Model, req, res) => {
 		});
 		res.status(200).json(model);
 	} catch (err) {
-		const statusCode = err.statusCode || 500;
-		res.status(statusCode).json(err.message);
+		res.status(err.statusCode ?? 500).json({
+			message: err.message ?? 'Oops, something went wrong!',
+		});
 	}
 };
 
@@ -27,8 +30,11 @@ exports.createModel = async (Model, req, res) => {
 		const model = await Model.create(req.body);
 		res.status(201).json(model);
 	} catch (err) {
-		const statusCode = err.statusCode || 500;
-		res.status(statusCode).json(err.message);
+		res
+			.status(err.statusCode ?? 500)
+			.json({
+				message: err.message ?? 'Oops, something went wrong!',
+			});
 	}
 };
 
@@ -39,8 +45,11 @@ exports.updateModel = async (Model, req, res) => {
 		});
 		res.status(200).json(model);
 	} catch (err) {
-		const statusCode = err.statusCode || 500;
-		res.status(statusCode).json(err.message);
+		res
+			.status(err.statusCode ?? 500)
+			.json({
+				message: err.message ?? 'Oops, something went wrong!',
+			});
 	}
 };
 
@@ -51,7 +60,10 @@ exports.deleteModel = async (Model, req, res) => {
 		});
 		res.status(204).json(model);
 	} catch (err) {
-		const statusCode = err.statusCode || 500;
-		res.status(statusCode).json(err.message);
+		res
+			.status(err.statusCode ?? 500)
+			.json({
+				message: err.message ?? 'Oops, something went wrong!',
+			});
 	}
 };

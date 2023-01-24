@@ -1,77 +1,75 @@
 const bcrypt = require('bcrypt');
+const { ValidationError } = require('sequelize');
+const { NotFoundError } = require('./errorHandler');
 const { v4: uuidv4 } = require('uuid');
 
+// Checking if the ID is being updated
 exports.isUpdateId = (data, options) => {
 	if (data.attributes.id) {
-		throw new Error('The ID field cannot be updated');
+		throw new ValidationError('The ID field cannot be updated');
 	}
 };
 
+// Checking if the ID is passed in the body
 exports.idIsPresent = (data, options) => {
 	if (data.dataValues.id) {
-		const error = new Error(
+		throw new ValidationError(
 			'Model ID field is automatically generated'
 		);
-		error.statusCode = 404;
-		throw error;
 	}
 };
 
+// Checking if the user exists e.g. afterFind hook for better error messages
 exports.exists = (data, options) => {
 	// Error if user does not exist
 	if (!data) {
-		const error = new Error(
+		throw new NotFoundError(
 			'Model with that ID field does not exist'
 		);
-		error.statusCode = 404;
-		throw error;
 	}
 };
 
+// UUID creation
 exports.createUUID = (data, options) => {
 	data.id = uuidv4();
 };
 
+// Password hashing
 exports.hashPassword = async (data, options) => {
 	data.password = await bcrypt.hash(data.password, 2);
 	return data.save();
 };
 
-exports.userEmailCheckStudent = async (sequelize, email) => {
-	const user = await sequelize.models.Professor.findAll({
-		where: { email: email },
-	});
+// Check if there is another user with the same email
+exports.userEmailCheck = async (sequelize, email) => {
+	const user =
+		(await sequelize.models.Student.findOne({
+			where: { email: email },
+			hooks: false,
+		})) ||
+		(await sequelize.models.Professor.findOne({
+			where: { email: email },
+			hooks: false,
+		}));
 	if (user) {
-		const error = new Error(
-			'User with that email exists, please use different email!'
-		);
-		error.statusCode = 404;
-		throw error;
-	}
-};
-
-exports.userEmailCheckProfessor = async (sequelize, email) => {
-	const user = await sequelize.models.Student.findAll({
-		where: { email: email },
-	});
-	if (user) {
-		const error = new Error(
-			'User with that email exists, please use different email!'
-		);
-		error.statusCode = 404;
-		throw error;
-	}
-};
-
-exports.removePassword = async (data, options) => {
-	if (data.length) delete data.dataValues.password;
-};
-
-exports.isEmailCorrect = async (data, options) => {
-	if (!data.dataValues.email !== /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/) {
-		const error = new Error(
-			'Email entered incorrect, please use a correct email!'
-		);
 		return 1;
 	}
+	return 0;
+};
+
+// Remove password on find
+exports.removePassword = async (data, options) => {
+	return data.dataValues ? delete data.dataValues.password : 0;
+};
+
+// Check email format
+exports.isEmailCorrect = async (data, options) => {
+	if (
+		!data.dataValues.email.match(
+			/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+		)
+	) {
+		return 1;
+	}
+	return 0;
 };
