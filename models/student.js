@@ -48,7 +48,7 @@ module.exports = (sequelize, DataTypes) => {
 					Hook.isUpdateId(student, options);
 				},
 				beforeCreate: async (student, options) => {
-					await Hook.createUUID(student, options);
+					Hook.createUUID(student, options);
 
 					const user = await sequelize.models.Professor.findAll({
 						where: { email: student.dataValues.email },
@@ -57,6 +57,14 @@ module.exports = (sequelize, DataTypes) => {
 						const error = new Error(
 							'User with that email exists, please use different email!'
 						);
+						error.statusCode = 404;
+						throw error;
+					}
+
+					const emailError = Hook.isEmailCorrect(student, options)
+					if (emailError) {
+						console.log('rest');
+						const error = new Error('The email is incorrect, please use different email!');
 						error.statusCode = 404;
 						throw error;
 					}
