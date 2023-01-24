@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	Professor.init(
 		{
-			name: DataTypes.STRING,
+			full_name: DataTypes.STRING,
 			address: DataTypes.STRING,
 			phone_number: DataTypes.STRING,
 			department_id: DataTypes.INTEGER,
