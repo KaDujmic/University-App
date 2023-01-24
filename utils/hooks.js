@@ -59,7 +59,15 @@ exports.userEmailCheck = async (sequelize, email) => {
 
 // Remove password on find
 exports.removePassword = async (data, options) => {
-	return data.dataValues ? delete data.dataValues.password : 0;
+	if (Array.isArray(data)) {
+		data.forEach((item) => {
+			delete item.dataValues.password;
+		});
+	} else if (data.dataValues.password) {
+		delete data.dataValues.password;
+	} else {
+		return 0;
+	}
 };
 
 // Check email format
