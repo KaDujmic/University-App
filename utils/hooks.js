@@ -32,18 +32,24 @@ exports.userEmailCheckStudent = async (sequelize, email) => {
 	const user = await sequelize.models.Professor.findAll({
 		where: { email: email },
 	});
-	if (user)
-		throw new Error(
+	if (user) {
+		const error = new Error(
 			'User with that email exists, please use different email!'
 		);
+		error.statusCode = 404;
+		throw error;
+	}
 };
 
 exports.userEmailCheckProfessor = async (sequelize, email) => {
 	const user = await sequelize.models.Student.findAll({
 		where: { email: email },
 	});
-	if (user)
-		throw new Error(
+	if (user) {
+		const error = new Error(
 			'User with that email exists, please use different email!'
 		);
+		error.statusCode = 404;
+		throw error;
+	}
 };

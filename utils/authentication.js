@@ -5,10 +5,7 @@ const correct_password = async function (
 	candidate_password,
 	user_password
 ) {
-	return await bcrypt.compare(
-		candidate_password,
-		user_password
-	);
+	return await bcrypt.compare(candidate_password, user_password);
 };
 
 exports.login = async (Professor, Student, req, res) => {
@@ -22,7 +19,12 @@ exports.login = async (Professor, Student, req, res) => {
 		const user =
 			(await Professor.findOne({
 				where: { email: email },
-			})) || (await Student.findOne({ where: { email: email } }));
+				hooks: false,
+			})) ||
+			(await Student.findOne({
+				where: { email: email },
+				hooks: false,
+			}));
 		// If no user or the password is incorrect throw error
 		if (!user || !correct_password(user.password, password)) {
 			return res.status(400).json('Incorrect email or password!');
@@ -51,7 +53,7 @@ exports.protect = async (Professor, Student, req, res, next) => {
 	// }
 	if (!token)
 		return res
-			.status(400)
+			.status(404)
 			.json('You are not logged in. Please log in!');
 
 	// 2) Verification of the token
@@ -59,10 +61,16 @@ exports.protect = async (Professor, Student, req, res, next) => {
 
 	// 3) Check if the user still exists
 	const current_user =
-		(await Professor.findByPk(decoded.id)) ||
-		(await Student.findByPk(decoded.id));
+		(await Professor.findOne({
+			where: { id: decoded.id },
+			hooks: false,
+		})) ||
+		(await Student.findOne({
+			where: { id: decoded.id },
+			hooks: false,
+		}));
 	if (!current_user)
-		return res.status(400).json('The user no longer exists!');
+		return res.status(404).json('The user no longer exists!');
 
 	// 4) Set local storage and req.user to current_user
 	req.user = current_user.dataValues;

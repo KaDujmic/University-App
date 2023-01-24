@@ -14,7 +14,8 @@ exports.findModel = async (Model, req, res) => {
 		});
 		res.status(200).json(model);
 	} catch (err) {
-		res.status(404).json(err.message);
+		const statusCode = err.statusCode || 500;
+		res.status(statusCode).json(err.message);
 	}
 };
 
@@ -23,7 +24,8 @@ exports.createModel = async (Model, req, res) => {
 		const model = await Model.create(req.body);
 		res.status(200).json(model);
 	} catch (err) {
-		res.status(404).json(err.errors[0].message);
+		const statusCode = err.statusCode || 500;
+		res.status(statusCode).json(err.message);
 	}
 };
 
@@ -34,7 +36,8 @@ exports.updateModel = async (Model, req, res) => {
 		});
 		res.status(200).json(model);
 	} catch (err) {
-		res.status(404).json(err.message);
+		const statusCode = err.statusCode || 500;
+		res.status(statusCode).json(err.message);
 	}
 };
 
@@ -45,6 +48,7 @@ exports.deleteModel = async (Model, req, res) => {
 		});
 		res.status(200).json(model);
 	} catch (err) {
-		res.status(404).json(err.message);
+		const statusCode = err.statusCode || 500;
+		res.status(statusCode).json(err.message);
 	}
 };
