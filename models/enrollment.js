@@ -1,5 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
+const Hook = require('../utils/hooks');
+
 module.exports = (sequelize, DataTypes) => {
 	class Enrollment extends Model {
 		static associate(models) {
@@ -21,6 +23,11 @@ module.exports = (sequelize, DataTypes) => {
 			underscored: true,
 			modelName: 'Enrollment',
 			tableName: 'enrollment',
+			hooks: {
+				beforeCreate: async (enrollment, options) => {
+					await Hook.enrollmentCheck(sequelize, enrollment, options);
+				},
+			},
 		}
 	);
 	return Enrollment;
