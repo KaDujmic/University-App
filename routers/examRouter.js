@@ -1,18 +1,20 @@
 const express = require('express');
 const examController = require('../controllers/examController');
+const {
+	callbackErrorHandler,
+} = require('../utils/errorMiddlewareHandler');
 
 const router = express.Router({ mergeParams: true });
 
 router
 	.route('/')
-	.get(examController.findAllExams)
-	.post(examController.createExam);
+	.get(callbackErrorHandler(examController.findAllExams))
+	.post(callbackErrorHandler(examController.createExam));
 
 router
 	.route('/:id')
-	.get(examController.findExam)
-	.put(examController.updateExam)
-	.delete(examController.deleteExam);
-
+	.get(callbackErrorHandler(examController.findExam))
+	.put(callbackErrorHandler(examController.updateExam))
+	.delete(callbackErrorHandler(examController.deleteExam));
 
 module.exports = router;

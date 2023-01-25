@@ -1,6 +1,9 @@
 const express = require('express');
 const professorController = require('../controllers/professorController');
 const authController = require('../controllers/authController');
+const {
+	callbackErrorHandler,
+} = require('../utils/errorMiddlewareHandler');
 
 const router = express.Router({ mergeParams: true });
 
@@ -10,33 +13,33 @@ router
 	.route('/')
 	.get(
 		authController.restrictTo('professor'),
-		professorController.findAllProfessors
+		callbackErrorHandler(professorController.findAllProfessors)
 	)
 	.post(
 		authController.restrictTo('professor'),
-		professorController.createProfessor
+		callbackErrorHandler(professorController.createProfessor)
 	);
 
 router
 	.route('/:id')
 	.get(
 		authController.restrictTo('professor'),
-		professorController.findProfessor
+		callbackErrorHandler(professorController.findProfessor)
 	)
 	.put(
 		authController.restrictTo('professor'),
-		professorController.updateProfessor
+		callbackErrorHandler(professorController.updateProfessor)
 	)
 	.delete(
 		authController.restrictTo('professor'),
-		professorController.deleteProfessor
+		callbackErrorHandler(professorController.deleteProfessor)
 	);
 
 router
 	.route('/:id/courses')
 	.get(
 		authController.restrictTo('professor'),
-		professorController.professorCourses
+		callbackErrorHandler(professorController.professorCourses)
 	);
 
 module.exports = router;

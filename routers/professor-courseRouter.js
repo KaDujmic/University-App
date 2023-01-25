@@ -1,17 +1,18 @@
 const express = require('express');
 const professor_courseController = require('../controllers/professor-courseController');
+const { callbackErrorHandler } = require('../utils/errorMiddlewareHandler');
 
 const router = express.Router({ mergeParams: true });
 
 router
 	.route('/')
-	.get(professor_courseController.findAllProfessorCourses)
-	.post(professor_courseController.createProfessorCourse);
+	.get(callbackErrorHandler(professor_courseController.findAllProfessorCourses))
+	.post(callbackErrorHandler(professor_courseController.createProfessorCourse));
 
 router
 	.route('/:professor_id/:course_id')
-	.get(professor_courseController.findProfessorCourse)
-	.put(professor_courseController.updateProfessorCourse)
-	.delete(professor_courseController.deleteProfessorCourse);
+	.get(callbackErrorHandler(professor_courseController.findProfessorCourse))
+	.put(callbackErrorHandler(professor_courseController.updateProfessorCourse))
+	.delete(callbackErrorHandler(professor_courseController.deleteProfessorCourse));
 
 module.exports = router;

@@ -1,9 +1,11 @@
 const express = require('express');
-const professorController = require('../controllers/professorController');
 const authController = require('../controllers/authController');
+const {
+	callbackErrorHandler,
+} = require('../utils/errorMiddlewareHandler');
 
 const router = express.Router({ mergeParams: true });
 
-router.post('/login', authController.userLogin);
+router.post('/login', callbackErrorHandler(authController.userLogin));
 
 module.exports = router;

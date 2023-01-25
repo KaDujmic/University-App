@@ -1,6 +1,9 @@
 const express = require('express');
 const studentController = require('../controllers/studentController');
 const authController = require('../controllers/authController');
+const {
+	callbackErrorHandler,
+} = require('../utils/errorMiddlewareHandler');
 
 const router = express.Router({ mergeParams: true });
 
@@ -8,19 +11,21 @@ router.use(authController.isLoggedIn);
 
 router
 	.route('/')
-	.get(studentController.findAllStudents)
-	.post(studentController.createStudent);
+	.get(callbackErrorHandler(studentController.findAllStudents))
+	.post(callbackErrorHandler(studentController.createStudent));
 
 router
 	.route('/:id')
-	.get(studentController.findStudent)
-	.put(studentController.updateStudent)
-	.delete(studentController.deleteStudent);
+	.get(callbackErrorHandler(studentController.findStudent))
+	.put(callbackErrorHandler(studentController.updateStudent))
+	.delete(callbackErrorHandler(studentController.deleteStudent));
 
 router
 	.route('/:id/courses')
-	.get(studentController.studentEnrollments);
+	.get(callbackErrorHandler(studentController.studentEnrollments));
 
-router.route('/:id/exams').get(studentController.studentExams);
+router
+	.route('/:id/exams')
+	.get(callbackErrorHandler(studentController.studentExams));
 
 module.exports = router;
