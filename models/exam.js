@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
 			name: DataTypes.STRING,
 			date: DataTypes.DATE,
 			time: DataTypes.TIME,
-			course_id: DataTypes.INTEGER,
+			course_id: DataTypes.UUID,
 		},
 		{
 			sequelize,
@@ -32,15 +32,16 @@ module.exports = (sequelize, DataTypes) => {
 			modelName: 'Exam',
 			tableName: 'exam',
 			hooks: {
-				beforeBulkUpdate: (professor, options) => {
-					Hook.isUpdateId(professor, options)
+				beforeBulkUpdate: (exam, options) => {
+					Hook.isUpdateId(exam, options);
 				},
-				beforeCreate: (professor, options) => {
-					Hook.idIsPresent(professor, options);
+				beforeCreate: (exam, options) => {
+					Hook.idIsPresent(exam, options);
+					Hook.createUUID(exam, options);
 				},
-				afterFind: (professor, options) => {
+				afterFind: (exam, options) => {
 					// Error if user does not exist
-					Hook.exists(professor, options)
+					Hook.exists(exam, options);
 				},
 			},
 		}

@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
 				},
 				beforeCreate: (department, options) => {
 					Hook.idIsPresent(department, options);
+					Hook.createUUID(department, options);
 				},
 				afterFind: (department, options) => {
 					// Error if user does not exist

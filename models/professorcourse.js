@@ -15,13 +15,13 @@ module.exports = (sequelize, DataTypes) => {
 	ProfessorCourse.init(
 		{
 			professor_id: DataTypes.UUID,
-			course_id: DataTypes.INTEGER,
+			course_id: DataTypes.UUID,
 		},
 		{
 			sequelize,
 			underscored: true,
 			modelName: 'ProfessorCourse',
-			tableName: 'professor_course'
+			tableName: 'professor_course',
 		}
 	);
 	return ProfessorCourse;

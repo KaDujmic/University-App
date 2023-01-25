@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
 	Major.init(
 		{
 			name: DataTypes.STRING,
-			department_id: DataTypes.NUMBER,
+			department_id: DataTypes.UUID,
 		},
 		{
 			sequelize,
@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
 				},
 				beforeCreate: (major, options) => {
 					Hook.idIsPresent(major, options);
+					Hook.createUUID(major, options);
 				},
 				afterFind: (major, options) => {
 					// Error if user does not exist

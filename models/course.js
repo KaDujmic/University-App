@@ -17,21 +17,21 @@ module.exports = (sequelize, DataTypes) => {
 			});
 
 			Course.belongsToMany(models.Student, {
-        through: models.Enrollment,
-        foreignKey: 'course_id'
-      })
+				through: models.Enrollment,
+				foreignKey: 'course_id',
+			});
 
 			Course.belongsToMany(models.Professor, {
-        through: models.ProfessorCourse,
-        foreignKey: 'course_id'
-      })
+				through: models.ProfessorCourse,
+				foreignKey: 'course_id',
+			});
 		}
 	}
 	Course.init(
 		{
 			name: DataTypes.STRING,
 			credit_hours: DataTypes.INTEGER,
-			major_id: DataTypes.INTEGER,
+			major_id: DataTypes.UUID,
 		},
 		{
 			sequelize,
@@ -40,14 +40,15 @@ module.exports = (sequelize, DataTypes) => {
 			tableName: 'course',
 			hooks: {
 				beforeBulkUpdate: (course, options) => {
-					Hook.isUpdateId(course, options)
+					Hook.isUpdateId(course, options);
 				},
 				beforeCreate: (course, options) => {
 					Hook.idIsPresent(course, options);
+					Hook.createUUID(course, options);
 				},
 				afterFind: (course, options) => {
 					// Error if user does not exist
-					Hook.exists(course, options)
+					Hook.exists(course, options);
 				},
 			},
 		}
