@@ -7,7 +7,6 @@ const errorMiddleware = async (err, req, res, next) => {
 		return next(err);
 	}
 	if (err.name === 'ValidationError') {
-		console.log(err);
 		res.status(err.statusCode).json({ message: err.message });
 	} else if (err.name === 'AuthorizationError') {
 		res.status(err.statusCode).json({ message: err.message });

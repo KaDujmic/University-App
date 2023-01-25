@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const { ValidationError } = require('sequelize');
+const { ValidationError } = require('./errorHandler');
 const { NotFoundError } = require('./errorHandler');
 const { v4: uuidv4 } = require('uuid');
 
@@ -84,4 +84,26 @@ exports.isEmailCorrect = async (data, options) => {
 		);
 	}
 	return 0;
+};
+
+// When creating a new enrollment check if both student and course exist
+exports.enrollmentCheck = async (sequelize, data, options) => {
+	if (
+		!(await sequelize.models.Course.findOne({
+			where: { id: data.dataValues.course_id },
+			hooks: false,
+		}))
+	) {
+		throw new ValidationError(
+			'Course with that ID does not exist, please try again!'
+		);
+	} else if (
+		!(await sequelize.models.Student.findOne({
+			where: { id: data.dataValues.student_id },
+			hooks: false,
+		}))
+	)
+		throw new ValidationError(
+			'Student with that ID does not exist, please try again!'
+		);
 };
