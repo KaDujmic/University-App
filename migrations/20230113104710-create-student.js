@@ -41,7 +41,7 @@ module.exports = {
 			},
 			major_id: {
 				allowNull: false,
-				type: Sequelize.INTEGER,
+				type: Sequelize.UUID,
 			},
 			role: {
 				type: Sequelize.STRING,

@@ -5,13 +5,13 @@ module.exports = {
 		await queryInterface.createTable('result', {
 			student_id: {
 				allowNull: false,
-				primaryKey: true,
-				type: Sequelize.UUID,
+        primaryKey: true,
+        type: Sequelize.UUID,
 			},
 			exam_id: {
 				allowNull: false,
-				primaryKey: true,
-				type: Sequelize.INTEGER,
+        primaryKey: true,
+        type: Sequelize.UUID,
 			},
 			grade: {
 				allowNull: false,

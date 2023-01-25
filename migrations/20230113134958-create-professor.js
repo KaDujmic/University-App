@@ -37,7 +37,7 @@ module.exports = {
 			},
 			department_id: {
 				allowNull: false,
-				type: Sequelize.INTEGER,
+				type: Sequelize.UUID,
 			},
 			password: {
 				allowNull: false,

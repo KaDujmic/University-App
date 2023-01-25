@@ -10,8 +10,8 @@ module.exports = {
 			},
 			course_id: {
 				allowNull: false,
-				primaryKey: true,
-				type: Sequelize.INTEGER,
+        primaryKey: true,
+        type: Sequelize.UUID,
 			},
 			created_at: {
 				allowNull: false,
