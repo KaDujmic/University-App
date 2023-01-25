@@ -7,16 +7,16 @@ class ValidationError extends Error {
 }
 
 class AuthorizationError extends Error {
-	constructor() {
-		super('Unauthorized!');
+	constructor(message) {
+		super(message);
 		this.name = 'AuthorizationError';
 		this.statusCode = 401;
 	}
 }
 
 class NotFoundError extends Error {
-	constructor() {
-		super('Not found');
+	constructor(message) {
+		super(message);
 		this.name = 'NotFoundError';
 		this.statusCode = 404;
 	}
