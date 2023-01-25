@@ -53,7 +53,7 @@ exports.protect = async (Professor, Student, req, res, next) => {
 	// }
 	if (!token)
 		return res
-			.status(404)
+			.status(403)
 			.json('You are not logged in. Please log in!');
 
 	// 2) Verification of the token
@@ -70,7 +70,7 @@ exports.protect = async (Professor, Student, req, res, next) => {
 			hooks: false,
 		}));
 	if (!current_user)
-		return res.status(404).json('The user no longer exists!');
+		return res.status(403).json('The user no longer exists!');
 
 	// 4) Set local storage and req.user to current_user
 	req.user = current_user.dataValues;
