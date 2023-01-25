@@ -51,27 +51,12 @@ module.exports = (sequelize, DataTypes) => {
 				beforeCreate: async (student, options) => {
 					Hook.createUUID(student, options);
 
-					if (
-						await Hook.userEmailCheck(
-							sequelize,
-							student.dataValues.email
-						)
-					) {
-						throw new ValidationError(
-							'User with that email exists, please use different email!'
-						);
-					}
-					console.log(' \n No Email Duplicates !!! \n');
-
-					if (await Hook.isEmailCorrect(student, options)) {
-						throw new ValidationError(
-							'Email format is incorrect, please use different email format!'
-						);
-					}
-
-					console.log(
-						`\n ${student.dataValues.email} is in the correct format \n`
+					await Hook.userEmailCheck(
+						sequelize,
+						student.dataValues.email
 					);
+
+					await Hook.isEmailCorrect(student, options);
 				},
 				afterFind: (student, options) => {
 					// Error if user does not exist

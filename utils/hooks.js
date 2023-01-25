@@ -52,7 +52,9 @@ exports.userEmailCheck = async (sequelize, email) => {
 			hooks: false,
 		}));
 	if (user) {
-		return 1;
+		throw new ValidationError(
+			'User with that email exists, please use different email!'
+		);
 	}
 	return 0;
 };
@@ -77,7 +79,9 @@ exports.isEmailCorrect = async (data, options) => {
 			/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 		)
 	) {
-		return 1;
+		throw new ValidationError(
+			'Email format is incorrect, please use different email format!'
+		);
 	}
 	return 0;
 };

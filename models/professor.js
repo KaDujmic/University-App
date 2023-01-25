@@ -45,22 +45,12 @@ module.exports = (sequelize, DataTypes) => {
 				beforeCreate: async (professor, options) => {
 					Hook.createUUID(professor, options);
 
-					if (
-						await Hook.userEmailCheck(
-							sequelize,
-							professor.dataValues.email
-						)
-					) {
-						throw new ValidationError(
-							'User with that email exists, please use different email!'
-						);
-					}
+					await Hook.userEmailCheck(
+						sequelize,
+						professor.dataValues.email
+					);
 
-					if (await Hook.isEmailCorrect(professor, options)) {
-						throw new ValidationError(
-							'Email format is incorrect, please use different email format!'
-						);
-					}
+					await Hook.isEmailCorrect(professor, options);
 				},
 				afterCreate: (professor, options) => {
 					Hook.hashPassword(professor, options);
