@@ -32,31 +32,17 @@ const create_send_token = (user, status_code, res) => {
 };
 
 exports.userLogin = async (req, res) => {
-	try {
-		const user = await auth.login(
-			models.Professor,
-			models.Student,
-			req,
-			res
-		);
-		if (user.statusCode !== 400) create_send_token(user, 200, res);
-	} catch (err) {
-		res.status(400).json({
-			stats: 'fail',
-			msg: err.message,
-		});
-	}
+	const user = await auth.login(
+		models.Professor,
+		models.Student,
+		req,
+		res
+	);
+	if (user) create_send_token(user, 200, res);
 };
 
 exports.isLoggedIn = async (req, res, next) => {
-	try {
-		auth.protect(models.Professor, models.Student, req, res, next);
-	} catch (err) {
-		res.status(401).json({
-			stats: 'fail',
-			msg: err.message,
-		});
-	}
+	await auth.protect(models.Professor, models.Student, req, res, next);
 };
 
 exports.restrictTo = (...roles) => {

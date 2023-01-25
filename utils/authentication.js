@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const { ValidationError } = require('sequelize');
 
 const correct_password = async function (
 	candidate_password,
@@ -9,11 +10,10 @@ const correct_password = async function (
 };
 
 exports.login = async (Professor, Student, req, res) => {
-	try {
 		const { email, password } = req.body;
 		// If no email or password throw an error
 		if (!email || !password) {
-			return res.status(400).json('Enter your email or password');
+			throw new ValidationError('Enter your email or password');
 		}
 		// Use findAll to skip afterFind Hook
 		const user =
@@ -27,15 +27,9 @@ exports.login = async (Professor, Student, req, res) => {
 			}));
 		// If no user or the password is incorrect throw error
 		if (!user || !correct_password(user.password, password)) {
-			return res.status(400).json('Incorrect email or password!');
+			throw new ValidationError('Incorrect email or password!');
 		}
 		return user.dataValues;
-	} catch (err) {
-		res.status(400).json({
-			status: 'fail',
-			msg: err.message,
-		});
-	}
 };
 
 exports.protect = async (Professor, Student, req, res, next) => {
@@ -70,7 +64,7 @@ exports.protect = async (Professor, Student, req, res, next) => {
 			hooks: false,
 		}));
 	if (!current_user)
-		return res.status(403).json('The user no longer exists!');
+		throw new ValidationError('The user no longer exists!');
 
 	// 4) Set local storage and req.user to current_user
 	req.user = current_user.dataValues;
