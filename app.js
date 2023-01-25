@@ -16,6 +16,7 @@ const departmentRouter = require('./routers/departmentRouter');
 const examRouter = require('./routers/examRouter');
 const resultRouter = require('./routers/resultRouter');
 const authRouter = require('./routers/authRouter');
+const { errorMiddleware } = require('./utils/errorMiddlewareHandler');
 
 dotenv.config({ path: './config.env' });
 
@@ -48,6 +49,8 @@ app.use('/department', departmentRouter);
 app.use('/exam', examRouter);
 app.use('/result', resultRouter);
 app.use('/', authRouter)
+
+app.use(errorMiddleware)
 
 app.listen(port, () => {
 	console.log(`Server listening on the port  ${port}`);
