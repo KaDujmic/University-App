@@ -50,7 +50,7 @@ exports.protect = async (Professor, Student, req, res, next) => {
 		throw new AuthorizationError('You are not logged in. Please log in!');
 
 	// 2) Verification of the token
-	const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+	const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
 	// 3) Check if the user still exists
 	const current_user =

@@ -22,14 +22,10 @@ exports.deleteProfessor = async (req, res) => {
 };
 
 exports.professorCourses = async (req, res) => {
-	try {
 		const professorCourses = await models.ProfessorCourse.findAll({
 			attributes: ['Professor.name', 'Course.name'],
 			include: [models.Professor, models.Course],
 			where: { professor_id: req.params.id },
 		});
 		res.status(200).json(professorCourses);
-	} catch (err) {
-		res.status(404).json(err.errors[0].message);
-	}
 };

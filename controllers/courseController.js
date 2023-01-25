@@ -24,30 +24,22 @@ exports.deleteCourse = async (req, res) => {
 };
 
 exports.studentsOnCourse = async (req, res) => {
-	try {
-		const students = await models.Enrollment.findAll({
-			attributes: ['Course.name', 'Student.full_name'],
-			where: { course_id: req.params.id },
-			include: [models.Course, models.Student],
-		});
-		res.status(200).json({
-			course: students[0].Course.name,
-			students: students,
-		});
-	} catch (err) {
-		res.status(404).json(err.message);
-	}
+	const students = await models.Enrollment.findAll({
+		attributes: ['Course.name', 'Student.full_name'],
+		where: { course_id: req.params.id },
+		include: [models.Course, models.Student],
+	});
+	res.status(200).json({
+		course: students[0].Course.name,
+		students: students,
+	});
 };
 
 exports.professorsOnCourse = async (req, res) => {
-	try {
-		const professors = await models.ProfessorCourse.findAll({
-			attributes: ['Course.name', 'Course.name'],
-			where: { course_id: req.params.id },
-			include: [models.Professor, models.Course],
-		});
-		res.status(200).json({ professorCourse: professors });
-	} catch (err) {
-		res.status(404).json(err.message);
-	}
+	const professors = await models.ProfessorCourse.findAll({
+		attributes: ['Course.name', 'Course.name'],
+		where: { course_id: req.params.id },
+		include: [models.Professor, models.Course],
+	});
+	res.status(200).json({ professorCourse: professors });
 };
