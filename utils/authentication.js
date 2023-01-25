@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { ValidationError } = require('sequelize');
+const { AuthorizationError } = require('./errorHandler');
 
 const correct_password = async function (
 	candidate_password,
@@ -46,9 +47,7 @@ exports.protect = async (Professor, Student, req, res, next) => {
 	// 	console.log(`${token} Cookies`);
 	// }
 	if (!token)
-		return res
-			.status(403)
-			.json('You are not logged in. Please log in!');
+		throw new AuthorizationError('You are not logged in. Please log in!');
 
 	// 2) Verification of the token
 	const decoded = await jwt.verify(token, process.env.JWT_SECRET);
