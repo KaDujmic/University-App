@@ -1,7 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
-const db = require('./models');
 
 /*
 	import routers
@@ -11,7 +10,7 @@ const studentRouter = require('./routers/studentRouter');
 const majorRouter = require('./routers/majorRouter');
 const enrollmentRouter = require('./routers/enrollmentRouter');
 const courseRouter = require('./routers/courseRouter');
-const professor_courseRouter = require('./routers/professor-courseRouter');
+const professorCourseRouter = require('./routers/professorCourseRouter');
 const departmentRouter = require('./routers/departmentRouter');
 const examRouter = require('./routers/examRouter');
 const resultRouter = require('./routers/resultRouter');
@@ -35,7 +34,7 @@ app.use('/student', studentRouter);
 app.use('/major', majorRouter);
 app.use('/course', courseRouter);
 app.use('/enrollment', enrollmentRouter);
-app.use('/professor-course', professor_courseRouter);
+app.use('/professor-course', professorCourseRouter);
 app.use('/department', departmentRouter);
 app.use('/exam', examRouter);
 app.use('/result', resultRouter);

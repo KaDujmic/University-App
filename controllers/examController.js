@@ -1,4 +1,3 @@
-const { sequelize } = require('../models');
 const models = require('../models');
 
 const Model = require('../utils/factory');

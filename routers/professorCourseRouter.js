@@ -1,5 +1,5 @@
 const express = require('express');
-const professor_courseController = require('../controllers/professor-courseController');
+const professor_courseController = require('../controllers/professorCourseController');
 const { callbackErrorHandler } = require('../utils/errorMiddlewareHandler');
 
 const router = express.Router({ mergeParams: true });

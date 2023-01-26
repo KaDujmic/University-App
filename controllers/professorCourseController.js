@@ -1,4 +1,3 @@
-const { sequelize } = require('../models');
 const models = require('../models');
 
 exports.findAllProfessorCourses = async (req, res) => {
