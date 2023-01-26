@@ -1,27 +1,27 @@
 const express = require('express');
 const courseController = require('../controllers/courseController');
 const {
-	callbackErrorHandler,
+  callbackErrorHandler
 } = require('../utils/errorMiddlewareHandler');
 
 const router = express.Router({ mergeParams: true });
 
 router
-	.route('/')
-	.get(callbackErrorHandler(courseController.findAllCourses))
-	.post(callbackErrorHandler(courseController.createCourse));
+  .route('/')
+  .get(callbackErrorHandler(courseController.findAllCourses))
+  .post(callbackErrorHandler(courseController.createCourse));
 
 router
-	.route('/:id')
-	.get(callbackErrorHandler(courseController.findCourse))
-	.put(callbackErrorHandler(courseController.updateCourse))
-	.delete(callbackErrorHandler(courseController.deleteCourse));
+  .route('/:id')
+  .get(callbackErrorHandler(courseController.findCourse))
+  .put(callbackErrorHandler(courseController.updateCourse))
+  .delete(callbackErrorHandler(courseController.deleteCourse));
 
 router
-	.route('/:id/students')
-	.get(callbackErrorHandler(courseController.studentsOnCourse));
+  .route('/:id/students')
+  .get(callbackErrorHandler(courseController.studentsOnCourse));
 router
-	.route('/:id/professors')
-	.get(callbackErrorHandler(courseController.professorsOnCourse));
+  .route('/:id/professors')
+  .get(callbackErrorHandler(courseController.professorsOnCourse));
 
 module.exports = router;

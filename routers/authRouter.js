@@ -1,7 +1,7 @@
 const express = require('express');
 const authController = require('../controllers/authController');
 const {
-	callbackErrorHandler,
+  callbackErrorHandler
 } = require('../utils/errorMiddlewareHandler');
 
 const router = express.Router({ mergeParams: true });

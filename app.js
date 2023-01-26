@@ -22,7 +22,6 @@ dotenv.config({ path: './config.env' });
 
 const app = express();
 
-
 dotenv.config();
 
 app.use(express.json());
@@ -40,8 +39,8 @@ app.use('/professor-course', professor_courseRouter);
 app.use('/department', departmentRouter);
 app.use('/exam', examRouter);
 app.use('/result', resultRouter);
-app.use('/', authRouter)
+app.use('/', authRouter);
 
-app.use(errorMiddleware)
+app.use(errorMiddleware);
 
 module.exports = app;
