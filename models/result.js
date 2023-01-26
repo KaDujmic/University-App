@@ -1,5 +1,8 @@
 'use strict';
 const { Model } = require('sequelize');
+const Hooks = require('../utils/hooks');
+const schemas = require('../utils/validationSchemas');
+
 module.exports = (sequelize, DataTypes) => {
 	class Result extends Model {
 		static associate(models) {
@@ -23,6 +26,14 @@ module.exports = (sequelize, DataTypes) => {
 			underscored: true,
 			modelName: 'Result',
 			tableName: 'result',
+			hooks: {
+				beforeCreate: async (result, options) => {
+					schemas.validation(
+						schemas.professorSchema,
+						student.dataValues
+					);
+				},
+			},
 		}
 	);
 	return Result;

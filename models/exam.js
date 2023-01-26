@@ -1,6 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 const Hook = require('../utils/hooks');
+const schemas = require('../utils/validationSchemas');
 
 module.exports = (sequelize, DataTypes) => {
 	class Exam extends Model {
@@ -36,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
 					Hook.isUpdateId(exam, options);
 				},
 				beforeCreate: (exam, options) => {
-					Hook.idIsPresent(exam, options);
+					schemas.validation(schemas.examSchema, exam.dataValues);
 					Hook.createUUID(exam, options);
 				},
 				afterFind: (exam, options) => {

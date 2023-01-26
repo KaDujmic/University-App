@@ -1,6 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
-const { ValidationError } = require('../utils/errorHandler');
+const schemas = require('../utils/validationSchemas');
 const Hook = require('../utils/hooks');
 
 module.exports = (sequelize, DataTypes) => {
@@ -49,6 +49,11 @@ module.exports = (sequelize, DataTypes) => {
 					Hook.isUpdateId(student, options);
 				},
 				beforeCreate: async (student, options) => {
+					schemas.validation(
+						schemas.studentSchema,
+						student.dataValues
+					);
+
 					Hook.createUUID(student, options);
 
 					await Hook.userEmailCheck(

@@ -102,8 +102,9 @@ exports.enrollmentCheck = async (sequelize, data, options) => {
 			where: { id: data.dataValues.student_id },
 			hooks: false,
 		}))
-	)
+	) {
 		throw new ValidationError(
 			'Student with that ID does not exist, please try again!'
 		);
+	}
 };
