@@ -14,13 +14,12 @@ exports.professorSchema = Joi.object({
   id: null,
   full_name: Joi.string().min(3).max(50).required(),
   email: Joi.string()
-    .alphanum()
     .min(3)
     .max(50)
     .email({ minDomainSegments: 2 })
     .required(),
   address: Joi.string().min(3).max(50).required(),
-  phone_number: Joi.string().alphanum().min(3).max(25).required(),
+  phone_number: Joi.string().min(3).max(25).required(),
   password: Joi.string().min(6).required(),
   department_id: Joi.string().min(3).max(50).required(),
   createdAt: Joi.date(),
