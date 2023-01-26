@@ -21,20 +21,12 @@ const { errorMiddleware } = require('./utils/errorMiddlewareHandler');
 dotenv.config({ path: './config.env' });
 
 const app = express();
-const port = process.env.PORT || 8080;
+
 
 dotenv.config();
 
 app.use(express.json());
 app.use(morgan('dev'));
-
-/*
-	Database connection check
-*/
-db.sequelize
-	.authenticate()
-	.then(() => console.log('Database connected'))
-	.catch((err) => console.log(err.message));
 
 /*
 	Set default routes for specific routers
@@ -52,6 +44,4 @@ app.use('/', authRouter)
 
 app.use(errorMiddleware)
 
-app.listen(port, () => {
-	console.log(`Server listening on the port  ${port}`);
-});
+module.exports = app;
