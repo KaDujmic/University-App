@@ -12,7 +12,6 @@ describe('Testing all professor routes', () => {
         password: 'test1234'
       });
     jwt = response._body.token;
-    // console.log({ jwt });
     expect(response.statusCode).toBe(200);
   });
 
@@ -54,7 +53,6 @@ describe('Testing all professor routes', () => {
     const professor = await models.Professor.findOne({
       where: { email: 'john2@example.com' }
     });
-    console.log({ mirigoje: professor });
     const response = await request(app)
     .delete(`/professor/${professor.id}`)
     .set('Authorization', `Bearer ${jwt}`);
