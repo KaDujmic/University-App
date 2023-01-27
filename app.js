@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
+const cookie_parser = require('cookie-parser');
 
 /*
 	import routers
@@ -25,6 +26,7 @@ dotenv.config();
 
 app.use(express.json());
 app.use(morgan('dev'));
+app.use(cookie_parser());
 
 /*
 	Set default routes for specific routers
