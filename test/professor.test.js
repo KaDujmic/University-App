@@ -68,4 +68,7 @@ describe('Testing all professor routes', () => {
       .send(body);
     expect(response.statusCode).toBe(200);
   });
+  afterAll(async () => {
+    await models.sequelize.close();
+  });
 });

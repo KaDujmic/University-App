@@ -19,7 +19,12 @@
 	"scripts": {
 		"dev": "nodemon server.js",
 		"lint": "eslint .",
-		"lint:fix": "eslint . --fix"
+		"lint:fix": "eslint . --fix",
+		"start:test": "npx jest",
+    "start:dev":"node -r dotenv/config server dotenv_config_path=.env.development",
+    "start:stage":"node -r dotenv/config server dotenv_config_path=.env.stage",
+    "migrate:dev":"npx sequelize-cli db:migrate --env=development",
+    "migrate:stage":"npx sequelize-cli db:migrate --env=stage"
 	},
 	"repository": {
 		"type": "git",
