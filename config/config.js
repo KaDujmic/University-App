@@ -1,4 +1,4 @@
-const envArg = process.argv.find(x => x.startsWith('dotenv'));
+const envArg = process.argv.find(x => x.startsWith('dotenv')) || process.argv.find(x => x.startsWith('--env'));
 const env = envArg ? envArg.split('=')[1] : ['development'];
 require('dotenv').config({ path: `./.env.${env}` });
 
