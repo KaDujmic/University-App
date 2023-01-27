@@ -11,7 +11,6 @@ describe('Testing all department routes', () => {
     const response = await request(app).get(
       '/department/fc8ea3f5-abe2-4b0c-8fb1-6a1da404f252'
     );
-    console.log({ depito: response });
     expect(response.statusCode).toBe(200);
   });
   test('Test the app returns error with message "Model with that ID field does not exist" on a get request /department/:id', async () => {
@@ -46,7 +45,6 @@ describe('Testing all department routes', () => {
     const department = await models.Department.findOne({
       where: { name: 'Advanced Economics' }
     });
-    console.log({ depito: department });
     const response = await request(app).delete(`/department/${department.id}`);
     expect(response.statusCode).toBe(204);
   });
