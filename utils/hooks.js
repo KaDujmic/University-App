@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const bcrypt = require('bcrypt');
 const { ValidationError } = require('./errorHandler');
 const { NotFoundError } = require('./errorHandler');
