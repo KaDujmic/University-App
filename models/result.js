@@ -1,6 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
-// const Hooks = require('../utils/hooks');
+const Hooks = require('../utils/hooks');
 const schemas = require('../utils/validationSchemas');
 
 module.exports = (sequelize, DataTypes) => {
@@ -32,6 +32,9 @@ module.exports = (sequelize, DataTypes) => {
             schemas.professorSchema,
             result.dataValues
           );
+        },
+        afterFind: async (result, options) => {
+          Hooks.exists(result, options);
         }
       }
     }
