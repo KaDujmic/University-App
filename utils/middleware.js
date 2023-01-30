@@ -8,3 +8,10 @@ exports.enrollmentUpdateCheck = (req, res, next) => {
   }
   next();
 };
+
+exports.resultUpdateCheck = (req, res, next) => {
+  if (req.user.id !== req.params.professor_id) {
+    throw new AuthorizationError('You cannot update an enrollment which is not yours');
+  }
+  next();
+};

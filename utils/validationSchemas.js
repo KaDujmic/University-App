@@ -46,12 +46,12 @@ exports.examSchema = Joi.object({
   id: null,
   name: Joi.string().min(3).max(50).required(),
   date: Joi.date()
-    .greater(Date.now() + 48 * 60 * 60 * 1000)
+    .min(Date.now())
     .required(),
   time: Joi.date()
-    .greater(Date.now() + 48 * 60 * 60 * 1000)
+    .min(Date.now())
     .required(),
-  course_id: Joi.string().alphanum().min(3).max(50).required(),
+  course_id: Joi.string().min(3).max(50).required(),
   createdAt: Joi.date(),
   updatedAt: Joi.date()
 }).options({ abortEarly: false });
