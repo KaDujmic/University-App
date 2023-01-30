@@ -26,6 +26,9 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         beforeCreate: async (enrollment, options) => {
           await Hook.enrollmentCheck(sequelize, enrollment, options);
+        },
+        afterFind: async (enrollment, options) => {
+          Hook.exists(enrollment, options);
         }
       }
     }

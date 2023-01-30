@@ -1,7 +1,6 @@
 const express = require('express');
 const enrollmentController = require('../controllers/enrollmentController');
 const authController = require('../controllers/authController');
-const middleware = require('../utils/middleware');
 const {
   callbackErrorHandler
 } = require('../utils/errorMiddlewareHandler');
@@ -19,7 +18,6 @@ router
   .route('/:student_id/:course_id')
   .get(callbackErrorHandler(enrollmentController.findEnrollment))
   .put(
-    callbackErrorHandler(middleware.enrollmentUpdateCheck),
     callbackErrorHandler(enrollmentController.updateEnrollment)
   )
   .delete(

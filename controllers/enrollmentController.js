@@ -1,33 +1,25 @@
 const models = require('../models');
 
 exports.findAllEnrollments = async (req, res) => {
-  try {
-    const enrollments = await models.Enrollment.findAll({
-      include: [models.Student, models.Course]
-    });
-    res.status(200).json({ enrollments });
-  } catch (err) {
-    res.status(404).json(err.message);
-  }
+  const enrollments = await models.Enrollment.findAll({
+    include: [models.Student, models.Course]
+  });
+  res.status(200).json({ enrollments });
 };
 
 exports.findEnrollment = async (req, res) => {
-  try {
-    const enrollment = await models.Enrollment.findAll({
-      where: {
-        student_id: req.params.student_id,
-        course_id: req.params.course_id
-      }
-    });
-    res.status(200).json(enrollment);
-  } catch (err) {
-    res.status(404).json(err.message);
-  }
+  const enrollment = await models.Enrollment.findOne({
+    where: {
+      student_id: req.params.student_id,
+      course_id: req.params.course_id
+    }
+  });
+  res.status(200).json(enrollment);
 };
 
 exports.createEnrollment = async (req, res) => {
   const enrollment = await models.Enrollment.create(req.body);
-  res.status(200).json(enrollment);
+  res.status(201).json(enrollment);
 };
 
 exports.updateEnrollment = async (req, res) => {
@@ -47,5 +39,5 @@ exports.deleteEnrollment = async (req, res) => {
       course_id: req.params.course_id
     }
   });
-  res.status(200).json(enrollment);
+  res.status(204).json(enrollment);
 };
