@@ -9,7 +9,7 @@ exports.findAllResults = async (req, res) => {
 };
 
 exports.findResult = async (req, res) => {
-  const result = await models.Result.findAll({
+  const result = await models.Result.findOne({
     attributes: ['Student.full_name', 'Exam.name', 'grade'],
     include: [models.Student, models.Exam],
     where: {
