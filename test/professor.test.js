@@ -1,30 +1,43 @@
 const request = require('supertest');
 const models = require('../models');
 const app = require('../app');
+// const { professorTest } = require('../testSeed/seed');
+const { execSync } = require('child_process');
 
 describe('Testing all professor routes', () => {
   let jwt;
   beforeAll(async () => {
+    execSync('npm run migrate:test');
+    execSync('npm run seed:test');
+
     const response = await request(app)
-      .post('/login')
-      .send({
-        email: 'john@example.com',
-        password: 'test1234'
-      });
+    .post('/login')
+    .send({
+      email: 'john@example.com',
+      password: 'test1234'
+    });
     jwt = response._body.token;
     expect(response.statusCode).toBe(200);
+  });
+
+  afterAll(async () => {
+    execSync('npm run undo:seed:test');
+    execSync('npm run undo:migrate:test');
+    await models.sequelize.close();
   });
 
   test('Test wether the app returns 200 OK on a get request /professor', async () => {
     const response = await request(app).get('/professor').set('Authorization', `Bearer ${jwt}`);
     expect(response.statusCode).toBe(200);
   });
+
   test('Test wether the app returns 200 OK on a get request /professor/:id', async () => {
     const response = await request(app)
     .get('/professor/20c1297e-58f6-4587-842b-231ff6583086')
     .set('Authorization', `Bearer ${jwt}`);
     expect(response.statusCode).toBe(200);
   });
+
   test('Test the app returns error with message "Model with that ID field does not exist" on a get request /professor/:id', async () => {
     const response = await request(app)
     .get('/professor/20c1297e-58f6-4587-842b-231ff6583083')
@@ -33,6 +46,7 @@ describe('Testing all professor routes', () => {
       'Model with that ID field does not exist'
     );
   });
+
   test('Test wether the app returns 201 Created on a post request /professor', async () => {
     const body = {
       full_name: 'John Doe',
@@ -49,6 +63,7 @@ describe('Testing all professor routes', () => {
       .expect('Content-Type', /json/);
     expect(response.statusCode).toBe(201);
   });
+
   test('Test wether the app returns 204 No Content on a delete request /professor/:id', async () => {
     const professor = await models.Professor.findOne({
       where: { email: 'john2@example.com' }
@@ -58,6 +73,7 @@ describe('Testing all professor routes', () => {
     .set('Authorization', `Bearer ${jwt}`);
     expect(response.statusCode).toBe(204);
   });
+
   test('Test wether the app returns 200 OK on a put request /professor/:id', async () => {
     const body = { full_name: 'John Donut' };
     const response = await request(app)
@@ -65,8 +81,5 @@ describe('Testing all professor routes', () => {
       .set('Authorization', `Bearer ${jwt}`)
       .send(body);
     expect(response.statusCode).toBe(200);
-  });
-  afterAll(async () => {
-    await models.sequelize.close();
   });
 });

@@ -21,14 +21,18 @@
 		"dev": "nodemon server.js",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
-		"run:test": "npx jest",
+		"run:test": "npx jest --verbose --runInBand",
 		"start:test": "node -r dotenv/config server dotenv_config_path=.env.test",
 		"start:dev": "node -r dotenv/config server dotenv_config_path=.env.development",
 		"start:stage": "node -r dotenv/config server dotenv_config_path=.env.stage",
+
 		"migrate:dev": "npx sequelize-cli db:migrate --env=development",
 		"migrate:test": "npx sequelize-cli db:migrate --env=test",
+		"undo:migrate:test": "npx sequelize-cli db:migrate:undo:all --env=test",
+
 		"migrate:stage": "npx sequelize-cli db:migrate --env=stage",
-		"seed:test": "npx sequelize-cli db:seed:all --env=test"
+		"seed:test": "npx sequelize-cli db:seed:all --env=test",
+		"undo:seed:test": "npx sequelize-cli db:seed:undo:all --env=test"
 	},
 	"repository": {
 		"type": "git",

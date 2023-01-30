@@ -24,6 +24,6 @@ module.exports = {
     });
   },
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('professor_course');
+    await queryInterface.dropTable('professor_course', { cascade: true });
   }
 };

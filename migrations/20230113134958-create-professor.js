@@ -60,6 +60,6 @@ module.exports = {
     });
   },
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('professor');
+    await queryInterface.dropTable('professor', { cascade: true });
   }
 };

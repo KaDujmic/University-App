@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         beforeCreate: async (result, options) => {
           schemas.validation(
-            schemas.professorSchema,
+            schemas.resultSchema,
             result.dataValues
           );
         },

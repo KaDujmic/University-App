@@ -1,8 +1,20 @@
 const request = require('supertest');
 const models = require('../models');
 const app = require('../app');
+// const { majorTest } = require('../testSeed/seed');
+const { execSync } = require('child_process');
 
 describe('Testing all major routes', () => {
+  beforeAll(async () => {
+    execSync('npm run migrate:test');
+    execSync('npm run seed:test');
+  });
+
+  afterAll(async () => {
+    execSync('npm run undo:seed:test');
+    execSync('npm run undo:migrate:test');
+    await models.sequelize.close();
+  });
   test('Test wether the app returns 200 OK on a get request /major', async () => {
     const response = await request(app).get('/major');
     expect(response.statusCode).toBe(200);
@@ -45,8 +57,5 @@ describe('Testing all major routes', () => {
       .put('/major/f74e4e5d-f345-4947-a43b-965c6fad6a71')
       .send(body);
     expect(response.statusCode).toBe(200);
-  });
-  afterAll(async () => {
-    await models.sequelize.close();
   });
 });

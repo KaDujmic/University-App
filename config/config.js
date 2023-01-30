@@ -1,6 +1,8 @@
-const envArg = process.argv.find(x => x.startsWith('dotenv')) || process.argv.find(x => x.startsWith('--env'));
-const env = envArg ? envArg.split('=')[1] : ['development'];
-require('dotenv').config({ path: `./.env.${env}` });
+const envArg = process.argv.find(x => x.startsWith('--env'));
+if (envArg) {
+  const env = envArg.split('=')[1];
+  require('dotenv').config({ path: `./.env.${env}` });
+}
 
 module.exports =
 {
@@ -9,7 +11,7 @@ module.exports =
     password: process.env.DB_PASSWORD,
     database: process.env.DB_CONNECTION,
     host: process.env.DB_HOST,
-    port: 5432,
+    port: process.env.DB_PORT,
     dialect: 'postgres',
     define: {
       freezeTableName: true,
@@ -21,7 +23,7 @@ module.exports =
     password: process.env.DB_PASSWORD,
     database: process.env.DB_CONNECTION,
     host: process.env.DB_HOST,
-    port: 5432,
+    port: process.env.DB_PORT,
     dialect: 'postgres',
     define: {
       freezeTableName: true,

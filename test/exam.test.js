@@ -1,8 +1,20 @@
 const request = require('supertest');
 const models = require('../models');
 const app = require('../app');
+// const { examTest } = require('../testSeed/seed');
+const { execSync } = require('child_process');
 
 describe('Testing all exam routes', () => {
+  beforeAll(async () => {
+    execSync('npm run migrate:test');
+    execSync('npm run seed:test');
+  });
+
+  afterAll(async () => {
+    execSync('npm run undo:seed:test');
+    execSync('npm run undo:migrate:test');
+    await models.sequelize.close();
+  });
   test('Test wether the app returns 200 OK on a get request /exam', async () => {
     const response = await request(app).get('/exam');
     expect(response.statusCode).toBe(200);
