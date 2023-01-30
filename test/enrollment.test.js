@@ -5,7 +5,7 @@ const app = require('../app');
 const { execSync } = require('child_process');
 
 describe('Testing all enrollment routes', () => {
-    beforeAll(async () => {
+    beforeAll(() => {
       execSync('npm run migrate:test');
       execSync('npm run seed:test');
     });

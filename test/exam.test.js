@@ -63,7 +63,4 @@ describe('Testing all exam routes', () => {
     const response = await request(app).delete(`/exam/${exam.id}`);
     expect(response.statusCode).toBe(204);
   });
-  afterAll(async () => {
-    await models.sequelize.close();
-  });
 });
