@@ -18,6 +18,7 @@ describe('Testing all EXAM routes', () => {
   describe('Testing all GET EXAM routes', () => {
     test('Test wether the app returns 200 OK on a get request /exam', async () => {
       const response = await request(app).get('/exam');
+      expect(response.headers['content-type']).toMatch(/json/);
       expect(response.statusCode).toBe(200);
     });
     describe.each([
@@ -27,6 +28,7 @@ describe('Testing all EXAM routes', () => {
     ])('Testing GET EXAM route with exam id', (examBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).get(`/exam/${examBody.id}`);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
@@ -56,6 +58,7 @@ describe('Testing all EXAM routes', () => {
     ])('Testing POST EXAM route', (examBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).post('/exam').send(examBody);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
@@ -69,6 +72,7 @@ describe('Testing all EXAM routes', () => {
     ])('Testing POST EXAM route', (examId, examBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).put(`/exam/${examId.id}`).send(examBody);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });

@@ -18,6 +18,7 @@ describe('Testing all RESULT routes', () => {
   describe('Testing all GET RESULT routes', () => {
     test('Test wether the app returns 200 OK on a get request /result', async () => {
       const response = await request(app).get('/result');
+      expect(response.headers['content-type']).toMatch(/json/);
       expect(response.statusCode).toBe(200);
     });
     describe.each([
@@ -35,6 +36,7 @@ describe('Testing all RESULT routes', () => {
     ])('Testing GET RESULT route with result id', (resultBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).get(`/result/${resultBody.student_id}/${resultBody.exam_id}`);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
@@ -59,6 +61,7 @@ describe('Testing all RESULT routes', () => {
     ])('Testing POST RESULT route', (resultBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).post('/result').send(resultBody);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
@@ -79,6 +82,7 @@ describe('Testing all RESULT routes', () => {
     ])('Testing PUT RESULT route', (resultId, resultBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).put(`/result/${resultId.student_id}/${resultId.exam_id}`).send(resultBody);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });

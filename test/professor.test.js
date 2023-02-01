@@ -29,6 +29,7 @@ describe('Testing all professor routes', () => {
   describe('Testing all GET PROFESSOR routes', () => {
     test('Test wether the app returns 200 OK on a get request /professor', async () => {
       const response = await request(app).get('/professor').set('Authorization', `Bearer ${jwt}`);
+      expect(response.headers['content-type']).toMatch(/json/);
       expect(response.statusCode).toBe(200);
     });
     describe.each([
@@ -38,6 +39,7 @@ describe('Testing all professor routes', () => {
     ])('Testing GET PROFESSOR route with professor id', (professorBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).get(`/professor/${professorBody.id}`).set('Authorization', `Bearer ${jwt}`);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
@@ -66,6 +68,7 @@ describe('Testing all professor routes', () => {
     ])('Testing POST PROFESSOR route', (professorBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).post('/professor').send(professorBody).set('Authorization', `Bearer ${jwt}`);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
@@ -78,6 +81,7 @@ describe('Testing all professor routes', () => {
     ])('Testing PUT PROFESSOR route', (professorId, professorBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).put(`/professor/${professorId.id}`).send(professorBody).set('Authorization', `Bearer ${jwt}`);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });

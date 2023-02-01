@@ -18,6 +18,7 @@ describe('Testing all DEPARTMENT routes', () => {
   describe('Testing all GET DEPARTMENT routes', () => {
     test('Test wether the app returns 200 OK on a get request /department', async () => {
       const response = await request(app).get('/department');
+      expect(response.headers['content-type']).toMatch(/json/);
       expect(response.statusCode).toBe(200);
     });
     describe.each([
@@ -27,6 +28,7 @@ describe('Testing all DEPARTMENT routes', () => {
     ])('Testing GET DEPARTMENT route with department id', (departmentBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).get(`/department/${departmentBody.id}`);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
@@ -39,6 +41,7 @@ describe('Testing all DEPARTMENT routes', () => {
     ])('Testing POST DEPARTMENT route', (departmentBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).post('/department').send(departmentBody);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
@@ -52,6 +55,7 @@ describe('Testing all DEPARTMENT routes', () => {
     ])('Testing POST DEPARTMENT route', (departmentId, departmentBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).put(`/department/${departmentId.id}`).send(departmentBody);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
@@ -75,6 +79,7 @@ describe('Testing all DEPARTMENT routes', () => {
     ])('Testing GET DEPARTMENT route', (departmentId, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).get(`/department/${departmentId.id}/professors`);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });

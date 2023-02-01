@@ -18,6 +18,7 @@ describe('Testing all COURSE routes', () => {
   describe('Testing all GET COURSE routes', () => {
     test('Test wether the app returns 200 OK on a get request /course', async () => {
       const response = await request(app).get('/course');
+      expect(response.headers['content-type']).toMatch(/json/);
       expect(response.statusCode).toBe(200);
     });
     describe.each([
@@ -27,6 +28,7 @@ describe('Testing all COURSE routes', () => {
     ])('Testing GET COURSE route with course id', (courseBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).get(`/course/${courseBody.id}`);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
@@ -46,6 +48,7 @@ describe('Testing all COURSE routes', () => {
     ])('Testing POST COURSE route', (courseBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).post('/course').send(courseBody);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
@@ -59,6 +62,7 @@ describe('Testing all COURSE routes', () => {
     ])('Testing POST COURSE route', (courseId, courseBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).put(`/course/${courseId.id}`).send(courseBody);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
@@ -82,6 +86,7 @@ describe('Testing all COURSE routes', () => {
     ])('Testing GET COURSE route', (courseId, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const response = await request(app).get(`/course/${courseId.id}/students`);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });

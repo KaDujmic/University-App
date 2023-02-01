@@ -31,6 +31,7 @@ describe('Testing all ENROLLMENT routes', () => {
       const response = await request(app)
       .get('/enrollment')
       .set('Authorization', `Bearer ${jwt}`);
+      expect(response.headers['content-type']).toMatch(/json/);
       expect(response.statusCode).toBe(200);
     });
     describe.each([
@@ -50,6 +51,7 @@ describe('Testing all ENROLLMENT routes', () => {
         const response = await request(app)
         .get(`/enrollment/${enrollmentBody.student_id}/${enrollmentBody.course_id}`)
         .set('Authorization', `Bearer ${jwt}`);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
@@ -75,6 +77,7 @@ describe('Testing all ENROLLMENT routes', () => {
         .post('/enrollment')
         .send(enrollmentBody)
         .set('Authorization', `Bearer ${jwt}`);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
@@ -98,6 +101,7 @@ describe('Testing all ENROLLMENT routes', () => {
         .put(`/enrollment/${enrollmentId.student_id}/${enrollmentId.course_id}`)
         .send(enrollmentBody)
         .set('Authorization', `Bearer ${jwt}`);
+        expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
     });
