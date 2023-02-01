@@ -29,12 +29,13 @@
 		"start:stage": "node -r dotenv/config server dotenv_config_path=.env.stage",
 		
 		"migrate:test": "npx sequelize-cli db:migrate --env=test",
+		"migrate:dev": "npx sequelize-cli db:migrate --env=development",
+		"migrate:stage": "npx sequelize-cli db:migrate --env=stage",
+		
 		"seed:test": "npx sequelize-cli db:seed:all --env=test",
 		"undo:seed:test": "npx sequelize-cli db:seed:undo:all --env=test",
-		"undo:migrate:test": "npx sequelize-cli db:migrate:undo:all --env=test",
+		"undo:migrate:test": "npx sequelize-cli db:migrate:undo:all --env=test"
 		
-		"migrate:dev": "npx sequelize-cli db:migrate --env=development",
-		"migrate:stage": "npx sequelize-cli db:migrate --env=stage"
 	},
 	"repository": {
 		"type": "git",
