@@ -44,8 +44,9 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'Student',
       tableName: 'student',
       hooks: {
-        beforeBulkUpdate: (student, options) => {
+        beforeBulkUpdate: async (student, options) => {
           Hook.isUpdateId(student, options);
+          await Hook.existsOnUpdate(sequelize.models.Student, student.where.id, options);
         },
         beforeCreate: async (student, options) => {
           schemas.validation(
@@ -66,6 +67,9 @@ module.exports = (sequelize, DataTypes) => {
           // Error if user does not exist
           Hook.exists(student, options);
           Hook.removePassword(student, options);
+        },
+        beforeBulkDestroy: async (student, options) => {
+          await Hook.existsOnUpdate(sequelize.models.Student, student.where.id, options);
         }
       }
     }

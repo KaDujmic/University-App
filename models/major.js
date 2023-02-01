@@ -40,6 +40,10 @@ module.exports = (sequelize, DataTypes) => {
         afterFind: (major, options) => {
           // Error if user does not exist
           Hook.exists(major, options);
+        },
+        beforeBulkDestroy: async (major, options) => {
+          await Hook.existsOnUpdate(sequelize.models.Major, major.where.id, options);
+          await Hook.exists(major, options);
         }
       }
     }
