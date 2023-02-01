@@ -23,7 +23,7 @@ exports.deleteProfessor = async (req, res) => {
 
 exports.professorCourses = async (req, res) => {
   const professorCourses = await models.ProfessorCourse.findAll({
-    attributes: ['Professor.name', 'Course.name'],
+    attributes: ['Professor.full_name', 'Course.name'],
     include: [models.Professor, models.Course],
     where: { professor_id: req.params.id }
   });

@@ -24,8 +24,8 @@ exports.deleteMajor = async (req, res) => {
 
 exports.studentsOnMajor = async (req, res) => {
   const students = await models.Student.findAll({
-    attributes: ['full_name', 'majorId'],
-    where: { majorId: req.params.id }
+    attributes: ['full_name', 'major_id'],
+    where: { major_id: req.params.id }
   });
   res.status(200).json(students);
 };
