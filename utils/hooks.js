@@ -30,6 +30,10 @@ exports.exists = (data, options) => {
   }
 };
 
+exports.existsOnUpdate = async (sequelize, data, options) => {
+  await sequelize.findOne({ where: { id: data } });
+};
+
 // UUID creation
 exports.createUUID = (data, options) => {
   data.id = uuidv4();
@@ -61,7 +65,7 @@ exports.userEmailCheck = async (sequelize, email) => {
 };
 
 // Remove password on find
-exports.removePassword = async (data, options) => {
+exports.removePassword = (data, options) => {
   if (Array.isArray(data)) {
     data.forEach((item) => {
       delete item.dataValues.password;
