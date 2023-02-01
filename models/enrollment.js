@@ -24,11 +24,17 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'Enrollment',
       tableName: 'enrollment',
       hooks: {
+        beforeBulkUpdate: async (enrollment, options) => {
+          await Hook.enrollmentBeforeEditExists(sequelize, enrollment, options);
+        },
         beforeCreate: async (enrollment, options) => {
           await Hook.enrollmentCheck(sequelize, enrollment, options);
         },
         afterFind: async (enrollment, options) => {
           Hook.exists(enrollment, options);
+        },
+        beforeBulkDestroy: async (enrollment, options) => {
+          await Hook.enrollmentBeforeEditExists(sequelize, enrollment, options);
         }
       }
     }

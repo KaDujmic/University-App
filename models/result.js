@@ -27,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
       modelName: 'Result',
       tableName: 'result',
       hooks: {
+        beforeBulkUpdate: async (result, options) => {
+          await Hooks.resultBeforeEditExists(sequelize, result, options);
+        },
         beforeCreate: async (result, options) => {
           schemas.validation(
             schemas.resultSchema,
@@ -34,7 +37,11 @@ module.exports = (sequelize, DataTypes) => {
           );
         },
         afterFind: async (result, options) => {
+          console.log(result);
           Hooks.exists(result, options);
+        },
+        beforeBulkDestroy: async (result, options) => {
+          await Hooks.resultBeforeEditExists(sequelize, result, options);
         }
       }
     }
