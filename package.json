@@ -22,7 +22,7 @@
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 
-		"run:test": "npx jest --verbose --runInBand",
+		"test": "npx jest --verbose --runInBand",
 
 		"start:dev": "node -r dotenv/config server dotenv_config_path=.env.development",
 		"start:test": "node -r dotenv/config server dotenv_config_path=.env.test",

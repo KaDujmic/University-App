@@ -20,6 +20,26 @@ exports.idIsPresent = (data, options) => {
   }
 };
 
+exports.resultBeforeEditExists = async (sequelize, data, options) => {
+  console.log(data.where.student_id, data.where.exam_id);
+  await sequelize.models.Result.findOne({
+    where: {
+      student_id: data.where.student_id,
+      exam_id: data.where.exam_id
+    }
+  });
+};
+
+exports.enrollmentBeforeEditExists = async (sequelize, data, options) => {
+  console.log(data.where.student_id, data.where.course_id);
+  await sequelize.models.Enrollment.findOne({
+    where: {
+      student_id: data.where.student_id,
+      course_id: data.where.course_id
+    }
+  });
+};
+
 // Checking if the user exists e.g. afterFind hook for better error messages
 exports.exists = (data, options) => {
   // Error if user does not exist
@@ -30,6 +50,7 @@ exports.exists = (data, options) => {
   }
 };
 
+// Checking if the user exists on update and delete
 exports.existsOnUpdate = async (sequelize, data, options) => {
   await sequelize.findOne({ where: { id: data } });
 };
