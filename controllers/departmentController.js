@@ -26,7 +26,7 @@ exports.professorsOnDepartment = async (req, res) => {
   const students = await models.Professor.findAll({
     // attributes: ['Department.name'],
     // include: [models.Department],
-    where: { departmentId: req.params.id }
+    where: { department_id: req.params.id }
   });
   res.status(200).json(students);
 };

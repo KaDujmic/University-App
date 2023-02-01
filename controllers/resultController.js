@@ -32,6 +32,7 @@ exports.updateResult = async (req, res) => {
       exam_id: req.params.exam_id
     }
   });
+
   res.status(200).json(result);
 };
 
