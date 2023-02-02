@@ -11,21 +11,42 @@ router.use(authController.isLoggedIn);
 
 router
   .route('/')
-  .get(callbackErrorHandler(studentController.findAllStudents))
-  .post(callbackErrorHandler(studentController.createStudent));
+  .get(
+    /* #swagger.tags = ['Student'] */
+    callbackErrorHandler(studentController.findAllStudents)
+  )
+  .post(
+    /* #swagger.tags = ['Student'] */
+    callbackErrorHandler(studentController.createStudent)
+  );
 
 router
   .route('/:id')
-  .get(callbackErrorHandler(studentController.findStudent))
-  .put(callbackErrorHandler(studentController.updateStudent))
-  .delete(callbackErrorHandler(studentController.deleteStudent));
+  .get(
+    /* #swagger.tags = ['Student'] */
+    callbackErrorHandler(studentController.findStudent)
+  )
+  .put(
+    /* #swagger.tags = ['Student'] */
+    callbackErrorHandler(studentController.updateStudent)
+  )
+  .delete(
+    /* #swagger.tags = ['Student'] */
+    callbackErrorHandler(studentController.deleteStudent)
+  );
 
 router
   .route('/:id/courses')
-  .get(callbackErrorHandler(studentController.studentEnrollments));
+  .get(
+    /* #swagger.tags = ['Student'] */
+    callbackErrorHandler(studentController.studentEnrollments)
+  );
 
 router
   .route('/:id/exams')
-  .get(callbackErrorHandler(studentController.studentExams));
+  .get(
+    /* #swagger.tags = ['Student'] */
+    callbackErrorHandler(studentController.studentExams)
+  );
 
 module.exports = router;

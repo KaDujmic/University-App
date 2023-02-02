@@ -6,6 +6,9 @@ const {
 
 const router = express.Router({ mergeParams: true });
 
-router.post('/login', callbackErrorHandler(authController.userLogin));
+router.post('/login',
+  /* #swagger.tags = ['Auth'] */
+  callbackErrorHandler(authController.userLogin)
+);
 
 module.exports = router;

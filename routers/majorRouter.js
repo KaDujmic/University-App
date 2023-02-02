@@ -8,17 +8,37 @@ const router = express.Router({ mergeParams: true });
 
 router
   .route('/')
-  .get(callbackErrorHandler(majorController.findAllMajors))
-  .post(callbackErrorHandler(majorController.createMajor));
+  .get(
+    /* #swagger.tags = ['Exam'] */
+    callbackErrorHandler(majorController.findAllMajors)
+  )
+  .post(
+    /* #swagger.tags = ['Exam'] */
+    callbackErrorHandler(majorController.createMajor)
+  );
 
 router
+  /* #swagger.tags = ['Major'] */
   .route('/:id')
-  .get(callbackErrorHandler(majorController.findMajor))
-  .put(callbackErrorHandler(majorController.updateMajor))
-  .delete(callbackErrorHandler(majorController.deleteMajor));
+  .get(
+    /* #swagger.tags = ['Exam'] */
+    callbackErrorHandler(majorController.findMajor)
+  )
+  .put(
+    /* #swagger.tags = ['Exam'] */
+    callbackErrorHandler(majorController.updateMajor)
+  )
+  .delete(
+    /* #swagger.tags = ['Exam'] */
+    callbackErrorHandler(majorController.deleteMajor)
+  );
 
 router
+  /* #swagger.tags = ['Major'] */
   .route('/:id/students')
-  .get(callbackErrorHandler(majorController.studentsOnMajor));
+  .get(
+    /* #swagger.tags = ['Exam'] */
+    callbackErrorHandler(majorController.studentsOnMajor)
+  );
 
 module.exports = router;

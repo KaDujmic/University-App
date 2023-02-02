@@ -11,16 +11,27 @@ router.use(authController.isLoggedIn);
 
 router
   .route('/')
-  .get(callbackErrorHandler(enrollmentController.findAllEnrollments))
-  .post(callbackErrorHandler(enrollmentController.createEnrollment));
+  .get(
+    /* #swagger.tags = ['Enrollment'] */
+    callbackErrorHandler(enrollmentController.findAllEnrollments)
+  )
+  .post(
+    /* #swagger.tags = ['Enrollment'] */
+    callbackErrorHandler(enrollmentController.createEnrollment)
+  );
 
 router
   .route('/:student_id/:course_id')
-  .get(callbackErrorHandler(enrollmentController.findEnrollment))
+  .get(
+    /* #swagger.tags = ['Enrollment'] */
+    callbackErrorHandler(enrollmentController.findEnrollment)
+  )
   .put(
+    /* #swagger.tags = ['Enrollment'] */
     callbackErrorHandler(enrollmentController.updateEnrollment)
   )
   .delete(
+    /* #swagger.tags = ['Enrollment'] */
     callbackErrorHandler(enrollmentController.deleteEnrollment)
   );
 

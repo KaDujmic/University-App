@@ -8,13 +8,28 @@ const router = express.Router({ mergeParams: true });
 
 router
   .route('/')
-  .get(callbackErrorHandler(resultController.findAllResults))
-  .post(callbackErrorHandler(resultController.createResult));
+  .get(
+    /* #swagger.tags = ['Result'] */
+    callbackErrorHandler(resultController.findAllResults)
+  )
+  .post(
+    /* #swagger.tags = ['Result'] */
+    callbackErrorHandler(resultController.createResult)
+  );
 
 router
   .route('/:student_id/:exam_id')
-  .get(callbackErrorHandler(resultController.findResult))
-  .put(callbackErrorHandler(resultController.updateResult))
-  .delete(callbackErrorHandler(resultController.deleteResult));
+  .get(
+    /* #swagger.tags = ['Result'] */
+    callbackErrorHandler(resultController.findResult)
+  )
+  .put(
+    /* #swagger.tags = ['Result'] */
+    callbackErrorHandler(resultController.updateResult)
+  )
+  .delete(
+    /* #swagger.tags = ['Result'] */
+    callbackErrorHandler(resultController.deleteResult)
+  );
 
 module.exports = router;

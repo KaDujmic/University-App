@@ -6,13 +6,29 @@ const router = express.Router({ mergeParams: true });
 
 router
   .route('/')
-  .get(callbackErrorHandler(professor_courseController.findAllProfessorCourses))
-  .post(callbackErrorHandler(professor_courseController.createProfessorCourse));
+  .get(
+    /* #swagger.tags = ['Professor Course'] */
+    callbackErrorHandler(professor_courseController.findAllProfessorCourses)
+  )
+  .post(
+    /* #swagger.tags = ['Professor Course'] */
+    callbackErrorHandler(professor_courseController.createProfessorCourse)
+  );
 
 router
+  /* #swagger.tags = ['Professor Course'] */
   .route('/:professor_id/:course_id')
-  .get(callbackErrorHandler(professor_courseController.findProfessorCourse))
-  .put(callbackErrorHandler(professor_courseController.updateProfessorCourse))
-  .delete(callbackErrorHandler(professor_courseController.deleteProfessorCourse));
+  .get(
+    /* #swagger.tags = ['Professor Course'] */
+    callbackErrorHandler(professor_courseController.findProfessorCourse)
+  )
+  .put(
+    /* #swagger.tags = ['Professor Course'] */
+    callbackErrorHandler(professor_courseController.updateProfessorCourse)
+  )
+  .delete(
+    /* #swagger.tags = ['Professor Course'] */
+    callbackErrorHandler(professor_courseController.deleteProfessorCourse)
+  );
 
 module.exports = router;

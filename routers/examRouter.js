@@ -8,13 +8,29 @@ const router = express.Router({ mergeParams: true });
 
 router
   .route('/')
-  .get(callbackErrorHandler(examController.findAllExams))
-  .post(callbackErrorHandler(examController.createExam));
+  .get(
+    /* #swagger.tags = ['Exam'] */
+    callbackErrorHandler(examController.findAllExams)
+  )
+  .post(
+    /* #swagger.tags = ['Exam'] */
+    callbackErrorHandler(examController.createExam)
+  );
 
 router
+  /* #swagger.tags = ['Exam'] */
   .route('/:id')
-  .get(callbackErrorHandler(examController.findExam))
-  .put(callbackErrorHandler(examController.updateExam))
-  .delete(callbackErrorHandler(examController.deleteExam));
+  .get(
+    /* #swagger.tags = ['Exam'] */
+    callbackErrorHandler(examController.findExam)
+  )
+  .put(
+    /* #swagger.tags = ['Exam'] */
+    callbackErrorHandler(examController.updateExam)
+  )
+  .delete(
+    /* #swagger.tags = ['Exam'] */
+    callbackErrorHandler(examController.deleteExam)
+  );
 
 module.exports = router;

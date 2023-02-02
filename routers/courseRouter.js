@@ -8,20 +8,41 @@ const router = express.Router({ mergeParams: true });
 
 router
   .route('/')
-  .get(callbackErrorHandler(courseController.findAllCourses))
-  .post(callbackErrorHandler(courseController.createCourse));
+  .get(
+    /* #swagger.tags = ['Course'] */
+    callbackErrorHandler(courseController.findAllCourses)
+  )
+  .post(
+    /* #swagger.tags = ['Course'] */
+    callbackErrorHandler(courseController.createCourse)
+  );
 
 router
   .route('/:id')
-  .get(callbackErrorHandler(courseController.findCourse))
-  .put(callbackErrorHandler(courseController.updateCourse))
-  .delete(callbackErrorHandler(courseController.deleteCourse));
+  .get(
+    /* #swagger.tags = ['Course'] */
+    callbackErrorHandler(courseController.findCourse)
+  )
+  .put(
+    /* #swagger.tags = ['Course'] */
+    callbackErrorHandler(courseController.updateCourse)
+  )
+  .delete(
+    /* #swagger.tags = ['Course'] */
+    callbackErrorHandler(courseController.deleteCourse)
+  );
 
 router
   .route('/:id/students')
-  .get(callbackErrorHandler(courseController.studentsOnCourse));
+  .get(
+    /* #swagger.tags = ['Course'] */
+    callbackErrorHandler(courseController.studentsOnCourse)
+  );
 router
   .route('/:id/professors')
-  .get(callbackErrorHandler(courseController.professorsOnCourse));
+  .get(
+    /* #swagger.tags = ['Course'] */
+    callbackErrorHandler(courseController.professorsOnCourse)
+  );
 
 module.exports = router;

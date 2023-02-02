@@ -8,20 +8,34 @@ const router = express.Router({ mergeParams: true });
 
 router
   .route('/')
-  .get(callbackErrorHandler(departmentController.findAllDepartments))
-  .post(callbackErrorHandler(departmentController.createDepartment));
+  .get(
+    /* #swagger.tags = ['Department'] */
+    callbackErrorHandler(departmentController.findAllDepartments)
+  )
+  .post(
+    /* #swagger.tags = ['Department'] */
+    callbackErrorHandler(departmentController.createDepartment)
+  );
 
 router
   .route('/:id')
-  .get(callbackErrorHandler(departmentController.findDepartment))
-  .put(callbackErrorHandler(departmentController.updateDepartment))
+  .get(
+    /* #swagger.tags = ['Department'] */
+    callbackErrorHandler(departmentController.findDepartment)
+  )
+  .put(
+    /* #swagger.tags = ['Department'] */
+    callbackErrorHandler(departmentController.updateDepartment)
+  )
   .delete(
+    /* #swagger.tags = ['Department'] */
     callbackErrorHandler(departmentController.deleteDepartment)
   );
 
 router
   .route('/:id/professors')
   .get(
+    /* #swagger.tags = ['Department'] */
     callbackErrorHandler(departmentController.professorsOnDepartment)
   );
 
