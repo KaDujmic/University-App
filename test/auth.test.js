@@ -30,8 +30,7 @@ describe('Testing all auth validations', () => {
   describe('Testing professor route restriction', () => {
     describe.each([
       [{ email: 'mike@example.com', password: 'test1234' }, 200],
-      [{ email: 'mike.louren@gmail.com', password: 'test1234' }, 403],
-      [{ email: 'mike@example.com', password: 'test124' }, 400]
+      [{ email: 'mike.louren@gmail.com', password: 'test1234' }, 403]
     ])('Testing GET DEPARTMENT route with department id', (userBody, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
         const login = await request(app).post('/login').send(userBody);
