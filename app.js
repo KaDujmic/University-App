@@ -29,10 +29,15 @@ dotenv.config();
 app.use(express.json());
 app.use(morgan('dev'));
 app.use(cookie_parser());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 /*
 Set default routes for specific routers
 */
+app.get('/', (req, res) => {
+	// #swagger.tags = ['Home']
+});
+
 app.use('/professor', professorRouter);
 app.use('/student', studentRouter);
 app.use('/major', majorRouter);
@@ -43,8 +48,6 @@ app.use('/department', departmentRouter);
 app.use('/exam', examRouter);
 app.use('/result', resultRouter);
 app.use('/', authRouter);
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(errorMiddleware);
 
