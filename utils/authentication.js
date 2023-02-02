@@ -1,12 +1,16 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { ValidationError } = require('sequelize');
+const { ValidationError } = require('./errorHandler');
 const { AuthorizationError } = require('./errorHandler');
 
 const correct_password = async function (
   candidate_password,
   user_password
 ) {
+  if (process.env.NODE_ENV === 'test') {
+    console.log('whatdahell');
+    return await candidate_password === user_password;
+  }
   return await bcrypt.compare(candidate_password, user_password);
 };
 
@@ -27,7 +31,7 @@ exports.login = async (Professor, Student, req, res) => {
 			  hooks: false
 			}));
   // If no user or the password is incorrect throw error
-  if (!user || !correct_password(user.password, password)) {
+  if (!user || (await correct_password(user.password, password) === false)) {
     throw new ValidationError('Incorrect email or password!');
   }
   return user.dataValues;

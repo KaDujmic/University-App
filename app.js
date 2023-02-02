@@ -17,6 +17,8 @@ const examRouter = require('./routers/examRouter');
 const resultRouter = require('./routers/resultRouter');
 const authRouter = require('./routers/authRouter');
 const { errorMiddleware } = require('./utils/errorMiddlewareHandler');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json');
 
 dotenv.config({ path: './config.env' });
 
@@ -29,7 +31,7 @@ app.use(morgan('dev'));
 app.use(cookie_parser());
 
 /*
-	Set default routes for specific routers
+Set default routes for specific routers
 */
 app.use('/professor', professorRouter);
 app.use('/student', studentRouter);
@@ -41,6 +43,8 @@ app.use('/department', departmentRouter);
 app.use('/exam', examRouter);
 app.use('/result', resultRouter);
 app.use('/', authRouter);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(errorMiddleware);
 
