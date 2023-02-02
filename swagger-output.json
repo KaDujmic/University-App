@@ -11,28 +11,338 @@
     }
   ],
   "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "Home"
+        ],
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/professor/": {
       "get": {
+        "tags": [
+          "Professor"
+        ],
         "description": "",
         "parameters": [],
         "responses": {
+          "200": {
+            "description": "Get professor body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "example": "20c1297e-58f6-4587-842b-231ff6583086"
+                      },
+                      "full_name": {
+                        "type": "string",
+                        "example": "John Doe"
+                      },
+                      "address": {
+                        "type": "string",
+                        "example": "1st Blvd"
+                      },
+                      "email": {
+                        "type": "string",
+                        "example": "john@example.com"
+                      },
+                      "phone_number": {
+                        "type": "string",
+                        "example": "+385915969819"
+                      },
+                      "department_id": {
+                        "type": "string",
+                        "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string",
+                        "example": "20c1297e-58f6-4587-842b-231ff6583086"
+                      },
+                      "full_name": {
+                        "type": "string",
+                        "example": "John Doe"
+                      },
+                      "address": {
+                        "type": "string",
+                        "example": "1st Blvd"
+                      },
+                      "email": {
+                        "type": "string",
+                        "example": "john@example.com"
+                      },
+                      "phone_number": {
+                        "type": "string",
+                        "example": "+385915969819"
+                      },
+                      "department_id": {
+                        "type": "string",
+                        "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
           "403": {
             "description": "Forbidden"
           }
         }
       },
       "post": {
+        "tags": [
+          "Professor"
+        ],
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "professor_body",
+            "in": "body",
+            "description": "Professor body example",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "full_name": {
+                  "type": "string",
+                  "example": "John Doe"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "1st Blvd"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "john@example.com"
+                },
+                "phone_number": {
+                  "type": "string",
+                  "example": "+385915969819"
+                },
+                "department_id": {
+                  "type": "string",
+                  "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "test1234"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
+          "201": {
+            "description": "Create professor body success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "20c1297e-58f6-4587-842b-231ff6583086"
+                    },
+                    "full_name": {
+                      "type": "string",
+                      "example": "John Doe"
+                    },
+                    "address": {
+                      "type": "string",
+                      "example": "1st Blvd"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "john@example.com"
+                    },
+                    "phone_number": {
+                      "type": "string",
+                      "example": "+385915969819"
+                    },
+                    "department_id": {
+                      "type": "string",
+                      "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "test1234"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "20c1297e-58f6-4587-842b-231ff6583086"
+                    },
+                    "full_name": {
+                      "type": "string",
+                      "example": "John Doe"
+                    },
+                    "address": {
+                      "type": "string",
+                      "example": "1st Blvd"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "john@example.com"
+                    },
+                    "phone_number": {
+                      "type": "string",
+                      "example": "+385915969819"
+                    },
+                    "department_id": {
+                      "type": "string",
+                      "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "test1234"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Create professor body missing attribute",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "attribute_name is required"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "attribute_name is required"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
           "403": {
-            "description": "Forbidden"
+            "description": "Create professor body auth failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not logged in. Please log in!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not logged in. Please log in!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/professor/{id}": {
       "get": {
+        "tags": [
+          "Professor"
+        ],
         "description": "",
         "parameters": [
           {
@@ -51,6 +361,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Professor"
+        ],
         "description": "",
         "parameters": [
           {
@@ -69,6 +382,9 @@
         }
       },
       "delete": {
+        "tags": [
+          "Professor"
+        ],
         "description": "",
         "parameters": [
           {
@@ -89,6 +405,9 @@
     },
     "/professor/{id}/courses": {
       "get": {
+        "tags": [
+          "Professor"
+        ],
         "description": "",
         "parameters": [
           {
