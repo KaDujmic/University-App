@@ -18,7 +18,6 @@ router
   );
 
 router
-  /* #swagger.tags = ['Major'] */
   .route('/:id')
   .get(
     /* #swagger.tags = ['Exam'] */
@@ -34,7 +33,6 @@ router
   );
 
 router
-  /* #swagger.tags = ['Major'] */
   .route('/:id/students')
   .get(
     /* #swagger.tags = ['Exam'] */
