@@ -37,7 +37,6 @@ module.exports = (sequelize, DataTypes) => {
           );
         },
         afterFind: async (result, options) => {
-          console.log(result);
           Hooks.exists(result, options);
         },
         beforeBulkDestroy: async (result, options) => {

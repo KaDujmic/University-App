@@ -21,7 +21,6 @@ exports.idIsPresent = (data, options) => {
 };
 
 exports.resultBeforeEditExists = async (sequelize, data, options) => {
-  console.log(data.where.student_id, data.where.exam_id);
   await sequelize.models.Result.findOne({
     where: {
       student_id: data.where.student_id,
@@ -31,7 +30,6 @@ exports.resultBeforeEditExists = async (sequelize, data, options) => {
 };
 
 exports.enrollmentBeforeEditExists = async (sequelize, data, options) => {
-  console.log(data.where.student_id, data.where.course_id);
   await sequelize.models.Enrollment.findOne({
     where: {
       student_id: data.where.student_id,

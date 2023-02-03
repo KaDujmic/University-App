@@ -8,7 +8,6 @@ const correct_password = async function (
   user_password
 ) {
   if (process.env.NODE_ENV === 'test') {
-    console.log('whatdahell');
     return await candidate_password === user_password;
   }
   return await bcrypt.compare(candidate_password, user_password);
