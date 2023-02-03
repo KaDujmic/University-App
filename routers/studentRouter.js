@@ -12,26 +12,216 @@ router.use(authController.isLoggedIn);
 router
   .route('/')
   .get(
-    /* #swagger.tags = ['Student'] */
+    /*
+      #swagger.tags = ['Student']
+      #swagger.responses[200] = {
+        description: 'Get Student body',
+        schema: [
+          {
+            $ref: '#/components/schemas/StudentResponse'
+          }
+        ]
+      }
+      #swagger.responses[403] = {
+        description: 'Get Student body auth failed',
+        schema: {
+          message: 'You are not logged in. Please log in!'
+        }
+      }
+      #swagger.responses[500] = {
+        description: 'Server error',
+        schema: {
+          message: 'Oops, something went wrong!'
+        }
+      }
+    */
     callbackErrorHandler(studentController.findAllStudents)
   )
   .post(
-    /* #swagger.tags = ['Student'] */
+    /*
+      #swagger.tags = ['Student']
+      #swagger.requestBody = {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              $ref: '#/components/schemas/StudentBody'
+            }
+          }
+        }
+      }
+      #swagger.responses[201] = {
+        "description": "Create Student body success",
+        "content": {
+          "application/json": {
+            "schema": {
+              $ref: '#/components/schemas/StudentResponse'
+            }
+          }
+        }
+      }
+      #swagger.responses[400] = {
+        description: 'Invalid request was sent',
+        schema: {
+          $ref: '#/components/schemas/ValidationError'
+        }
+      }
+      #swagger.responses[403] = {
+        description: 'Create Student body auth failed',
+        schema: {
+          $ref: '#/components/schemas/AuthorizationError'
+        }
+      }
+      #swagger.responses[500] = {
+        description: 'Server error',
+        schema: {
+          $ref: '#/components/schemas/NotFoundError'
+        }
+      }
+    */
     callbackErrorHandler(studentController.createStudent)
   );
 
 router
   .route('/:id')
   .get(
-    /* #swagger.tags = ['Student'] */
+    /*
+      #swagger.tags = ['Student']
+      #swagger.responses[200] = {
+        description: 'Get Student body success',
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "required": [],
+              "properties": {
+                "full_name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string",
+                  "format": "email",
+                },
+                "address": {
+                  "type": "string"
+                },
+                "phone_number": {
+                  "type": "string"
+                },
+                "major_id": {
+                  "type": "string",
+                  "format": "uuid"
+                },
+                "password": {
+                  "type": "string",
+                  "format": "password"
+                },
+                "createdAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        }
+      }
+      #swagger.responses[403] = {
+        description: 'Get Student body auth failed',
+        schema: {
+          message: 'You are not logged in. Please log in!'
+        }
+      }
+      #swagger.responses[404] = {
+        description: 'Get Student body, Not Found',
+        schema: {
+          message: 'Model with that ID field does not exist'
+        }
+      }
+      #swagger.responses[500] = {
+        description: 'Server error',
+        schema: {
+          message: 'Oops, something went wrong!'
+        }
+      }
+    */
     callbackErrorHandler(studentController.findStudent)
   )
   .put(
-    /* #swagger.tags = ['Student'] */
+    /*
+      #swagger.tags = ['Student']
+      #swagger.parameters['student_body'] = {
+        in: 'body',
+        description: 'Student body example on update',
+        schema: {
+          $ref: '#/components/schemas/StudentBody'
+        }
+      }
+      #swagger.responses[200] = {
+        description: 'Put student response body on success',
+        "content": {
+          "application/json": {
+            "schema": {
+              $ref: '#/components/schemas/StudentResponse'
+            }
+          }
+        }
+      }
+      #swagger.responses[400] = {
+        description: 'Update student email validation failed, failed',
+        schema: {
+          message: 'User with that email exists, please use different email!'
+        }
+      }
+      #swagger.responses[403] = {
+        description: 'Update student, auth failed',
+        schema: {
+          message: 'You are not logged in. Please log in!'
+        }
+      }
+      #swagger.responses[404] = {
+        description: 'Update student, Not Found',
+        schema: {
+          message: 'Model with that ID field does not exist'
+        }
+      }
+      #swagger.responses[500] = {
+        description: 'Server error',
+        schema: {
+          message: 'Oops, something went wrong!'
+        }
+      }
+    */
     callbackErrorHandler(studentController.updateStudent)
   )
   .delete(
-    /* #swagger.tags = ['Student'] */
+    /*
+      #swagger.tags = ['Student']
+      #swagger.responses[204] = {
+        description: 'Delete student success, no response body'
+      }
+      #swagger.responses[403] = {
+        description: 'Update student, auth failed',
+        schema: {
+          message: 'You are not logged in. Please log in!'
+        }
+      }
+      #swagger.responses[404] = {
+        description: 'Delete student, Not Found',
+        schema: {
+          message: 'Model with that ID field does not exist'
+        }
+      }
+      #swagger.responses[500] = {
+        description: 'Server error',
+        schema: {
+          message: 'Oops, something went wrong!'
+        }
+      }
+    */
     callbackErrorHandler(studentController.deleteStudent)
   );
 
@@ -50,3 +240,16 @@ router
   );
 
 module.exports = router;
+
+// const test = {
+//   id: '4763efc4-3523-4f6b-a4c3-8ec415d96338',
+//   full_name: 'Mike Smith',
+//   email: 'mike.smith2@gmail.com',
+//   address: '4rd Blvd',
+//   phone_number: '+3859159691323',
+//   password: 'test1234',
+//   major_id: 'a49aeff9-2eec-4c76-8a06-68fa44d6dc6c',
+//   updatedAt: '2023-02-03T09:43:30.187Z',
+//   createdAt: '2023-02-03T09:43:30.187Z',
+//   role: 'student'
+// };
