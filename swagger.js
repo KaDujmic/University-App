@@ -47,21 +47,94 @@ const doc = {
           }
         }
       },
-      StudentBody: {
+      ProfessorBody: {
         type: 'object',
         properties: {
           full_name: {
-            type: 'string'
+            type: 'string',
+            example: 'John Doe'
           },
           email: {
             type: 'string',
             format: 'email'
           },
           address: {
-            type: 'string'
+            type: 'string',
+            example: '1st Blvd'
           },
           phone_number: {
-            type: 'string'
+            type: 'string',
+            example: '+385915969819'
+          },
+          department_id: {
+            type: 'string',
+            format: 'uuid'
+          },
+          password: {
+            type: 'string',
+            example: 'password'
+          }
+        }
+      },
+      ProfessorResponse: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+            format: 'uuid'
+          },
+          full_name: {
+            type: 'string',
+            example: 'John Doe'
+          },
+          email: {
+            type: 'string',
+            format: 'email'
+          },
+          address: {
+            type: 'string',
+            example: '1st Blvd'
+          },
+          phone_number: {
+            type: 'string',
+            example: '+385915969819'
+          },
+          department_id: {
+            type: 'string',
+            format: 'uuid'
+          },
+          role: {
+            type: 'string',
+            example: 'professor'
+          },
+          createdAt: {
+            type: 'string',
+            format: 'date-time'
+          },
+          updatedAt: {
+            type: 'string',
+            format: 'date-time'
+          }
+        }
+      },
+      StudentBody: {
+        type: 'object',
+        properties: {
+          full_name: {
+            type: 'string',
+            example: 'John Doe'
+          },
+          email: {
+            type: 'string',
+            format: 'email'
+          },
+          address: {
+            type: 'string',
+            example: '1st Blvd'
+          },
+          phone_number: {
+            type: 'string',
+            example: '+385915969819'
           },
           major_id: {
             type: 'string',
@@ -69,7 +142,7 @@ const doc = {
           },
           password: {
             type: 'string',
-            format: 'password'
+            example: 'test1234'
           }
         }
       },
@@ -81,21 +154,28 @@ const doc = {
             format: 'uuid'
           },
           full_name: {
-            type: 'string'
+            type: 'string',
+            example: 'John Doe'
           },
           email: {
             type: 'string',
             format: 'email'
           },
           address: {
-            type: 'string'
+            type: 'string',
+            example: '1st Blvd'
           },
           phone_number: {
-            type: 'string'
+            type: 'string',
+            example: '+385915969819'
           },
           major_id: {
             type: 'string',
             format: 'uuid'
+          },
+          role: {
+            type: 'string',
+            example: 'student'
           },
           createdAt: {
             type: 'string',

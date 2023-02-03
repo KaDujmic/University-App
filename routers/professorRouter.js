@@ -15,15 +15,10 @@ router
     /*
       #swagger.tags = ['Professor']
       #swagger.responses[200] = {
-        description: 'Get professor body',
+        description: 'Get Student body',
         schema: [
           {
-            id: '20c1297e-58f6-4587-842b-231ff6583086',
-            full_name: 'John Doe',
-            address: '1st Blvd',
-            email: 'john@example.com',
-            phone_number: '+385915969819',
-            department_id: '1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf',
+            $ref: '#/components/schemas/StudentProfessor'
           }
         ]
       }
@@ -46,28 +41,24 @@ router
   .post(
     /*
       #swagger.tags = ['Professor']
-      #swagger.parameters['professor_body'] = {
-        in: 'body',
-        description: 'Professor body example',
-        schema: {
-          full_name: 'John Doe',
-          address: '1st Blvd',
-          email: 'john@example.com',
-          phone_number: '+385915969819',
-          department_id: '1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf',
-          password: 'test1234'
+      #swagger.requestBody = {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              $ref: '#/components/schemas/ProfessorBody'
+            }
+          }
         }
       }
       #swagger.responses[201] = {
         description: 'Create professor body success',
-        schema: {
-          id: '20c1297e-58f6-4587-842b-231ff6583086',
-          full_name: 'John Doe',
-          address: '1st Blvd',
-          email: 'john@example.com',
-          phone_number: '+385915969819',
-          department_id: '1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf',
-          password: 'test1234'
+        "content": {
+          "application/json": {
+            "schema": {
+              $ref: '#/components/schemas/ProfessorResponse'
+            }
+          }
         }
       }
       #swagger.responses[400] = {
@@ -98,15 +89,25 @@ router
   .get(
     /*
       #swagger.tags = ['Professor']
+      #swagger.tags = ['Professor']
+      #swagger.requestBody = {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              $ref: '#/components/schemas/ProfessorBody'
+            }
+          }
+        }
+      }
       #swagger.responses[200] = {
         description: 'Get professor body',
-        schema: {
-          id: '20c1297e-58f6-4587-842b-231ff6583086',
-          full_name: 'John Doe',
-          address: '1st Blvd',
-          email: 'john@example.com',
-          phone_number: '+385915969819',
-          department_id: '1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf',
+        "content": {
+          "application/json": {
+            "schema": {
+              $ref: '#/components/schemas/ProfessorResponse'
+            }
+          }
         }
       }
       #swagger.responses[403] = {
@@ -134,22 +135,24 @@ router
   .put(
     /*
       #swagger.tags = ['Professor']
-      #swagger.parameters['professor_body'] = {
-        in: 'body',
-        description: 'Professor body example on update',
-        schema: {
-          full_name: 'John Doe Test',
+      #swagger.requestBody = {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              $ref: '#/components/schemas/ProfessorBody'
+            }
+          }
         }
       }
       #swagger.responses[200] = {
         description: 'Put professor response body on success',
-        schema: {
-          id: '20c1297e-58f6-4587-842b-231ff6583086',
-          full_name: 'John Doe Test',
-          address: '1st Blvd',
-          email: 'john@example.com',
-          phone_number: '+385915969819',
-          department_id: '1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf',
+        "content": {
+          "application/json": {
+            "schema": {
+              $ref: '#/components/schemas/ProfessorResponse'
+            }
+          }
         }
       }
       #swagger.responses[400] = {
@@ -212,7 +215,54 @@ router
 router
   .route('/:id/courses')
   .get(
-    /* #swagger.tags = ['Professor'] */
+    /*
+      #swagger.tags = ['Professor']
+      #swagger.responses[200] = {
+        description: 'Get professor body',
+        schema: [
+          {
+              "Professor": {
+                  "id": "20c1297e-58f6-4587-842b-231ff6583086",
+                  "full_name": "John Doe",
+                  "address": "1st Blvd",
+                  "phone_number": "+385915969819",
+                  "department_id": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf",
+                  "email": "john@example.com",
+                  "password": "test1234",
+                  "role": "professor",
+                  "createdAt": "2023-02-02T15:14:59.095Z",
+                  "updatedAt": "2023-02-02T15:14:59.095Z"
+              },
+              "Course": {
+                  "id": "4db29f8f-9295-4369-88bf-1cc4bdf82dfd",
+                  "name": "Chem 101",
+                  "credit_hours": 7,
+                  "major_id": "420ad58b-d4a2-4e71-9fa3-724759d8e7ec",
+                  "createdAt": "2023-02-02T15:14:59.102Z",
+                  "updatedAt": "2023-02-02T15:14:59.102Z"
+              }
+          }
+        ]
+      }
+      #swagger.responses[403] = {
+        description: 'Get professor body, Auth Failed',
+        schema: {
+          message: 'You are not logged in. Please log in!'
+        }
+      }
+      #swagger.responses[404] = {
+        description: 'Get professor body, Not Found',
+        schema: {
+          message: 'Model with that ID field does not exist'
+        }
+      }
+      #swagger.responses[500] = {
+        description: 'Server error',
+        schema: {
+          message: 'Oops, something went wrong!'
+        }
+      }
+    */
     authController.restrictTo('professor'),
     callbackErrorHandler(professorController.professorCourses)
   );

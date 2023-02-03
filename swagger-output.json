@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Unit test demo",
-    "description": "Description",
+    "title": "University App",
+    "description": "University App Documentation of endpoints with request, body and response examples",
     "version": "1.0.0"
   },
   "servers": [
@@ -30,39 +30,13 @@
         "parameters": [],
         "responses": {
           "200": {
-            "description": "Get professor body",
+            "description": "Get Student body",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string",
-                        "example": "20c1297e-58f6-4587-842b-231ff6583086"
-                      },
-                      "full_name": {
-                        "type": "string",
-                        "example": "John Doe"
-                      },
-                      "address": {
-                        "type": "string",
-                        "example": "1st Blvd"
-                      },
-                      "email": {
-                        "type": "string",
-                        "example": "john@example.com"
-                      },
-                      "phone_number": {
-                        "type": "string",
-                        "example": "+385915969819"
-                      },
-                      "department_id": {
-                        "type": "string",
-                        "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
-                      }
-                    }
+                    "$ref": "#/components/schemas/StudentProfessor"
                   },
                   "xml": {
                     "name": "main"
@@ -73,33 +47,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "id": {
-                        "type": "string",
-                        "example": "20c1297e-58f6-4587-842b-231ff6583086"
-                      },
-                      "full_name": {
-                        "type": "string",
-                        "example": "John Doe"
-                      },
-                      "address": {
-                        "type": "string",
-                        "example": "1st Blvd"
-                      },
-                      "email": {
-                        "type": "string",
-                        "example": "john@example.com"
-                      },
-                      "phone_number": {
-                        "type": "string",
-                        "example": "+385915969819"
-                      },
-                      "department_id": {
-                        "type": "string",
-                        "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
-                      }
-                    }
+                    "$ref": "#/components/schemas/StudentProfessor"
                   },
                   "xml": {
                     "name": "main"
@@ -181,120 +129,14 @@
           "Professor"
         ],
         "description": "",
-        "parameters": [
-          {
-            "name": "professor_body",
-            "in": "body",
-            "description": "Professor body example",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "full_name": {
-                  "type": "string",
-                  "example": "John Doe"
-                },
-                "address": {
-                  "type": "string",
-                  "example": "1st Blvd"
-                },
-                "email": {
-                  "type": "string",
-                  "example": "john@example.com"
-                },
-                "phone_number": {
-                  "type": "string",
-                  "example": "+385915969819"
-                },
-                "department_id": {
-                  "type": "string",
-                  "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "test1234"
-                }
-              }
-            }
-          }
-        ],
+        "parameters": [],
         "responses": {
           "201": {
             "description": "Create professor body success",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "20c1297e-58f6-4587-842b-231ff6583086"
-                    },
-                    "full_name": {
-                      "type": "string",
-                      "example": "John Doe"
-                    },
-                    "address": {
-                      "type": "string",
-                      "example": "1st Blvd"
-                    },
-                    "email": {
-                      "type": "string",
-                      "example": "john@example.com"
-                    },
-                    "phone_number": {
-                      "type": "string",
-                      "example": "+385915969819"
-                    },
-                    "department_id": {
-                      "type": "string",
-                      "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
-                    },
-                    "password": {
-                      "type": "string",
-                      "example": "test1234"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "20c1297e-58f6-4587-842b-231ff6583086"
-                    },
-                    "full_name": {
-                      "type": "string",
-                      "example": "John Doe"
-                    },
-                    "address": {
-                      "type": "string",
-                      "example": "1st Blvd"
-                    },
-                    "email": {
-                      "type": "string",
-                      "example": "john@example.com"
-                    },
-                    "phone_number": {
-                      "type": "string",
-                      "example": "+385915969819"
-                    },
-                    "department_id": {
-                      "type": "string",
-                      "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
-                    },
-                    "password": {
-                      "type": "string",
-                      "example": "test1234"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
+                  "$ref": "#/components/schemas/ProfessorResponse"
                 }
               }
             }
@@ -398,6 +240,16 @@
               }
             }
           }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfessorBody"
+              }
+            }
+          }
         }
       }
     },
@@ -423,70 +275,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "20c1297e-58f6-4587-842b-231ff6583086"
-                    },
-                    "full_name": {
-                      "type": "string",
-                      "example": "John Doe"
-                    },
-                    "address": {
-                      "type": "string",
-                      "example": "1st Blvd"
-                    },
-                    "email": {
-                      "type": "string",
-                      "example": "john@example.com"
-                    },
-                    "phone_number": {
-                      "type": "string",
-                      "example": "+385915969819"
-                    },
-                    "department_id": {
-                      "type": "string",
-                      "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "20c1297e-58f6-4587-842b-231ff6583086"
-                    },
-                    "full_name": {
-                      "type": "string",
-                      "example": "John Doe"
-                    },
-                    "address": {
-                      "type": "string",
-                      "example": "1st Blvd"
-                    },
-                    "email": {
-                      "type": "string",
-                      "example": "john@example.com"
-                    },
-                    "phone_number": {
-                      "type": "string",
-                      "example": "+385915969819"
-                    },
-                    "department_id": {
-                      "type": "string",
-                      "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
+                  "$ref": "#/components/schemas/ProfessorResponse"
                 }
               }
             }
@@ -590,6 +379,16 @@
               }
             }
           }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfessorBody"
+              }
+            }
+          }
         }
       },
       "put": {
@@ -605,20 +404,6 @@
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "name": "professor_body",
-            "in": "body",
-            "description": "Professor body example on update",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "full_name": {
-                  "type": "string",
-                  "example": "John Doe Test"
-                }
-              }
-            }
           }
         ],
         "responses": {
@@ -627,70 +412,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "20c1297e-58f6-4587-842b-231ff6583086"
-                    },
-                    "full_name": {
-                      "type": "string",
-                      "example": "John Doe Test"
-                    },
-                    "address": {
-                      "type": "string",
-                      "example": "1st Blvd"
-                    },
-                    "email": {
-                      "type": "string",
-                      "example": "john@example.com"
-                    },
-                    "phone_number": {
-                      "type": "string",
-                      "example": "+385915969819"
-                    },
-                    "department_id": {
-                      "type": "string",
-                      "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "id": {
-                      "type": "string",
-                      "example": "20c1297e-58f6-4587-842b-231ff6583086"
-                    },
-                    "full_name": {
-                      "type": "string",
-                      "example": "John Doe Test"
-                    },
-                    "address": {
-                      "type": "string",
-                      "example": "1st Blvd"
-                    },
-                    "email": {
-                      "type": "string",
-                      "example": "john@example.com"
-                    },
-                    "phone_number": {
-                      "type": "string",
-                      "example": "+385915969819"
-                    },
-                    "department_id": {
-                      "type": "string",
-                      "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
-                    }
-                  },
-                  "xml": {
-                    "name": "main"
-                  }
+                  "$ref": "#/components/schemas/ProfessorResponse"
                 }
               }
             }
@@ -824,6 +546,16 @@
                     "name": "main"
                   }
                 }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfessorBody"
               }
             }
           }
@@ -967,8 +699,283 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "Get professor body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Professor": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "example": "20c1297e-58f6-4587-842b-231ff6583086"
+                          },
+                          "full_name": {
+                            "type": "string",
+                            "example": "John Doe"
+                          },
+                          "address": {
+                            "type": "string",
+                            "example": "1st Blvd"
+                          },
+                          "phone_number": {
+                            "type": "string",
+                            "example": "+385915969819"
+                          },
+                          "department_id": {
+                            "type": "string",
+                            "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
+                          },
+                          "email": {
+                            "type": "string",
+                            "example": "john@example.com"
+                          },
+                          "password": {
+                            "type": "string",
+                            "example": "test1234"
+                          },
+                          "role": {
+                            "type": "string",
+                            "example": "professor"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "example": "2023-02-02T15:14:59.095Z"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "example": "2023-02-02T15:14:59.095Z"
+                          }
+                        }
+                      },
+                      "Course": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "example": "4db29f8f-9295-4369-88bf-1cc4bdf82dfd"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Chem 101"
+                          },
+                          "credit_hours": {
+                            "type": "number",
+                            "example": 7
+                          },
+                          "major_id": {
+                            "type": "string",
+                            "example": "420ad58b-d4a2-4e71-9fa3-724759d8e7ec"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "example": "2023-02-02T15:14:59.102Z"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "example": "2023-02-02T15:14:59.102Z"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Professor": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "example": "20c1297e-58f6-4587-842b-231ff6583086"
+                          },
+                          "full_name": {
+                            "type": "string",
+                            "example": "John Doe"
+                          },
+                          "address": {
+                            "type": "string",
+                            "example": "1st Blvd"
+                          },
+                          "phone_number": {
+                            "type": "string",
+                            "example": "+385915969819"
+                          },
+                          "department_id": {
+                            "type": "string",
+                            "example": "1076625a-bcc5-49ea-b0e5-9ce3f8f0b2bf"
+                          },
+                          "email": {
+                            "type": "string",
+                            "example": "john@example.com"
+                          },
+                          "password": {
+                            "type": "string",
+                            "example": "test1234"
+                          },
+                          "role": {
+                            "type": "string",
+                            "example": "professor"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "example": "2023-02-02T15:14:59.095Z"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "example": "2023-02-02T15:14:59.095Z"
+                          }
+                        }
+                      },
+                      "Course": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string",
+                            "example": "4db29f8f-9295-4369-88bf-1cc4bdf82dfd"
+                          },
+                          "name": {
+                            "type": "string",
+                            "example": "Chem 101"
+                          },
+                          "credit_hours": {
+                            "type": "number",
+                            "example": 7
+                          },
+                          "major_id": {
+                            "type": "string",
+                            "example": "420ad58b-d4a2-4e71-9fa3-724759d8e7ec"
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "example": "2023-02-02T15:14:59.102Z"
+                          },
+                          "updatedAt": {
+                            "type": "string",
+                            "example": "2023-02-02T15:14:59.102Z"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
           "403": {
-            "description": "Forbidden"
+            "description": "Get professor body, Auth Failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not logged in. Please log in!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not logged in. Please log in!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Get professor body, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -980,7 +987,101 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Get Student body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StudentResponse"
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StudentResponse"
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Get Student body auth failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not logged in. Please log in!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not logged in. Please log in!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "post": {
         "tags": [
@@ -988,7 +1089,73 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Create Student body success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request was sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Create Student body auth failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthorizationError"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthorizationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentBody"
+              }
+            }
+          }
+        }
       }
     },
     "/student/{id}": {
@@ -1007,7 +1174,117 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Get Student body success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Get Student body auth failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not logged in. Please log in!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not logged in. Please log in!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Get Student body, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "put": {
         "tags": [
@@ -1024,7 +1301,160 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Put student response body on success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Update student email validation failed, failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User with that email exists, please use different email!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "User with that email exists, please use different email!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Update student, auth failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not logged in. Please log in!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not logged in. Please log in!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Update student, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StudentBody"
+              }
+            }
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -1041,7 +1471,110 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "204": {
+            "description": "Delete student success, no response body"
+          },
+          "403": {
+            "description": "Update student, auth failed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not logged in. Please log in!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "You are not logged in. Please log in!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Delete student, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/student/{id}/courses": {
@@ -1735,6 +2268,188 @@
         "description": "",
         "parameters": [],
         "responses": {}
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ValidationErrorDetail": {
+        "type": "object",
+        "properties": {
+          "msg": {
+            "type": "string"
+          },
+          "param": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        }
+      },
+      "ValidationError": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "NotFoundError": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "AuthorizationError": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "ProfessorBody": {
+        "type": "object",
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "address": {
+            "type": "string",
+            "example": "1st Blvd"
+          },
+          "phone_number": {
+            "type": "string",
+            "example": "+385915969819"
+          },
+          "department_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "password": {
+            "type": "string",
+            "example": "password"
+          }
+        }
+      },
+      "ProfessorResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "full_name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "address": {
+            "type": "string",
+            "example": "1st Blvd"
+          },
+          "phone_number": {
+            "type": "string",
+            "format": "+385915969819"
+          },
+          "department_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "role": {
+            "type": "string",
+            "example": "professor"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "StudentBody": {
+        "type": "object",
+        "properties": {
+          "full_name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "address": {
+            "type": "string",
+            "example": "1st Blvd"
+          },
+          "phone_number": {
+            "type": "string",
+            "example": "+385915969819"
+          },
+          "major_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "password": {
+            "type": "string",
+            "example": "test1234"
+          }
+        }
+      },
+      "StudentResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "full_name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "address": {
+            "type": "string",
+            "example": "1st Blvd"
+          },
+          "phone_number": {
+            "type": "string",
+            "example": "+385915969819"
+          },
+          "major_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "role": {
+            "type": "string",
+            "example": "student"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
       }
     }
   }

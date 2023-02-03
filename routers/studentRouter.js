@@ -92,39 +92,7 @@ router
         "content": {
           "application/json": {
             "schema": {
-              "type": "object",
-              "required": [],
-              "properties": {
-                "full_name": {
-                  "type": "string"
-                },
-                "email": {
-                  "type": "string",
-                  "format": "email",
-                },
-                "address": {
-                  "type": "string"
-                },
-                "phone_number": {
-                  "type": "string"
-                },
-                "major_id": {
-                  "type": "string",
-                  "format": "uuid"
-                },
-                "password": {
-                  "type": "string",
-                  "format": "password"
-                },
-                "createdAt": {
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "updatedAt": {
-                  "type": "string",
-                  "format": "date-time"
-                }
-              }
+              $ref: '#/components/schemas/StudentResponse'
             }
           }
         }
@@ -153,11 +121,14 @@ router
   .put(
     /*
       #swagger.tags = ['Student']
-      #swagger.parameters['student_body'] = {
-        in: 'body',
-        description: 'Student body example on update',
-        schema: {
-          $ref: '#/components/schemas/StudentBody'
+      #swagger.requestBody = {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              $ref: '#/components/schemas/StudentBody'
+            }
+          }
         }
       }
       #swagger.responses[200] = {
