@@ -1,6 +1,6 @@
-# Appointment Application
+# University Application
 
-Built using node.js, express, postgresql and sequelize
+Built using node.js[https://nodejs.org/], express[https://expressjs.com/], postgresql[https://www.postgresql.org/] and sequelize[https://sequelize.org/]
 
 ## Appliaction functionality
 
@@ -20,8 +20,7 @@ Built using node.js, express, postgresql and sequelize
 
 
 **Node.js** - https://nodejs.org/en/
-**Docker** - https://www.docker.com/
-**nvm** - https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/
+**Postgresql** - https://www.postgresql.org/
 
 
 ---
@@ -33,11 +32,11 @@ Built using node.js, express, postgresql and sequelize
 > ---
 >
 > 1. `npm install` - Install all the dependencies needed for your application
-> 2. `docker compose up` - This will create a docker container containing 2 images of postgresql installed on alpine linux
+> 2. The database postgresql should be installed and running locally
 > 3. `npm run migreate:dev` - Create Tables and dependencies in you DB
 > 4. `npm run seed:dev` - Populate Tables with correct entities
-> 2. `npm run start:dev` - This will start your node server
-> 3. `Use the port displayed in the console -> default loacalhost:4000`
+> 5. `npm run start:dev` - This will start your node server
+> 6. `Use the port displayed in the console -> default loacalhost:4000`
 >
 > ---
 
@@ -56,7 +55,8 @@ Built using node.js, express, postgresql and sequelize
 >
 >> There are more scripts u can use, see package json for any additional information you need
 >> There is an example of a .env file. For all other environments you need or want to use, edit the config.js file and add .env.{{your_env}} file
->> The script to start the server should look like `"npm run start:{{your_env}}": "node -r dotenv/config server dotenv_config_path=.env.{{your_env}}"` 
+>> The script to start the server should look like 
+>> `"npm run start:{{your_env}}": "node -r dotenv/config server dotenv_config_path=.env.{{your_env}}"` 
 >> And then the migrations or seeders 
 >>>```
 >>>"migrate:{{your_env}}": "npx sequelize-cli db:migrate --env={{your_env}}"
@@ -64,6 +64,10 @@ Built using node.js, express, postgresql and sequelize
 >>>```
 >>>"seed:{{your_env}}": "npx sequelize-cli db:seed:all --env={{your_env}}"
 >>>```
+>
+>> Also if you want to run tests and have multiple databases and run your tests on a different database,
+>> you can install **docker** - https://www.postgresql.org/ and run the provided compose yml file
+>>> `docker compose up` will create 2 images in a container, you can edit the ports in docker-compose file
 >
 > ---
 
