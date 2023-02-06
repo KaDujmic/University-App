@@ -9,33 +9,33 @@ const router = express.Router({ mergeParams: true });
 router
   .route('/')
   .get(
-    /* #swagger.tags = ['Exam'] */
+    /* #swagger.tags = ['Major'] */
     callbackErrorHandler(majorController.findAllMajors)
   )
   .post(
-    /* #swagger.tags = ['Exam'] */
+    /* #swagger.tags = ['Major'] */
     callbackErrorHandler(majorController.createMajor)
   );
 
 router
   .route('/:id')
   .get(
-    /* #swagger.tags = ['Exam'] */
+    /* #swagger.tags = ['Major'] */
     callbackErrorHandler(majorController.findMajor)
   )
   .put(
-    /* #swagger.tags = ['Exam'] */
+    /* #swagger.tags = ['Major'] */
     callbackErrorHandler(majorController.updateMajor)
   )
   .delete(
-    /* #swagger.tags = ['Exam'] */
+    /* #swagger.tags = ['Major'] */
     callbackErrorHandler(majorController.deleteMajor)
   );
 
 router
   .route('/:id/students')
   .get(
-    /* #swagger.tags = ['Exam'] */
+    /* #swagger.tags = ['Major'] */
     callbackErrorHandler(majorController.studentsOnMajor)
   );
 
