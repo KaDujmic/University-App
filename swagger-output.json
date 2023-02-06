@@ -36,7 +36,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/StudentProfessor"
+                    "$ref": "#/components/schemas/ProfessorResponse"
                   },
                   "xml": {
                     "name": "main"
@@ -47,7 +47,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/StudentProfessor"
+                    "$ref": "#/components/schemas/ProfessorResponse"
                   },
                   "xml": {
                     "name": "main"
@@ -1622,7 +1622,68 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Get Major body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MajorResponse"
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MajorResponse"
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "post": {
         "tags": [
@@ -1630,7 +1691,58 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Create Major body, success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MajorResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request was sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MajorBody"
+              }
+            }
+          }
+        }
       }
     },
     "/major/{id}": {
@@ -1649,7 +1761,84 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Get Major body, success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MajorBody"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Get Major body, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "put": {
         "tags": [
@@ -1666,7 +1855,94 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Put Major response body on success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MajorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Update Major, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MajorBody"
+              }
+            }
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -1683,7 +1959,77 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "204": {
+            "description": "Delete Major success, no response body"
+          },
+          "404": {
+            "description": "Delete Major, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/major/{id}/students": {
@@ -1712,7 +2058,68 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Get Course body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseResponse"
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CourseResponse"
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "post": {
         "tags": [
@@ -1720,7 +2127,58 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Create Course body, success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request was sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseBody"
+              }
+            }
+          }
+        }
       }
     },
     "/course/{id}": {
@@ -1739,7 +2197,84 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Get Course body, success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseBody"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Get Course body, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "put": {
         "tags": [
@@ -1756,7 +2291,94 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Put Course response body on success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CourseResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Update Course, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CourseBody"
+              }
+            }
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -1773,10 +2395,80 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "204": {
+            "description": "Delete Course success, no response body"
+          },
+          "404": {
+            "description": "Delete Course, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
-    "/course/{id}/students": {
+    "/course/{id}/Courses": {
       "get": {
         "tags": [
           "Course"
@@ -2011,7 +2703,68 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Get Department body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DepartmentResponse"
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DepartmentResponse"
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "post": {
         "tags": [
@@ -2019,7 +2772,58 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Create Department body, success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request was sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DepartmentBody"
+              }
+            }
+          }
+        }
       }
     },
     "/department/{id}": {
@@ -2038,7 +2842,84 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Get Department body, success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentBody"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Get Department body, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "put": {
         "tags": [
@@ -2055,7 +2936,94 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Put Department response body on success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Update Department, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DepartmentBody"
+              }
+            }
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -2072,7 +3040,77 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "204": {
+            "description": "Delete Department success, no response body"
+          },
+          "404": {
+            "description": "Delete Department, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/department/{id}/professors": {
@@ -2101,7 +3139,68 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Get Exam body",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExamResponse"
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExamResponse"
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "post": {
         "tags": [
@@ -2109,7 +3208,58 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Create Exam body, success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExamResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request was sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExamBody"
+              }
+            }
+          }
+        }
       }
     },
     "/exam/{id}": {
@@ -2128,7 +3278,84 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Get Exam body, success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExamBody"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Get Exam body, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
       "put": {
         "tags": [
@@ -2145,7 +3372,94 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Put Exam response body on success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExamResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Update Exam, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExamBody"
+              }
+            }
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -2162,7 +3476,77 @@
             }
           }
         ],
-        "responses": {}
+        "responses": {
+          "204": {
+            "description": "Delete Exam success, no response body"
+          },
+          "404": {
+            "description": "Delete Exam, Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Model with that ID field does not exist"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Oops, something went wrong!"
+                    }
+                  },
+                  "xml": {
+                    "name": "main"
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/result/": {
@@ -2498,6 +3882,175 @@
           "role": {
             "type": "string",
             "example": "student"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "CourseBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Chem 101"
+          },
+          "credit_hours": {
+            "type": "integer",
+            "example": "6"
+          },
+          "major_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "CourseResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "example": "Chem 101"
+          },
+          "credit_hours": {
+            "type": "integer",
+            "example": "6"
+          },
+          "major_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "DepartmentBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "IT"
+          }
+        }
+      },
+      "DepartmentResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "example": "IT"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ExamBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Chem 101 exam"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "course_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "ExamResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "example": "Chem 101 exam"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "course_id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "MajorBody": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Computer Science"
+          },
+          "department_id": {
+            "type": "string",
+            "format": "uuid",
+            "required": true
+          }
+        }
+      },
+      "MajorResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string",
+            "example": "Computer Science"
+          },
+          "department_id": {
+            "type": "string",
+            "format": "uuid"
           },
           "createdAt": {
             "type": "string",

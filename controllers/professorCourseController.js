@@ -2,7 +2,7 @@ const models = require('../models');
 
 exports.findAllProfessorCourses = async (req, res) => {
   const professor_courses = await models.ProfessorCourse.findAll({
-    attributes: ['Professor.name', 'Course.name'],
+    attributes: ['Professor.full_name', 'Course.name'],
     include: [models.Professor, models.Course]
   });
   res.status(200).json({ professor_courses });
@@ -10,7 +10,7 @@ exports.findAllProfessorCourses = async (req, res) => {
 
 exports.findProfessorCourse = async (req, res) => {
   const professor_course = await models.ProfessorCourse.findAll({
-    attributes: ['Professor.name', 'Course.name'],
+    attributes: ['Professor.full_name', 'Course.name'],
     include: [models.Professor, models.Course],
     where: {
       professor_id: req.params.professor_id,

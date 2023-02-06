@@ -18,7 +18,7 @@ router
         description: 'Get Student body',
         schema: [
           {
-            $ref: '#/components/schemas/StudentProfessor'
+            $ref: '#/components/schemas/ProfessorResponse'
           }
         ]
       }

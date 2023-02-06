@@ -186,6 +186,174 @@ const doc = {
             format: 'date-time'
           }
         }
+      },
+      CourseBody: {
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string',
+            example: 'Chem 101'
+          },
+          credit_hours: {
+            type: 'integer',
+            example: '6'
+          },
+          major_id: {
+            type: 'string',
+            format: 'uuid'
+          }
+        }
+      },
+      CourseResponse: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+            format: 'uuid'
+          },
+          name: {
+            type: 'string',
+            example: 'Chem 101'
+          },
+          credit_hours: {
+            type: 'integer',
+            example: '6'
+          },
+          major_id: {
+            type: 'string',
+            format: 'uuid'
+          },
+          createdAt: {
+            type: 'string',
+            format: 'date-time'
+          },
+          updatedAt: {
+            type: 'string',
+            format: 'date-time'
+          }
+        }
+      },
+      DepartmentBody: {
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string',
+            example: 'IT'
+          }
+        }
+      },
+      DepartmentResponse: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+            format: 'uuid'
+          },
+          name: {
+            type: 'string',
+            example: 'IT'
+          },
+          createdAt: {
+            type: 'string',
+            format: 'date-time'
+          },
+          updatedAt: {
+            type: 'string',
+            format: 'date-time'
+          }
+        }
+      },
+      ExamBody: {
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string',
+            example: 'Chem 101 exam'
+          },
+          date: {
+            type: 'string',
+            format: 'date-time'
+          },
+          time: {
+            type: 'string',
+            format: 'date-time'
+          },
+          course_id: {
+            type: 'string',
+            format: 'uuid'
+          }
+        }
+      },
+      ExamResponse: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+            format: 'uuid'
+          },
+          name: {
+            type: 'string',
+            example: 'Chem 101 exam'
+          },
+          date: {
+            type: 'string',
+            format: 'date-time'
+          },
+          time: {
+            type: 'string',
+            format: 'date-time'
+          },
+          course_id: {
+            type: 'string',
+            format: 'uuid'
+          },
+          createdAt: {
+            type: 'string',
+            format: 'date-time'
+          },
+          updatedAt: {
+            type: 'string',
+            format: 'date-time'
+          }
+        }
+      },
+      MajorBody: {
+        type: 'object',
+        properties: {
+          name: {
+            type: 'string',
+            example: 'Computer Science'
+          },
+          department_id: {
+            type: 'string',
+            format: 'uuid'
+          }
+        }
+      },
+      MajorResponse: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'string',
+            format: 'uuid'
+          },
+          name: {
+            type: 'string',
+            example: 'Computer Science'
+          },
+          department_id: {
+            type: 'string',
+            format: 'uuid'
+          },
+          createdAt: {
+            type: 'string',
+            format: 'date-time'
+          },
+          updatedAt: {
+            type: 'string',
+            format: 'date-time'
+          }
+        }
       }
     }
   }
