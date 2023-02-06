@@ -1618,7 +1618,7 @@
     "/major/": {
       "get": {
         "tags": [
-          "Exam"
+          "Major"
         ],
         "description": "",
         "parameters": [],
@@ -1626,7 +1626,7 @@
       },
       "post": {
         "tags": [
-          "Exam"
+          "Major"
         ],
         "description": "",
         "parameters": [],
@@ -1636,7 +1636,7 @@
     "/major/{id}": {
       "get": {
         "tags": [
-          "Exam"
+          "Major"
         ],
         "description": "",
         "parameters": [
@@ -1653,7 +1653,7 @@
       },
       "put": {
         "tags": [
-          "Exam"
+          "Major"
         ],
         "description": "",
         "parameters": [
@@ -1670,7 +1670,7 @@
       },
       "delete": {
         "tags": [
-          "Exam"
+          "Major"
         ],
         "description": "",
         "parameters": [
@@ -1689,7 +1689,7 @@
     "/major/{id}/students": {
       "get": {
         "tags": [
-          "Exam"
+          "Major"
         ],
         "description": "",
         "parameters": [
@@ -2267,7 +2267,65 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Log in successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StudentResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request was sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationError"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "$ref": "#/components/schemas/NotFoundError"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "email": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "test1234"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -2361,7 +2419,7 @@
           },
           "phone_number": {
             "type": "string",
-            "format": "+385915969819"
+            "example": "+385915969819"
           },
           "department_id": {
             "type": "string",
