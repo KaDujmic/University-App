@@ -36,7 +36,7 @@ exports.studentsOnCourse = async (req, res) => {
 
 exports.professorsOnCourse = async (req, res) => {
   const professors = await models.ProfessorCourse.findAll({
-    attributes: ['Course.name', 'Course.name'],
+    attributes: ['Professor.full_name', 'Course.name'],
     where: { course_id: req.params.id },
     include: [models.Professor, models.Course]
   });

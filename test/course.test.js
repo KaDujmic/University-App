@@ -79,13 +79,13 @@ describe('Testing all COURSE routes', () => {
       });
     });
   });
-  describe('Testing get STUDENTS COURSE route', () => {
+  describe('Testing get PROFESSORS on COURSE route', () => {
     describe.each([
       [{ id: '4db29f8f-9295-4369-88bf-1cc4bdf82dfd' }, 200]
       // [{ id: 'a49aeff9-2eec-4c76-8a06-68fa44d6dc6e' }, 404] TODO
     ])('Testing GET COURSE route', (courseId, expectedStatus) => {
       test(`should respond with a ${expectedStatus} status code`, async () => {
-        const response = await request(app).get(`/course/${courseId.id}/students`);
+        const response = await request(app).get(`/course/${courseId.id}/professors`);
         expect(response.headers['content-type']).toMatch(/json/);
         expect(response.statusCode).toBe(expectedStatus);
       });
