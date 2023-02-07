@@ -32,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         afterFind: async (enrollment, options) => {
           Hook.exists(enrollment, options);
+          Hook.removePasswordEnrollment(enrollment);
         },
         beforeBulkDestroy: async (enrollment, options) => {
           await Hook.enrollmentBeforeEditExists(sequelize, enrollment, options);
