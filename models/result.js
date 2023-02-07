@@ -1,6 +1,6 @@
 'use strict';
 const { Model } = require('sequelize');
-const Hooks = require('../utils/hooks');
+const Hook = require('../utils/hooks');
 const schemas = require('../utils/validationSchemas');
 
 module.exports = (sequelize, DataTypes) => {
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'result',
       hooks: {
         beforeBulkUpdate: async (result, options) => {
-          await Hooks.resultBeforeEditExists(sequelize, result, options);
+          await Hook.resultBeforeEditExists(sequelize, result, options);
         },
         beforeCreate: async (result, options) => {
           schemas.validation(
@@ -37,10 +37,11 @@ module.exports = (sequelize, DataTypes) => {
           );
         },
         afterFind: async (result, options) => {
-          Hooks.exists(result, options);
+          Hook.exists(result, options);
+          Hook.removePasswordStudent(result);
         },
         beforeBulkDestroy: async (result, options) => {
-          await Hooks.resultBeforeEditExists(sequelize, result, options);
+          await Hook.resultBeforeEditExists(sequelize, result, options);
         }
       }
     }
