@@ -56,7 +56,7 @@
               }
             }
           },
-          "403": {
+          "401": {
             "description": "Create professor body auth failed",
             "content": {
               "application/json": {
@@ -88,6 +88,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "500": {
             "description": "Server error",
@@ -174,7 +177,7 @@
               }
             }
           },
-          "403": {
+          "401": {
             "description": "Create professor body auth failed",
             "content": {
               "application/json": {
@@ -206,6 +209,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "500": {
             "description": "Server error",
@@ -280,7 +286,7 @@
               }
             }
           },
-          "403": {
+          "401": {
             "description": "Get professor body auth failed",
             "content": {
               "application/json": {
@@ -312,6 +318,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Get professor body Not Found",
@@ -450,7 +459,7 @@
               }
             }
           },
-          "403": {
+          "401": {
             "description": "Update professor, auth failed",
             "content": {
               "application/json": {
@@ -482,6 +491,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Update professor, Not Found",
@@ -580,7 +592,7 @@
           "204": {
             "description": "Delete professor success, no response body"
           },
-          "403": {
+          "401": {
             "description": "Update professor, auth failed",
             "content": {
               "application/json": {
@@ -612,6 +624,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Delete professor, Not Found",
@@ -878,7 +893,7 @@
               }
             }
           },
-          "403": {
+          "401": {
             "description": "Get professor body, Auth Failed",
             "content": {
               "application/json": {
@@ -910,6 +925,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Get professor body, Not Found",
@@ -1015,7 +1033,7 @@
               }
             }
           },
-          "403": {
+          "401": {
             "description": "Get Student body auth failed",
             "content": {
               "application/json": {
@@ -1115,7 +1133,7 @@
               }
             }
           },
-          "403": {
+          "401": {
             "description": "Create Student body auth failed",
             "content": {
               "application/json": {
@@ -1185,7 +1203,7 @@
               }
             }
           },
-          "403": {
+          "401": {
             "description": "Get Student body auth failed",
             "content": {
               "application/json": {
@@ -1345,7 +1363,7 @@
               }
             }
           },
-          "403": {
+          "401": {
             "description": "Update student, auth failed",
             "content": {
               "application/json": {
@@ -1475,7 +1493,7 @@
           "204": {
             "description": "Delete student success, no response body"
           },
-          "403": {
+          "401": {
             "description": "Update student, auth failed",
             "content": {
               "application/json": {
@@ -3698,14 +3716,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "email": {
-                  "type": "string",
-                  "format": "email"
-                },
-                "password": {
-                  "type": "string",
-                  "example": "test1234"
-                }
+                "$ref": "#/components/schemas/LoginBody"
               }
             }
           }
@@ -3714,6 +3725,13 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
       "ValidationErrorDetail": {
         "type": "object",
@@ -3750,6 +3768,19 @@
         "properties": {
           "message": {
             "type": "string"
+          }
+        }
+      },
+      "LoginBody": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string",
+            "example": "test1234"
           }
         }
       },
@@ -4032,8 +4063,7 @@
           },
           "department_id": {
             "type": "string",
-            "format": "uuid",
-            "required": true
+            "format": "uuid"
           }
         }
       },
@@ -4063,5 +4093,10 @@
         }
       }
     }
-  }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ]
 }
