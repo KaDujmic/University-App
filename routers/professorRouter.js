@@ -22,7 +22,7 @@ router
           }
         ]
       }
-      #swagger.responses[403] = {
+      #swagger.responses[401] = {
         description: 'Create professor body auth failed',
         schema: {
           message: 'You are not logged in. Please log in!'
@@ -67,7 +67,7 @@ router
           message: '\attribute_name\ is required'
         }
       }
-      #swagger.responses[403] = {
+      #swagger.responses[401] = {
         description: 'Create professor body auth failed',
         schema: {
           message: 'You are not logged in. Please log in!'
@@ -110,7 +110,7 @@ router
           }
         }
       }
-      #swagger.responses[403] = {
+      #swagger.responses[401] = {
         description: 'Get professor body auth failed',
         schema: {
           message: 'You are not logged in. Please log in!'
@@ -161,7 +161,7 @@ router
           message: 'User with that email exists, please use different email!'
         }
       }
-      #swagger.responses[403] = {
+      #swagger.responses[401] = {
         description: 'Update professor, auth failed',
         schema: {
           message: 'You are not logged in. Please log in!'
@@ -189,7 +189,7 @@ router
       #swagger.responses[204] = {
         description: 'Delete professor success, no response body'
       }
-      #swagger.responses[403] = {
+      #swagger.responses[401] = {
         description: 'Update professor, auth failed',
         schema: {
           message: 'You are not logged in. Please log in!'
@@ -244,7 +244,7 @@ router
           }
         ]
       }
-      #swagger.responses[403] = {
+      #swagger.responses[401] = {
         description: 'Get professor body, Auth Failed',
         schema: {
           message: 'You are not logged in. Please log in!'

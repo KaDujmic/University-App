@@ -22,7 +22,7 @@ router
           }
         ]
       }
-      #swagger.responses[403] = {
+      #swagger.responses[401] = {
         description: 'Get Student body auth failed',
         schema: {
           message: 'You are not logged in. Please log in!'
@@ -66,7 +66,7 @@ router
           $ref: '#/components/schemas/ValidationError'
         }
       }
-      #swagger.responses[403] = {
+      #swagger.responses[401] = {
         description: 'Create Student body auth failed',
         schema: {
           $ref: '#/components/schemas/AuthorizationError'
@@ -97,7 +97,7 @@ router
           }
         }
       }
-      #swagger.responses[403] = {
+      #swagger.responses[401] = {
         description: 'Get Student body auth failed',
         schema: {
           message: 'You are not logged in. Please log in!'
@@ -147,7 +147,7 @@ router
           message: 'User with that email exists, please use different email!'
         }
       }
-      #swagger.responses[403] = {
+      #swagger.responses[401] = {
         description: 'Update student, auth failed',
         schema: {
           message: 'You are not logged in. Please log in!'
@@ -174,7 +174,7 @@ router
       #swagger.responses[204] = {
         description: 'Delete student success, no response body'
       }
-      #swagger.responses[403] = {
+      #swagger.responses[401] = {
         description: 'Update student, auth failed',
         schema: {
           message: 'You are not logged in. Please log in!'
