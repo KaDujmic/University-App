@@ -430,6 +430,30 @@ const doc = {
             example: 3
           }
         }
+      },
+      ProfessorCourseBody: {
+        type: 'object',
+        properties: {
+          professor_id: {
+            type: 'string',
+            format: 'uuid'
+          },
+          course_id: {
+            type: 'string',
+            format: 'uuid'
+          }
+        }
+      },
+      ProfessorCourseResponse: {
+        type: 'object',
+        properties: {
+          Professor: {
+            $ref: '#/components/schemas/ProfessorResponse'
+          },
+          Course: {
+            $ref: '#/components/schemas/CourseResponse'
+          }
+        }
       }
     }
   },
