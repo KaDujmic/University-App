@@ -211,16 +211,3 @@ router
   );
 
 module.exports = router;
-
-// const test = {
-//   id: '4763efc4-3523-4f6b-a4c3-8ec415d96338',
-//   full_name: 'Mike Smith',
-//   email: 'mike.smith2@gmail.com',
-//   address: '4rd Blvd',
-//   phone_number: '+3859159691323',
-//   password: 'test1234',
-//   major_id: 'a49aeff9-2eec-4c76-8a06-68fa44d6dc6c',
-//   updatedAt: '2023-02-03T09:43:30.187Z',
-//   createdAt: '2023-02-03T09:43:30.187Z',
-//   role: 'student'
-// };

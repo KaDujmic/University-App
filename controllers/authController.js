@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const models = require('../models');
 const auth = require('../utils/authentication');
+const { callbackErrorHandler } = require('../utils/errorMiddlewareHandler');
 
 const sign_token = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -30,9 +31,9 @@ exports.userLogin = async (req, res) => {
   if (user) create_send_token(user, 200, res, req);
 };
 
-exports.isLoggedIn = async (req, res, next) => {
+exports.isLoggedIn = callbackErrorHandler(async (req, res, next) => {
   await auth.protect(models.Professor, models.Student, req, res, next);
-};
+});
 
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
