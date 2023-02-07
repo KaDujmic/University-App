@@ -398,6 +398,38 @@ const doc = {
             $ref: '#/components/schemas/CourseResponse'
           }
         }
+      },
+      ResultBody: {
+        type: 'object',
+        properties: {
+          student_id: {
+            type: 'string',
+            format: 'uuid'
+          },
+          exam_id: {
+            type: 'string',
+            format: 'uuid'
+          },
+          grade: {
+            type: 'integer',
+            example: 3
+          }
+        }
+      },
+      ResultResponse: {
+        type: 'object',
+        properties: {
+          Student: {
+            $ref: '#/components/schemas/StudentResponse'
+          },
+          Exam: {
+            $ref: '#/components/schemas/ExamResponse'
+          },
+          Grade: {
+            type: 'integer',
+            example: 3
+          }
+        }
       }
     }
   },
