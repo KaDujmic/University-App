@@ -374,6 +374,30 @@ const doc = {
             format: 'date-time'
           }
         }
+      },
+      EnrollmentBody: {
+        type: 'object',
+        properties: {
+          student_id: {
+            type: 'string',
+            format: 'uuid'
+          },
+          course_id: {
+            type: 'string',
+            format: 'uuid'
+          }
+        }
+      },
+      EnrollmentResponse: {
+        type: 'object',
+        properties: {
+          Student: {
+            $ref: '#/components/schemas/StudentResponse'
+          },
+          Course: {
+            $ref: '#/components/schemas/CourseResponse'
+          }
+        }
       }
     }
   },
