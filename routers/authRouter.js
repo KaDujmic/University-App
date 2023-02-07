@@ -14,14 +14,7 @@ router.post('/login',
         "content": {
           "application/json": {
             "schema": {
-              "email": {
-                type: "string",
-                format: "email",
-              },
-              password: {
-                type: "string",
-                example: "test1234"
-              }
+              $ref: '#/components/schemas/LoginBody'
             }
           }
         }
