@@ -8,6 +8,13 @@ const doc = {
   host: 'localhost:4000',
   schemes: ['http'],
   components: {
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT'
+      }
+    },
     '@schemas': {
       ValidationErrorDetail: {
         type: 'object',
@@ -44,6 +51,19 @@ const doc = {
         properties: {
           message: {
             type: 'string'
+          }
+        }
+      },
+      LoginBody: {
+        type: 'object',
+        properties: {
+          email: {
+            type: 'string',
+            format: 'email'
+          },
+          password: {
+            type: 'string',
+            example: 'test1234'
           }
         }
       },
@@ -356,7 +376,10 @@ const doc = {
         }
       }
     }
-  }
+  },
+  security: [{
+    bearerAuth: []
+  }]
 };
 
 const outputFile = './swagger-output.json';
