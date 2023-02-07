@@ -8,20 +8,9 @@ const sign_token = (id) => {
   });
 };
 
-const create_send_token = (user, status_code, res) => {
+const create_send_token = (user, status_code, res, req) => {
   // Sign the token with user ID
   const token = sign_token(user.id);
-  // Set cookie options
-  const cookie_options = {
-    expires: new Date(
-      Date.now() +
-				process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
-    ),
-    httpOnly: true
-  };
-  // Set cookie
-  res.cookie('jwt', token, cookie_options);
-
   res.status(status_code).json({
     status: 'success',
     token,
@@ -38,7 +27,7 @@ exports.userLogin = async (req, res) => {
     req,
     res
   );
-  if (user) create_send_token(user, 200, res);
+  if (user) create_send_token(user, 200, res, req);
 };
 
 exports.isLoggedIn = async (req, res, next) => {
