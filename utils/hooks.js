@@ -96,6 +96,18 @@ exports.removePassword = (data, options) => {
   }
 };
 
+exports.removePasswordEnrollment = (data, options) => {
+  if (Array.isArray(data)) {
+    data.forEach((item) => {
+      delete item.Student.dataValues.password;
+    });
+  } else if (data.Student.dataValues.password) {
+    delete data.Student.dataValues.password;
+  } else {
+    return 0;
+  }
+};
+
 // Check email format
 exports.isEmailCorrect = async (data, options) => {
   if (
